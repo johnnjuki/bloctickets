@@ -146,7 +146,7 @@ export default function Page() {
                   <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800 text-[#6366F1]">
                     Upcoming Events
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Don't Miss Out</h2>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Don&apos;t Miss Out</h2>
                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                     Check out the latest events on the Ticketopia platform and secure your tickets today.
                   </p>

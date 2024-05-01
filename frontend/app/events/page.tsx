@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 export default function EventsPage() {
   return (
@@ -27,7 +28,7 @@ export default function EventsPage() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
             <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <img
+              <Image
                 alt="Event 1"
                 className="w-full h-48 object-cover"
                 height="200"
@@ -55,7 +56,7 @@ export default function EventsPage() {
               </div>
             </div>
             <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <img
+              <Image
                 alt="Event 2"
                 className="w-full h-48 object-cover"
                 height="200"
@@ -82,7 +83,7 @@ export default function EventsPage() {
               </div>
             </div>
             <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <img
+              <Image
                 alt="Event 3"
                 className="w-full h-48 object-cover"
                 height="200"
@@ -110,7 +111,7 @@ export default function EventsPage() {
               </div>
             </div>
             <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <img
+              <Image
                 alt="Event 4"
                 className="w-full h-48 object-cover"
                 height="200"
