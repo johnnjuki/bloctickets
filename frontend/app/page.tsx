@@ -66,7 +66,8 @@ export default function Page() {
               <div className="flex flex-col justify-center space-y-4 text-white">
                 <div className="space-y-2">
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Secure, Decentralized Ticketing
+                    {/* Secure, Decentralized Ticketing */}
+                    Discover top events near you
                   </h1>
                   <p className="max-w-[600px] text-gray-200 md:text-xl">
                     Ticketopia is the leading web3 platform for event ticketing. Enjoy secure, decentralized ticketing
@@ -106,7 +107,7 @@ export default function Page() {
                   <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800 text-[#6366F1]">
                     Key Features
                   </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Blockchain-Powered Ticketing</h2>
+                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Blockchain-Powered</h2>
                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                     Ticketopia leverages blockchain technology to provide secure, decentralized ticketing. Enjoy
                     features like secure ticket storage, easy resale, and fraud prevention.

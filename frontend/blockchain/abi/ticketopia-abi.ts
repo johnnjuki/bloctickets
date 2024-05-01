@@ -1,4 +1,4 @@
-const tick = [
+export const ticketopiaAbi = [
     {
         "inputs": [],
         "stateMutability": "nonpayable",

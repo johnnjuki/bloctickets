@@ -8,6 +8,7 @@ import { cookieToInitialState } from "wagmi";
 import { headers } from "next/headers";
 import { config } from "@/blockchain/config";
 import Web3ModalProvider from "@/context/web3modal";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 const gabarito = Gabarito({
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={gabarito.variable + ' ' + comfortaa.variable}>
         <Web3ModalProvider initialState={initialState}>{children}</Web3ModalProvider>
+        <Toaster />
         </body>
     </html>
   );
