@@ -45,7 +45,7 @@ export default function Page() {
           <span className="ml-2 hidden sm:block">Ticketopia</span>
         </Link>
         <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
-          <Link className="hidden sm:block text-sm font-medium hover:underline underline-offset-4" href="#">
+          <Link className="hidden sm:block text-sm font-medium hover:underline underline-offset-4" href="/events">
             Events
           </Link>
           <Link className="hidden sm:block text-sm font-medium hover:underline underline-offset-4" href="/create-event">
@@ -83,7 +83,7 @@ export default function Page() {
                   </Link>
                   <Link
                     className="inline-flex h-10 items-center justify-center rounded-md border border-white  bg-transparent px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-[#6366F1] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
-                    href="#"
+                    href="/events"
                   >
                     Upcoming Events
                   </Link>

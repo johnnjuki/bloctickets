@@ -5,7 +5,7 @@ async function main() {
 
   const ticketopia = await hre.ethers.deployContract('Ticketopia');
   await ticketopia.waitForDeployment();
-  console.log(`Cupcake vending machine deployed to ${ticketopia.target}`);
+  console.log(`Ticketopia deployed to ${ticketopia.target}`);
 }
 
 main().catch((error) => {

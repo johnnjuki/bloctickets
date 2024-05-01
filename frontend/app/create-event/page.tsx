@@ -17,9 +17,9 @@ export default function CreateEventPage() {
     const data = Object.fromEntries(formData.entries());
     try {
       const hash = await writeContractAsync({
-        address: "0xfbf8aEA9EcE9D77B12607201092CB9E2E9d98a52",
+        address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
         abi: ticketopiaAbi,
-        functionName: "addEvent",
+        functionName: "createEvent",
         args: [data.name as string, data.venue as string, data.date as string, data.time as string, BigInt(data.price as string), BigInt(data.tickets as string)],
       })
       if (hash) {

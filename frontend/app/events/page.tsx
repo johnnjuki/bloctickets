@@ -1,7 +1,16 @@
+import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
+import { useReadContract } from "wagmi"
 
 export default function EventsPage() {
+
+  const {data: events} = useReadContract({
+    address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+    abi: ticketopiaAbi,
+    functionName: "getAllEvents"
+  })
+
   return (
     <main>
       <section className="max-w-6xl mx-auto px-4 py-12 md:py-16 lg:py-20">
@@ -27,117 +36,35 @@ export default function EventsPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8 lg:gap-10">
-            <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <Image
-                alt="Event 1"
-                className="w-full h-48 object-cover"
-                height="200"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "300/200",
-                  objectFit: "cover",
-                }}
-                width="300"
-              />
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold mb-2">Tech Conference 2023</h3>
-                <div className="flex items-center space-x-2 mb-3">
-                  <CalendarIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">May 15, 2023</p>
+            {events?.map((event, index) => (
+              <div key={index} className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <Image
+                  alt="Event 1"
+                  className="w-full h-48 object-cover"
+                  height="200"
+                  src="/placeholder.svg"
+                  style={{
+                    aspectRatio: "300/200",
+                    objectFit: "cover",
+                  }}
+                  width="300"
+                />
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-semibold mb-2">{event.eventName}</h3>
+                  <div className="flex items-center space-x-2 mb-3">
+                    <CalendarIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                    <p className="text-gray-500 dark:text-gray-400">{event.date}</p>
+                  </div>
+                  <div className="flex items-center space-x-2 mb-3">
+                    <ClockIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
+                    <p className="text-gray-500 dark:text-gray-400">{event.time}</p>
+                  </div>
+                  {/* <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
+                    {event.description}
+                  </p> */}
                 </div>
-                <div className="flex items-center space-x-2 mb-3">
-                  <ClockIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">9:00 AM - 5:00 PM</p>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
-                  Join us for the annual Tech Conference, where industry leaders and innovators gather to share their
-                  insights and explore the latest trends in technology.
-                </p>
               </div>
-            </div>
-            <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <Image
-                alt="Event 2"
-                className="w-full h-48 object-cover"
-                height="200"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "300/200",
-                  objectFit: "cover",
-                }}
-                width="300"
-              />
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold mb-2">Design Workshop</h3>
-                <div className="flex items-center space-x-2 mb-3">
-                  <CalendarIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">June 5, 2023</p>
-                </div>
-                <div className="flex items-center space-x-2 mb-3">
-                  <ClockIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">2:00 PM - 6:00 PM</p>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
-                  Explore the latest design trends and techniques in this hands-on workshop led by industry experts.
-                </p>
-              </div>
-            </div>
-            <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <Image
-                alt="Event 3"
-                className="w-full h-48 object-cover"
-                height="200"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "300/200",
-                  objectFit: "cover",
-                }}
-                width="300"
-              />
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold mb-2">Marketing Summit</h3>
-                <div className="flex items-center space-x-2 mb-3">
-                  <CalendarIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">July 20, 2023</p>
-                </div>
-                <div className="flex items-center space-x-2 mb-3">
-                  <ClockIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">10:00 AM - 4:00 PM</p>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
-                  Join us for the annual Marketing Summit, where marketing professionals come together to share their
-                  strategies and insights.
-                </p>
-              </div>
-            </div>
-            <div className="bg-white dark:bg-gray-900 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
-              <Image
-                alt="Event 4"
-                className="w-full h-48 object-cover"
-                height="200"
-                src="/placeholder.svg"
-                style={{
-                  aspectRatio: "300/200",
-                  objectFit: "cover",
-                }}
-                width="300"
-              />
-              <div className="p-4 md:p-6">
-                <h3 className="text-lg md:text-xl font-semibold mb-2">Startup Pitch Competition</h3>
-                <div className="flex items-center space-x-2 mb-3">
-                  <CalendarIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">August 10, 2023</p>
-                </div>
-                <div className="flex items-center space-x-2 mb-3">
-                  <ClockIcon className="w-5 h-5 text-gray-500 dark:text-gray-400" />
-                  <p className="text-gray-500 dark:text-gray-400">6:00 PM - 9:00 PM</p>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
-                  Witness the future of entrepreneurship as startups pitch their innovative ideas to a panel of
-                  investors and industry experts.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="flex justify-center">
             <Button>View More Events</Button>
