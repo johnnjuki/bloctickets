@@ -51,7 +51,7 @@ export default function Page() {
                     Discover top events near you
                   </h1>
                   <p className="max-w-[600px] text-gray-200 md:text-xl">
-                    Ticketopia is the leading web3 platform for event ticketing. Enjoy secure, decentralized ticketing
+                    Ticketopia is the leading web3 platform for events. Enjoy secure, decentralized ticketing
                     and resale capabilities.
                   </p>
                 </div>
@@ -80,45 +80,7 @@ export default function Page() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
-            <div className="grid items-center gap-6 lg:grid-cols-2 lg:gap-12">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800 text-[#6366F1]">
-                    Key Features
-                  </div>
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">Blockchain-Powered</h2>
-                  <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                    Ticketopia leverages blockchain technology to provide secure, decentralized ticketing. Enjoy
-                    features like secure ticket storage, easy resale, and fraud prevention.
-                  </p>
-                </div>
-                <ul className="grid gap-4">
-                  <li className="flex items-center gap-2">
-                    <Check className="h-5 w-5 text-[#6366F1]" />
-                    Secure blockchain-based ticketing
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-5 w-5 text-[#6366F1]" />
-                    Decentralized ticketing platform
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="h-5 w-5 text-[#6366F1]" />
-                    Easy ticket resale capabilities
-                  </li>
-                </ul>
-              </div>
-              <Image
-                alt="Image"
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                height="310"
-                src="/image-concert.jpg"
-                width="550"
-              />
-            </div>
-          </div>
-        </section>
+        {/* TODO: Add key features section?? */}
         <section className="w-full py-12 md:py-24 lg:py-32">
           <div className="container px-4 md:px-6">
             <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">
@@ -129,7 +91,7 @@ export default function Page() {
                   </div>
                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Don&apos;t Miss Out</h2>
                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                    Check out the latest events on the Ticketopia platform and secure your tickets today.
+                    Check out the latest events and secure your tickets today.
                   </p>
                 </div>
               </div>
@@ -137,8 +99,8 @@ export default function Page() {
                 <Card>
                   <CardContent className="flex items-center justify-between pt-4">
                     <div>
-                      <h3 className="text-lg font-semibold">Coachella 2023</h3>
-                      <p className="text-gray-500 dark:text-gray-400">April 14-16, 2023</p>
+                      <h3 className="text-lg font-semibold">Coachella 2024</h3>
+                      <p className="text-gray-500 dark:text-gray-400">May 14-16, 2024</p>
                     </div>
                     <Link
                       className="inline-flex h-9 items-center justify-center rounded-md bg-[#6366F1] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#4F46E5] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6366F1] disabled:pointer-events-none disabled:opacity-50"
@@ -151,8 +113,8 @@ export default function Page() {
                 <Card>
                   <CardContent className="flex items-center justify-between pt-4">
                     <div>
-                      <h3 className="text-lg font-semibold">Lollapalooza 2023</h3>
-                      <p className="text-gray-500 dark:text-gray-400">July 27-30, 2023</p>
+                      <h3 className="text-lg font-semibold">Lollapalooza 2024</h3>
+                      <p className="text-gray-500 dark:text-gray-400">May 27-30, 2024</p>
                     </div>
                     <Link
                       className="inline-flex h-9 items-center justify-center rounded-md bg-[#6366F1] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#4F46E5] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6366F1] disabled:pointer-events-none disabled:opacity-50"
@@ -165,8 +127,8 @@ export default function Page() {
                 <Card>
                   <CardContent className="flex items-center justify-between pt-4">
                     <div>
-                      <h3 className="text-lg font-semibold">Bonnaroo 2023</h3>
-                      <p className="text-gray-500 dark:text-gray-400">June 15-18, 2023</p>
+                      <h3 className="text-lg font-semibold">Bonnaroo 2024</h3>
+                      <p className="text-gray-500 dark:text-gray-400">June 15-18, 2024</p>
                     </div>
                     <Link
                       className="inline-flex h-9 items-center justify-center rounded-md bg-[#6366F1] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#4F46E5] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6366F1] disabled:pointer-events-none disabled:opacity-50"

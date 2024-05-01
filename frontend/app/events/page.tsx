@@ -3,6 +3,7 @@
 import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 import { useReadContract } from "wagmi";
 
 export default function EventsPage() {
@@ -48,42 +49,44 @@ export default function EventsPage() {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
             {events?.map((event, index) => (
-              <div
-                key={index}
-                className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-gray-900"
-              >
-                <Image
-                  alt="Event 1"
-                  className="h-48 w-full object-cover"
-                  height="200"
-                  src="/placeholder.svg"
-                  style={{
-                    aspectRatio: "300/200",
-                    objectFit: "cover",
-                  }}
-                  width="300"
-                />
-                <div className="p-4 md:p-6">
-                  <h3 className="mb-2 text-lg font-semibold md:text-xl">
-                    {event.eventName}
-                  </h3>
-                  <div className="mb-3 flex items-center space-x-2">
-                    <CalendarIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                    <p className="text-gray-500 dark:text-gray-400">
-                      {event.date}
-                    </p>
-                  </div>
-                  <div className="mb-3 flex items-center space-x-2">
-                    <ClockIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                    <p className="text-gray-500 dark:text-gray-400">
-                      {event.time}
-                    </p>
-                  </div>
-                  {/* <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
+              <Link href={`/event-details`} key={index}>
+                <div
+                  key={index}
+                  className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-gray-900"
+                >
+                  <Image
+                    alt="Event 1"
+                    className="h-48 w-full object-cover"
+                    height="200"
+                    src="/placeholder.svg"
+                    style={{
+                      aspectRatio: "300/200",
+                      objectFit: "cover",
+                    }}
+                    width="300"
+                  />
+                  <div className="p-4 md:p-6">
+                    <h3 className="mb-2 text-lg font-semibold md:text-xl">
+                      {event.eventName}
+                    </h3>
+                    <div className="mb-3 flex items-center space-x-2">
+                      <CalendarIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {event.date}
+                      </p>
+                    </div>
+                    <div className="mb-3 flex items-center space-x-2">
+                      <ClockIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+                      <p className="text-gray-500 dark:text-gray-400">
+                        {event.time}
+                      </p>
+                    </div>
+                    {/* <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
                     {event.description}
                   </p> */}
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           <div className="flex justify-center">
