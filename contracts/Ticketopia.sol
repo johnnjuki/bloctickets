@@ -50,6 +50,7 @@ contract Ticketopia is ERC721URIStorage {
     // TODO: Change to createEvent
     // TODO: Add description
     // TODO: Start and end times
+    // TODO: Add event category
     function addEvent(string memory _eventName,string memory _venue,string memory _date, string memory _time, uint256 _Price,
         uint256 _quantity) public {
         events.push(Event(_eventName,_venue, _date, _time,_Price, _quantity, msg.sender));
