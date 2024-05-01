@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Gabarito } from 'next/font/google'
-import { Comfortaa } from 'next/font/google'
+import { Gabarito } from "next/font/google";
+import { Comfortaa } from "next/font/google";
 
 import "./globals.css";
 import { cookieToInitialState } from "wagmi";
@@ -9,18 +9,20 @@ import { headers } from "next/headers";
 import { config } from "@/blockchain/config";
 import Web3ModalProvider from "@/context/web3modal";
 import { Toaster } from "@/components/ui/sonner";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 const gabarito = Gabarito({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-gabarito',
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-gabarito",
+});
 const comfortaa = Comfortaa({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-comfortaa',
-})
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-comfortaa",
+});
 
 export const metadata: Metadata = {
   title: "Ticketopia",
@@ -32,14 +34,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const initialState = cookieToInitialState(config, headers().get('cookie'))
+  const initialState = cookieToInitialState(config, headers().get("cookie"));
 
   return (
     <html lang="en">
-      <body className={gabarito.variable + ' ' + comfortaa.variable}>
-        <Web3ModalProvider initialState={initialState}>{children}</Web3ModalProvider>
+      <body className={gabarito.variable + " " + comfortaa.variable}>
+        <Web3ModalProvider initialState={initialState}>
+          <Header />
+          {children}
+          <Footer />
+        </Web3ModalProvider>
         <Toaster />
-        </body>
+      </body>
     </html>
   );
 }

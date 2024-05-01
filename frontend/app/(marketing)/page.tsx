@@ -35,31 +35,12 @@ import Link from "next/link"
 import { CardContent, Card } from "@/components/ui/card"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import { Check } from "lucide-react"
 
 export default function Page() {
   return (
-    <div className="flex flex-col min-h-[100dvh]">
-      <header className="px-4 lg:px-6 h-14 flex items-center">
-        <Link className="flex items-center justify-center" href="#">
-          <TicketIcon className="h-6 w-6" />
-          <span className="ml-2 hidden sm:block">Ticketopia</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6 items-center">
-          <Link className="hidden sm:block text-sm font-medium hover:underline underline-offset-4" href="/events">
-            Events
-          </Link>
-          <Link className="hidden sm:block text-sm font-medium hover:underline underline-offset-4" href="/create-event">
-            Create event
-          </Link>
-          <Link className="text-sm hidden sm:block font-medium hover:underline underline-offset-4" href="#">
-            About
-          </Link>
-          <Button variant="outline">
-          <w3m-button />
-          </Button>
-        </nav>
-      </header>
-      <main className="flex-1">
+   
+      <main className="min-h-[100dvh]">
         <section className="w-full py-12 md:py-20 bg-gradient-to-r from-[#6366F1] to-[#9333EA]">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
@@ -115,15 +96,15 @@ export default function Page() {
                 </div>
                 <ul className="grid gap-4">
                   <li className="flex items-center gap-2">
-                    <CheckIcon className="h-5 w-5 text-[#6366F1]" />
+                    <Check className="h-5 w-5 text-[#6366F1]" />
                     Secure blockchain-based ticketing
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckIcon className="h-5 w-5 text-[#6366F1]" />
+                    <Check className="h-5 w-5 text-[#6366F1]" />
                     Decentralized ticketing platform
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckIcon className="h-5 w-5 text-[#6366F1]" />
+                    <Check className="h-5 w-5 text-[#6366F1]" />
                     Easy ticket resale capabilities
                   </li>
                 </ul>
@@ -200,77 +181,5 @@ export default function Page() {
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t bg-gray-100 dark:bg-gray-800">
-        <p className="text-xs text-gray-500 dark:text-gray-400">© 2024 Ticketopia. All rights reserved.</p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Terms of Service
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Privacy Policy
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Twitter
-          </Link>
-          <Link className="text-xs hover:underline underline-offset-4" href="#">
-            Discord
-          </Link>
-        </nav>
-      </footer>
-    </div>
   )
 }
-
-function CheckIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="20 6 9 17 4 12" />
-    </svg>
-  )
-}
-
-function TicketIcon({ ...props }: React.SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
-      <path d="M13 5v2" />
-      <path d="M13 17v2" />
-      <path d="M13 11v2" />
-    </svg>
-  )
-}
-
-// === styles.css ===
-
-// body {
-//   font-family: var(--font-comfortaa), sans-serif;
-// }
-
-// h1, h2, h3, h4, h5, h6 {
-//   font-family: var(--font-gabarito), sans-serif;
-// }
-
-
-
