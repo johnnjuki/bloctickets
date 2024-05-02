@@ -16,6 +16,8 @@ contract Ticketopia is ERC721URIStorage {
 
     // uint256 listingPrice = 0.0015 ether;
 
+    // ASK JEFF why using Price in caps??
+
     address payable owner;
     string private eventName;
     uint256 private Price;
@@ -25,11 +27,12 @@ contract Ticketopia is ERC721URIStorage {
 
 
     struct Event {
-        string eventName;
+        string name;
+        string description;
         string venue;
         string date;
         string time;
-        uint256 Price;
+        uint256 price;
         uint256 quantity;
         address sender;         
     }
@@ -37,11 +40,12 @@ contract Ticketopia is ERC721URIStorage {
     Event[] private  events;
     mapping (uint => Event) private Eventagg;
     event eventCreated(
-        string EventName,
+        string name,
+        string description,
         string venue,
         string date,
-        string Time,
-        uint256 Price,
+        string time,
+        uint256 price,
         uint256 quantity,
         address sender);
 
@@ -53,10 +57,10 @@ contract Ticketopia is ERC721URIStorage {
     // TODO: Add event category
     // TODO: Speakers or Artists..
     // TODO: Event Schedule
-    function createEvent(string memory _eventName,string memory _venue,string memory _date, string memory _time, uint256 _Price,
+    function createEvent(string memory _name, string memory _description, string memory _venue,string memory _date, string memory _time, uint256 _price,
         uint256 _quantity) public {
-        events.push(Event(_eventName,_venue, _date, _time,_Price, _quantity, msg.sender));
-        emit eventCreated(_eventName,_venue,_date, _time,_Price, _quantity, msg.sender);
+        events.push(Event(_name, _description, _venue, _date, _time,_price, _quantity, msg.sender));
+        emit eventCreated(_name, _description, _venue,_date, _time,_price, _quantity, msg.sender);
     }
 
     // Get all events
@@ -65,16 +69,21 @@ contract Ticketopia is ERC721URIStorage {
     }
 
     // Get event by index
-    function getEvent(uint index) public view returns (string memory, string memory, string memory,string memory,uint256,uint256,address) {
+    // function getEvent(uint index) public view returns (string memory, string memory, string memory,string memory,uint256,uint256,address) {
+    //     require(index < events.length, "Index out of bounds");
+    //     return (
+    //         events[index].eventName,
+    //         events[index].venue,
+    //         events[index].date, 
+    //         events[index].time, 
+    //         events[index].Price,
+    //         events[index].quantity,
+    //         msg.sender);
+    // }
+
+    function getEvent(uint index) public view returns (Event memory) {
         require(index < events.length, "Index out of bounds");
-        return (
-            events[index].eventName,
-            events[index].venue,
-            events[index].date, 
-            events[index].time, 
-            events[index].Price,
-            events[index].quantity,
-            msg.sender);
+        return events[index];
     }
 
     struct TicketItem {
@@ -132,7 +141,7 @@ contract Ticketopia is ERC721URIStorage {
 
     // ASK JEFF: if we're getting the price created in addEvent function, then why is it here as a parameter?
     function createTicketItem(uint _index,uint256 ticketId, uint256 _Price, string memory event_name, string memory _venue) private {
-    _Price = events[_index].Price;
+    _Price = events[_index].price;
     require(_Price > 0, "Price must be at least 1");
     require(_index < events.length, "Index out of bounds");
 
@@ -188,7 +197,7 @@ contract Ticketopia is ERC721URIStorage {
 
     //Function Get ticket
     function getTicket(uint _index,uint amount) public payable {
-        amount =  events[_index].Price;
+        amount =  events[_index].price;
         address to = events[_index].sender;
         (bool sent,) = to.call{value: msg.value}("");
         require(msg.sender == to,"You cant send to yourself");
@@ -204,7 +213,7 @@ contract Ticketopia is ERC721URIStorage {
     function getAmount(uint _index) public view returns (uint){
         // TODO: Error check
         require(_index < events.length,"Index out of bounds");
-        uint amount = events[_index].Price;
+        uint amount = events[_index].price;
         return amount;
     }
     

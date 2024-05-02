@@ -22,13 +22,16 @@ export default function CreateEventPage() {
     }
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData.entries());
+    console.log(data);
+    console.log(BigInt(data.price as string));
     try {
       const hash = await writeContractAsync({
-        address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+        address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
         abi: ticketopiaAbi,
         functionName: "createEvent",
         args: [
           data.name as string,
+          data.description as string,
           data.venue as string,
           data.date as string,
           data.time as string,
@@ -72,6 +75,15 @@ export default function CreateEventPage() {
             />
           </div>
           <div className="space-y-1.5">
+            <Label htmlFor="name">Event Description</Label>
+            <Input
+              id="description"
+              name="description"
+              placeholder="Enter event desription"
+              required
+            />
+          </div>
+          <div className="space-y-1.5">
             <Label htmlFor="venue">Venue</Label>
             <Input id="venue" name="venue" placeholder="Enter venue" required />
           </div>
@@ -89,7 +101,7 @@ export default function CreateEventPage() {
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1.5">
             {/* /// TODO: (ksh) */}
-            <Label htmlFor="price">Price</Label>
+            <Label htmlFor="price">Price (KES)</Label>
             <Input
               id="price"
               name="price"

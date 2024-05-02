@@ -12,7 +12,7 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
     abi: ticketopiaAbi,
     functionName: "getAllEvents",
   });
@@ -49,7 +49,7 @@ export default function EventsPage() {
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
             {events?.map((event, index) => (
-              <Link href={`/event-details`} key={index}>
+              <Link href={`/event-details/${index}`} key={index}>
                 <div
                   key={index}
                   className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-gray-900"
@@ -67,7 +67,7 @@ export default function EventsPage() {
                   />
                   <div className="p-4 md:p-6">
                     <h3 className="mb-2 text-lg font-semibold md:text-xl">
-                      {event.eventName}
+                      {event.name}
                     </h3>
                     <div className="mb-3 flex items-center space-x-2">
                       <CalendarIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" />
@@ -81,9 +81,9 @@ export default function EventsPage() {
                         {event.time}
                       </p>
                     </div>
-                    {/* <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
+                    <p className="text-gray-600 dark:text-gray-300 line-clamp-2">
                     {event.description}
-                  </p> */}
+                  </p>
                   </div>
                 </div>
               </Link>
