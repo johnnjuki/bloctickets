@@ -27,20 +27,7 @@
 //   );
 // }
 
-// import Link from "next/link";
-// import { CardContent, Card } from "@/components/ui/card";
-// import Image from "next/image";
-// import { Check } from "lucide-react";
-// import { Header } from "@/components/header";
-// import { Footer } from "@/components/footer";
 
-// import { Button } from "@/components/shared/ui/button";
-// import { LandingPrimaryImageCtaSection } from "@/components/landing/cta/LandingPrimaryCta";
-// import { LandingDiscount } from "@/components/landing/discount/LandingDiscount";
-// import { LandingProductHuntAward } from "@/components/landing/social-proof/LandingProductHuntAward";
-// import { LandingSocialProof } from "@/components/landing/social-proof/LandingSocialProof";
-// import { LandingSocialProofBand } from "@/components/landing/social-proof/LandingSocialProofBand";
-// import { LandingSocialProofBandItem } from "@/components/landing/social-proof/LandingSocialProofBandItem";
 
 // export default function Page() {
 //   return (
@@ -165,6 +152,7 @@ import Link from 'next/link';
 
 export default function Page() {
   return (
+    
     <LandingPrimaryImageCtaSection
       title="Discover top events near you"
       description="Ticketopia is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
