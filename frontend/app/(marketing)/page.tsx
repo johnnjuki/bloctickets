@@ -60,6 +60,25 @@ const testimonialItems = [
     text: "This is the best thing since sliced bread. I cannot believe I did not think of it myself.",
     handle: "@coppalipse",
     imageSrc: "https://picsum.photos/100/100.webp?random=1",
+    featured: true, // Feature this testimonial
+  },
+  {
+    name: "Mandy",
+    text: "Excellent product!",
+    handle: "@mandy",
+    imageSrc: "https://picsum.photos/100/100.webp?random=4",
+  },
+  {
+    name: "Alex",
+    text: "Can easily recommend!",
+    handle: "@alex",
+    imageSrc: "https://picsum.photos/100/100.webp?random=5",
+  },
+  {
+    name: "Sam",
+    text: "I am very happy with the results.",
+    handle: "@sama",
+    imageSrc: "https://picsum.photos/100/100.webp?random=6",
   },
 ];
 
@@ -68,7 +87,7 @@ export default function Page() {
     <main className="flex flex-col">
       <div className="w-full items-center justify-between text-sm lg:flex">
         <div className="flex w-full items-center justify-between border-b px-8 pb-6 pt-8">
-          <Link href="/" className="md:text-3xl font-bold">
+          <Link href="/" className="text-xl lg:text-3xl font-bold">
             Ticketopia
           </Link>
           <nav className="flex items-center gap-8">
@@ -92,6 +111,35 @@ export default function Page() {
         imageSrc="/static/images/concert/concert-1.jpg"
         imageAlt="Concert image"
         withBackground
+        footerComponent={
+          <LandingTestimonialInline>
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/1.webp"
+              name="John Doe"
+              text="I love this app"
+            />
+
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/2.webp"
+              name="Jane Doe"
+              text="Best app on the market"
+            />
+
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/3.webp"
+              name="Alice Doe"
+              text="Never seen anything like it"
+              suffix="CEO of Instagram"
+            />
+
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/5.webp"
+              name="Guido Ross"
+              text="Nothing comes close to it"
+              suffix="DevOps at Meta"
+            />
+          </LandingTestimonialInline>
+        }
       >
         <Button size="xl" asChild>
           <Link href="/create-event">Create Event</Link>
@@ -103,7 +151,6 @@ export default function Page() {
       </LandingPrimaryImageCtaSection>
 
       <LandingProductFeature
-      className="hidden md:block"
         title="Blockchain-Powered Ticketing"
         descriptionComponent={
           <>
