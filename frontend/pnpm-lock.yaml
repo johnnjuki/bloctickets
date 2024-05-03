@@ -23,6 +23,9 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.0.2(@types/react@18.3.1)(react@18.3.1)
+      '@rainbow-me/rainbowkit':
+        specifier: ^2.0.6
+        version: 2.0.6(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(wagmi@2.7.1(@tanstack/query-core@5.32.1)(@tanstack/react-query@5.32.1(react@18.3.1))(@types/react@18.3.1)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))
       '@tailwindcss/forms':
         specifier: ^0.5.7
         version: 0.5.7(tailwindcss@3.4.3)
@@ -32,9 +35,6 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.32.1
         version: 5.32.1(react@18.3.1)
-      '@web3modal/wagmi':
-        specifier: ^4.1.11
-        version: 4.1.11(@types/react@18.3.1)(@wagmi/connectors@4.3.1(@types/react@18.3.1)(@wagmi/core@2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(@wagmi/core@2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
@@ -847,6 +847,12 @@ packages:
   '@coinbase/wallet-sdk@3.9.1':
     resolution: {integrity: sha512-cGUE8wm1/cMI8irRMVOqbFWYcnNugqCtuy2lnnHfgloBg+GRLs9RsrkOUDMdv/StfUeeKhCDyYudsXXvcL1xIA==}
 
+  '@coinbase/wallet-sdk@3.9.3':
+    resolution: {integrity: sha512-N/A2DRIf0Y3PHc1XAMvbBUu4zisna6qAdqABMZwBMNEfWrXpAwx16pZGkYCLGE+Rvv1edbcB2LYDRnACNcmCiw==}
+
+  '@emotion/hash@0.9.1':
+    resolution: {integrity: sha512-gJB6HLm5rYwSLI6PQa+X1t5CFGrv1J1TWG+sOyMCeKz2ojaj6Fnl/rZEspogG+cvqbt4AE/2eIyD2QfLKTBNlQ==}
+
   '@eslint-community/eslint-utils@4.4.0':
     resolution: {integrity: sha512-1/sA4dwrzBAyeUoQ6oxahHKmrZvsnLCg4RfxW3ZFGGmQkSNQPFNLV9CUEFQP1x9EYXHTo5p6xdhZM1Ne9p/AfA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -971,9 +977,6 @@ packages:
 
   '@lit/reactive-element@1.6.3':
     resolution: {integrity: sha512-QuTgnG52Poic7uM1AN5yJ09QMe0O28e10XzSvWDz02TJiiKee4stsiownEIadWm8nYzyDAyT+gKzUoZmiWQtsQ==}
-
-  '@lit/reactive-element@2.0.4':
-    resolution: {integrity: sha512-GFn91inaUa2oHLak8awSIigYz0cU0Payr1rcFsrkf5OJ5eSPxElyZfKh0f2p9FsTiZWXQdWGJeXZICEfXXYSXQ==}
 
   '@metamask/eth-json-rpc-provider@1.0.1':
     resolution: {integrity: sha512-whiUMPlAOrVGmX8aKYVPvlKyG4CpQXiNNyt74vE1xb5sPvmx5oA7B/kOi/JdBvhGQq97U1/AVdXEdk2zkP8qyA==}
@@ -1568,6 +1571,15 @@ packages:
   '@radix-ui/rect@1.0.1':
     resolution: {integrity: sha512-fyrgCaedtvMg9NK3en0pnOYJdtfwxUcNolezkNPUsoX57X8oQk+NkqcvzHXD2uKNij6GXmWU9NDru2IWjrO4BQ==}
 
+  '@rainbow-me/rainbowkit@2.0.6':
+    resolution: {integrity: sha512-Bl1abhfEClnlo66trh3ruGp1fIJ9s3LI4IpHxSvnB0otWrhT/ZtYuIeO7ISBGPEqst0/bfRea1TM1FCr9s0HXA==}
+    engines: {node: '>=12.4'}
+    peerDependencies:
+      react: '>=17'
+      react-dom: '>=17'
+      viem: 2.x
+      wagmi: 2.x
+
   '@react-native-community/cli-clean@13.6.4':
     resolution: {integrity: sha512-nS1BJ+2Z+aLmqePxB4AYgJ+C/bgQt02xAgSYtCUv+lneRBGhL2tHRrK8/Iolp0y+yQoUtHHf4txYi90zGXLVfw==}
 
@@ -1888,6 +1900,20 @@ packages:
   '@ungap/structured-clone@1.2.0':
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
 
+  '@vanilla-extract/css@1.14.0':
+    resolution: {integrity: sha512-rYfm7JciWZ8PFzBM/HDiE2GLnKI3xJ6/vdmVJ5BSgcCZ5CxRlM9Cjqclni9lGzF3eMOijnUhCd/KV8TOzyzbMA==}
+
+  '@vanilla-extract/dynamic@2.1.0':
+    resolution: {integrity: sha512-8zl0IgBYRtgD1h+56Zu13wHTiMTJSVEa4F7RWX9vTB/5Xe2KtjoiqApy/szHPVFA56c+ex6A4GpCQjT1bKXbYw==}
+
+  '@vanilla-extract/private@1.0.4':
+    resolution: {integrity: sha512-8FGD6AejeC/nXcblgNCM5rnZb9KXa4WNkR03HCWtdJBpANjTgjHEglNLFnhuvdQ78tC6afaxBPI+g7F2NX3tgg==}
+
+  '@vanilla-extract/sprinkles@1.6.1':
+    resolution: {integrity: sha512-N/RGKwGAAidBupZ436RpuweRQHEFGU+mvAqBo8PRMAjJEmHoPDttV8RObaMLrJHWLqvX+XUMinHUnD0hFRQISw==}
+    peerDependencies:
+      '@vanilla-extract/css': ^1.0.0
+
   '@wagmi/connectors@4.3.1':
     resolution: {integrity: sha512-d59PGuaHDKhqzO1Zg98iBkFLIgA3lwF1h3gvpSTQD9sPcZZMVh/hR6rnJvd3PoCTxQRaaEiv4nIgwfl/7GOwaA==}
     peerDependencies:
@@ -1989,66 +2015,6 @@ packages:
 
   '@walletconnect/window-metadata@1.0.1':
     resolution: {integrity: sha512-9koTqyGrM2cqFRW517BPY/iEtUDx2r1+Pwwu5m7sJ7ka79wi3EyqhqcICk/yDmv6jAS1rjKgTKXlEhanYjijcA==}
-
-  '@web3modal/common@4.1.11':
-    resolution: {integrity: sha512-zcoaixcI3dLC/D0QlhpT8MNCd717O1/3r1AemC5/9Wbk2F+YKXkzJZHmWlXoTvlTw9DH07rJzs9YTPxFyn855w==}
-
-  '@web3modal/core@4.1.11':
-    resolution: {integrity: sha512-e475IIWywEtgH1CCB2Pl1C/wgPu0NzAvtTMOPSGNoHsw1ID2n6j/o4CURQb2HJjOoYQjTKKVkzXa44vFh2p9xw==}
-
-  '@web3modal/polyfills@4.1.11':
-    resolution: {integrity: sha512-+aMmjGrLCKLo4gVAdWgFdOX2ZjExciSLw/YlZ01wLO8Yj3bZbCZ7sjBc9xndHOVMK0QyUzBtpCOpYMJzi+59jg==}
-
-  '@web3modal/scaffold-react@4.1.11':
-    resolution: {integrity: sha512-vouJHj77ZNKvR/Uyb3Hfc2UFSA4ZrrHmA0vbioCbgIh+V1rYT5XcAZDEu4AAo1qJ5NBRU1pkClVwAmQuWGY43w==}
-    peerDependencies:
-      react: '>=17'
-      react-dom: '>=17'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-
-  '@web3modal/scaffold-utils@4.1.11':
-    resolution: {integrity: sha512-nsS9yK5tp1N/VfecLLPc8H/dGJCzn0jElWjRS92VfGPhOSiEh5PIrPyCl9o6wUZsp4fH1YUsoSY2EFpPsuCWgw==}
-
-  '@web3modal/scaffold-vue@4.1.11':
-    resolution: {integrity: sha512-PmIfD2TlKkZZa6V0sqwDtZ7t62BEk5JjCHd380QaZwGTbPEwS99leTWLKBTaxAPShK2p7+aj2Txss63wIXLRFg==}
-    peerDependencies:
-      vue: '>=3'
-    peerDependenciesMeta:
-      vue:
-        optional: true
-
-  '@web3modal/scaffold@4.1.11':
-    resolution: {integrity: sha512-n8bP3cJNQxV8OD3s8bSj8QDbZvjn8a1Ui81jo2a3rIxOUAlD/cKRM8ivmNxiUdBMae8GP5CLiWtkIptmSLw40Q==}
-
-  '@web3modal/siwe@4.1.11':
-    resolution: {integrity: sha512-gndcNA351mkAR0wUsO4dLS9CbpcFo+AQ2CUXF0Jx83DwaBStCVsX3yllfnYKh/gpVetF3B48mRUt9TTTJJ79dA==}
-
-  '@web3modal/ui@4.1.11':
-    resolution: {integrity: sha512-lentHZvUpNjVasvNI8/jrVPIAV1M5zJKZ4Q4AeYwUJdEtlRon1uq10MRylmvlZAjWb98U130uJy245Fz87Th/w==}
-
-  '@web3modal/wagmi@4.1.11':
-    resolution: {integrity: sha512-VoXV9idD0yV7jx0F2Xk722VXqQNCDKqDc+LR8WsuOU64TiTLJx9UDQpNcoigbC3bYCi/4Cpw41iSGgs7utbgyQ==}
-    peerDependencies:
-      '@wagmi/connectors': '>=4.0.0'
-      '@wagmi/core': '>=2.0.0'
-      react: '>=17'
-      react-dom: '>=17'
-      viem: '>=2.0.0'
-      vue: '>=3'
-    peerDependenciesMeta:
-      react:
-        optional: true
-      react-dom:
-        optional: true
-      vue:
-        optional: true
-
-  '@web3modal/wallet@4.1.11':
-    resolution: {integrity: sha512-6eJSpNcrBxufJFEQu9+ZOMUZxPqa8438RvfYKCU9nLXwoBtweo6ecpQw2yhXDlrfG+uJZhFabtPxROabn2M8Kg==}
 
   abitype@0.9.8:
     resolution: {integrity: sha512-puLifILdm+8sjyss4S+fsUN09obiT1g2YW6CtcQF+QDzxR0euzgEB29MZujC6zMk2a6SVmtttq1fc6+YFA7WYQ==}
@@ -2255,9 +2221,6 @@ packages:
   base64-js@1.5.1:
     resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
 
-  bignumber.js@9.1.2:
-    resolution: {integrity: sha512-2/mKyZH9K85bzOEfhXDBFZTGd1CTs+5IHpeFQo9luiBG7hghdC851Pj2WAhb6E3R6b9tZj/XKhbg4fum+Kepug==}
-
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
     engines: {node: '>=8'}
@@ -2419,6 +2382,10 @@ packages:
     resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
     engines: {node: '>=6'}
 
+  clsx@2.1.0:
+    resolution: {integrity: sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==}
+    engines: {node: '>=6'}
+
   clsx@2.1.1:
     resolution: {integrity: sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==}
     engines: {node: '>=6'}
@@ -2517,6 +2484,10 @@ packages:
       uWebSockets.js:
         optional: true
 
+  css-what@6.1.0:
+    resolution: {integrity: sha512-HTUrgRJ7r4dsZKU6GjmpfRK1O76h97Z8MfS1G0FozR+oF2kG6Vfe8JE6zwrkbxigziPHinCJ+gCPjA9EaBDtRw==}
+    engines: {node: '>= 6'}
+
   cssesc@3.0.0:
     resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
     engines: {node: '>=4'}
@@ -2546,9 +2517,6 @@ packages:
 
   date-fns@3.6.0:
     resolution: {integrity: sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==}
-
-  dayjs@1.11.10:
-    resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
 
   dayjs@1.11.11:
     resolution: {integrity: sha512-okzr3f11N6WuqYtZSvm+F776mB41wRZMhKP+hc34YdW+KmtYYK9iqvHSwo2k9FEH3fhGXvOPV6yz2IcSrfRUDg==}
@@ -2588,6 +2556,9 @@ packages:
 
   deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
+
+  deep-object-diff@1.1.9:
+    resolution: {integrity: sha512-Rn+RuwkmkDwCi2/oXOFS9Gsr5lJZu/yTGpK7wAaAIE75CC+LCGEZHpY6VQJa/RoJcrmaA/docWJZvYohlNkWPA==}
 
   deepmerge@4.3.1:
     resolution: {integrity: sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==}
@@ -3601,20 +3572,11 @@ packages:
   lit-element@3.3.3:
     resolution: {integrity: sha512-XbeRxmTHubXENkV4h8RIPyr8lXc+Ff28rkcQzw3G6up2xg5E8Zu1IgOWIwBLEQsu3cOVFqdYwiVi0hv0SlpqUA==}
 
-  lit-element@4.0.5:
-    resolution: {integrity: sha512-iTWskWZEtn9SyEf4aBG6rKT8GABZMrTWop1+jopsEOgEcugcXJGKuX5bEbkq9qfzY+XB4MAgCaSPwnNpdsNQ3Q==}
-
   lit-html@2.8.0:
     resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
 
-  lit-html@3.1.3:
-    resolution: {integrity: sha512-FwIbqDD8O/8lM4vUZ4KvQZjPPNx7V1VhT7vmRB8RBAO0AU6wuTVdoXiu2CivVjEGdugvcbPNBLtPE1y0ifplHA==}
-
   lit@2.8.0:
     resolution: {integrity: sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==}
-
-  lit@3.1.0:
-    resolution: {integrity: sha512-rzo/hmUqX8zmOdamDAeydfjsGXbbdtAFqMhmocnh2j9aDYqbu0fjXygjCa0T99Od9VQ/2itwaGrjZz/ZELVl7w==}
 
   locate-path@3.0.0:
     resolution: {integrity: sha512-7AO748wWnIhNqAuaty2ZWHkQHRSNfPVIsPIfwEOWO22AmaoVrWavlOcMR5nzTLNYvp36X220/maaRsrec1G65A==}
@@ -3683,6 +3645,9 @@ packages:
 
   marky@1.2.5:
     resolution: {integrity: sha512-q9JtQJKjpsVxCRVgQ+WapguSbKC3SQ5HEzFGPAJMStgh3QjCawp00UKv3MTTAArTmGmmPUvllHZoNbZ3gs0I+Q==}
+
+  media-query-parser@2.0.2:
+    resolution: {integrity: sha512-1N4qp+jE0pL5Xv4uEcwVUhIkwdUO3S/9gML90nqKA7v7FcOS5vUtatfzok9S9U1EJU8dHWlcv95WLnKmmxZI9w==}
 
   memoize-one@5.2.1:
     resolution: {integrity: sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q==}
@@ -3837,6 +3802,9 @@ packages:
 
   mlly@1.7.0:
     resolution: {integrity: sha512-U9SDaXGEREBYQgfejV97coK0UL1r+qnF2SyO9A3qcI8MzKnsIFKHNVEkrDyNncQTKQQumsasmeq84eNMdBfsNQ==}
+
+  modern-ahocorasick@1.0.1:
+    resolution: {integrity: sha512-yoe+JbhTClckZ67b2itRtistFKf8yPYelHLc7e5xAwtNAXxM6wJTUx2C7QeVSJFDzKT7bCIFyBVybPMKvmB9AA==}
 
   motion@10.16.2:
     resolution: {integrity: sha512-p+PurYqfUdcJZvtnmAqu5fJgV2kR0uLFQuBKtLeFVTrYEVllI99tiOTSefVNYuip9ELTEkepIIDftNdze76NAQ==}
@@ -4062,6 +4030,9 @@ packages:
   ora@5.4.1:
     resolution: {integrity: sha512-5b6Y85tPxZZ7QytO+BQzysW31HJku27cRIlkbAXaNx+BdcVi+LlRFmVXzeF6a7JCwJpyw5c4b+YSVImQIrBpuQ==}
     engines: {node: '>=10'}
+
+  outdent@0.8.0:
+    resolution: {integrity: sha512-KiOAIsdpUTcAXuykya5fnVVT+/5uS0Q1mrkRHcF89tpieSmY33O/tmc54CqwA+bfhbtEfZUNLHaPUiB9X3jt1A==}
 
   p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
@@ -4445,6 +4416,16 @@ packages:
 
   react-remove-scroll@2.5.5:
     resolution: {integrity: sha512-ImKhrzJJsyXJfBZ4bzu8Bwpka14c/fQt0k+cyFp/PBhTfyDnU5hjOtM4AG/0AMyy8oKzOTR0lDgJIM7pYXI0kw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  react-remove-scroll@2.5.7:
+    resolution: {integrity: sha512-FnrTWO4L7/Bhhf3CYBNArEG/yROV0tKmTv7/3h9QCFvH6sndeFf1wPqOcbFVu5VAulS5dV1wGT3GZZ/1GawqiA==}
     engines: {node: '>=10'}
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0
@@ -5002,6 +4983,9 @@ packages:
     resolution: {integrity: sha512-vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==}
     engines: {node: '>=14.17'}
     hasBin: true
+
+  ua-parser-js@1.0.37:
+    resolution: {integrity: sha512-bhTyI94tZofjo+Dn8SN6Zv8nBDvyXTymAdM3LDI/0IboIUwTu1rEhW7v2TfiVsoYWgkQ4kOVqnI8APUFbIQIFQ==}
 
   ufo@1.5.3:
     resolution: {integrity: sha512-Y7HYmWaFwPUmkoQCUIAYpKqkOf+SbVj/2fJJZ4RJMCfZp0rTGwRbzQD+HghfnhKOjL9E01okqz+ncJskGYfBNw==}
@@ -6268,6 +6252,22 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@coinbase/wallet-sdk@3.9.3':
+    dependencies:
+      bn.js: 5.2.1
+      buffer: 6.0.3
+      clsx: 1.2.1
+      eth-block-tracker: 7.1.0
+      eth-json-rpc-filters: 6.0.1
+      eventemitter3: 5.0.1
+      keccak: 3.0.4
+      preact: 10.21.0
+      sha.js: 2.4.11
+    transitivePeerDependencies:
+      - supports-color
+
+  '@emotion/hash@0.9.1': {}
+
   '@eslint-community/eslint-utils@4.4.0(eslint@8.57.0)':
     dependencies:
       eslint: 8.57.0
@@ -6423,10 +6423,6 @@ snapshots:
   '@lit-labs/ssr-dom-shim@1.2.0': {}
 
   '@lit/reactive-element@1.6.3':
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.2.0
-
-  '@lit/reactive-element@2.0.4':
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.0
 
@@ -7062,6 +7058,24 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.24.5
 
+  '@rainbow-me/rainbowkit@2.0.6(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(wagmi@2.7.1(@tanstack/query-core@5.32.1)(@tanstack/react-query@5.32.1(react@18.3.1))(@types/react@18.3.1)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))':
+    dependencies:
+      '@coinbase/wallet-sdk': 3.9.3
+      '@vanilla-extract/css': 1.14.0
+      '@vanilla-extract/dynamic': 2.1.0
+      '@vanilla-extract/sprinkles': 1.6.1(@vanilla-extract/css@1.14.0)
+      clsx: 2.1.0
+      qrcode: 1.5.3
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      react-remove-scroll: 2.5.7(@types/react@18.3.1)(react@18.3.1)
+      ua-parser-js: 1.0.37
+      viem: 2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4)
+      wagmi: 2.7.1(@tanstack/query-core@5.32.1)(@tanstack/react-query@5.32.1(react@18.3.1))(@types/react@18.3.1)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4)
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+
   '@react-native-community/cli-clean@13.6.4':
     dependencies:
       '@react-native-community/cli-tools': 13.6.4
@@ -7639,6 +7653,30 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
+  '@vanilla-extract/css@1.14.0':
+    dependencies:
+      '@emotion/hash': 0.9.1
+      '@vanilla-extract/private': 1.0.4
+      chalk: 4.1.2
+      css-what: 6.1.0
+      cssesc: 3.0.0
+      csstype: 3.1.3
+      deep-object-diff: 1.1.9
+      deepmerge: 4.3.1
+      media-query-parser: 2.0.2
+      modern-ahocorasick: 1.0.1
+      outdent: 0.8.0
+
+  '@vanilla-extract/dynamic@2.1.0':
+    dependencies:
+      '@vanilla-extract/private': 1.0.4
+
+  '@vanilla-extract/private@1.0.4': {}
+
+  '@vanilla-extract/sprinkles@1.6.1(@vanilla-extract/css@1.14.0)':
+    dependencies:
+      '@vanilla-extract/css': 1.14.0
+
   '@wagmi/connectors@4.3.1(@types/react@18.3.1)(@wagmi/core@2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4)':
     dependencies:
       '@coinbase/wallet-sdk': 3.9.1
@@ -8013,98 +8051,6 @@ snapshots:
       '@walletconnect/window-getters': 1.0.1
       tslib: 1.14.1
 
-  '@web3modal/common@4.1.11':
-    dependencies:
-      bignumber.js: 9.1.2
-      dayjs: 1.11.10
-
-  '@web3modal/core@4.1.11(@types/react@18.3.1)(react@18.3.1)':
-    dependencies:
-      '@web3modal/common': 4.1.11
-      '@web3modal/wallet': 4.1.11
-      valtio: 1.11.2(@types/react@18.3.1)(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@web3modal/polyfills@4.1.11':
-    dependencies:
-      buffer: 6.0.3
-
-  '@web3modal/scaffold-react@4.1.11(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
-    dependencies:
-      '@web3modal/scaffold': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-    optionalDependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-
-  '@web3modal/scaffold-utils@4.1.11(@types/react@18.3.1)(react@18.3.1)':
-    dependencies:
-      '@web3modal/core': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/polyfills': 4.1.11
-      valtio: 1.11.2(@types/react@18.3.1)(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@web3modal/scaffold-vue@4.1.11(@types/react@18.3.1)(react@18.3.1)':
-    dependencies:
-      '@web3modal/scaffold': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@web3modal/scaffold@4.1.11(@types/react@18.3.1)(react@18.3.1)':
-    dependencies:
-      '@web3modal/common': 4.1.11
-      '@web3modal/core': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/siwe': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/ui': 4.1.11
-      '@web3modal/wallet': 4.1.11
-      lit: 3.1.0
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@web3modal/siwe@4.1.11(@types/react@18.3.1)(react@18.3.1)':
-    dependencies:
-      '@web3modal/core': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/scaffold-utils': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      lit: 3.1.0
-      valtio: 1.11.2(@types/react@18.3.1)(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-      - react
-
-  '@web3modal/ui@4.1.11':
-    dependencies:
-      lit: 3.1.0
-      qrcode: 1.5.3
-
-  ? '@web3modal/wagmi@4.1.11(@types/react@18.3.1)(@wagmi/connectors@4.3.1(@types/react@18.3.1)(@wagmi/core@2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(@wagmi/core@2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))'
-  : dependencies:
-      '@wagmi/connectors': 4.3.1(@types/react@18.3.1)(@wagmi/core@2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4))(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react-i18next@13.5.0(i18next@22.5.1)(react-dom@18.3.1(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1))(react-native@0.74.0(@babel/core@7.24.5)(@babel/preset-env@7.24.5(@babel/core@7.24.5))(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(utf-8-validate@6.0.3))(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4)
-      '@wagmi/core': 2.8.1(@tanstack/query-core@5.32.1)(@types/react@18.3.1)(bufferutil@4.0.8)(react@18.3.1)(typescript@5.4.5)(utf-8-validate@6.0.3)(viem@2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4))(zod@3.22.4)
-      '@web3modal/polyfills': 4.1.11
-      '@web3modal/scaffold': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/scaffold-react': 4.1.11(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@web3modal/scaffold-utils': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/scaffold-vue': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      '@web3modal/siwe': 4.1.11(@types/react@18.3.1)(react@18.3.1)
-      viem: 2.9.29(bufferutil@4.0.8)(typescript@5.4.5)(utf-8-validate@6.0.3)(zod@3.22.4)
-    optionalDependencies:
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
-    transitivePeerDependencies:
-      - '@types/react'
-
-  '@web3modal/wallet@4.1.11':
-    dependencies:
-      '@web3modal/polyfills': 4.1.11
-      zod: 3.22.4
-
   abitype@0.9.8(typescript@5.4.5)(zod@3.22.4):
     optionalDependencies:
       typescript: 5.4.5
@@ -8328,8 +8274,6 @@ snapshots:
 
   base64-js@1.5.1: {}
 
-  bignumber.js@9.1.2: {}
-
   binary-extensions@2.3.0: {}
 
   bl@4.1.0:
@@ -8502,6 +8446,8 @@ snapshots:
 
   clsx@2.0.0: {}
 
+  clsx@2.1.0: {}
+
   clsx@2.1.1: {}
 
   color-convert@1.9.3:
@@ -8598,6 +8544,8 @@ snapshots:
 
   crossws@0.2.4: {}
 
+  css-what@6.1.0: {}
+
   cssesc@3.0.0: {}
 
   csstype@3.1.3: {}
@@ -8628,8 +8576,6 @@ snapshots:
 
   date-fns@3.6.0: {}
 
-  dayjs@1.11.10: {}
-
   dayjs@1.11.11: {}
 
   debug@2.6.9:
@@ -8649,6 +8595,8 @@ snapshots:
   decode-uri-component@0.2.2: {}
 
   deep-is@0.1.4: {}
+
+  deep-object-diff@1.1.9: {}
 
   deepmerge@4.3.1: {}
 
@@ -9883,17 +9831,7 @@ snapshots:
       '@lit/reactive-element': 1.6.3
       lit-html: 2.8.0
 
-  lit-element@4.0.5:
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.2.0
-      '@lit/reactive-element': 2.0.4
-      lit-html: 3.1.3
-
   lit-html@2.8.0:
-    dependencies:
-      '@types/trusted-types': 2.0.7
-
-  lit-html@3.1.3:
     dependencies:
       '@types/trusted-types': 2.0.7
 
@@ -9902,12 +9840,6 @@ snapshots:
       '@lit/reactive-element': 1.6.3
       lit-element: 3.3.3
       lit-html: 2.8.0
-
-  lit@3.1.0:
-    dependencies:
-      '@lit/reactive-element': 2.0.4
-      lit-element: 4.0.5
-      lit-html: 3.1.3
 
   locate-path@3.0.0:
     dependencies:
@@ -9973,6 +9905,10 @@ snapshots:
       tmpl: 1.0.5
 
   marky@1.2.5: {}
+
+  media-query-parser@2.0.2:
+    dependencies:
+      '@babel/runtime': 7.24.5
 
   memoize-one@5.2.1: {}
 
@@ -10215,6 +10151,8 @@ snapshots:
       pkg-types: 1.1.0
       ufo: 1.5.3
 
+  modern-ahocorasick@1.0.1: {}
+
   motion@10.16.2:
     dependencies:
       '@motionone/animation': 10.17.0
@@ -10441,6 +10379,8 @@ snapshots:
       log-symbols: 4.1.0
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
+
+  outdent@0.8.0: {}
 
   p-limit@2.3.0:
     dependencies:
@@ -10785,6 +10725,17 @@ snapshots:
       '@types/react': 18.3.1
 
   react-remove-scroll@2.5.5(@types/react@18.3.1)(react@18.3.1):
+    dependencies:
+      react: 18.3.1
+      react-remove-scroll-bar: 2.3.6(@types/react@18.3.1)(react@18.3.1)
+      react-style-singleton: 2.2.1(@types/react@18.3.1)(react@18.3.1)
+      tslib: 2.6.2
+      use-callback-ref: 1.3.2(@types/react@18.3.1)(react@18.3.1)
+      use-sidecar: 1.1.2(@types/react@18.3.1)(react@18.3.1)
+    optionalDependencies:
+      '@types/react': 18.3.1
+
+  react-remove-scroll@2.5.7(@types/react@18.3.1)(react@18.3.1):
     dependencies:
       react: 18.3.1
       react-remove-scroll-bar: 2.3.6(@types/react@18.3.1)(react@18.3.1)
@@ -11399,6 +11350,8 @@ snapshots:
 
   typescript@5.4.5: {}
 
+  ua-parser-js@1.0.37: {}
+
   ufo@1.5.3: {}
 
   uint8arrays@3.1.1:
@@ -11761,7 +11714,8 @@ snapshots:
 
   yocto-queue@0.1.0: {}
 
-  zod@3.22.4: {}
+  zod@3.22.4:
+    optional: true
 
   zustand@4.4.1(@types/react@18.3.1)(react@18.3.1):
     dependencies:
