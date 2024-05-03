@@ -1,5 +1,5 @@
 {
-  "extends": ["next/core-web-vitals", "next"],
+  "extends": ["next"],
   "rules": {
     "@typescript-eslint/no-explicit-any": "off"
   }
