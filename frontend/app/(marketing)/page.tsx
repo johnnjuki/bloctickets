@@ -1,202 +1,180 @@
-// import { HeroSection } from "@/components/home/hero";
-// import Image from "next/image";
-// import Link from "next/link";
+import Link from "next/link";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-// export default function Home() {
-//   return (
-//     <main className="min-h-screen px-16">
-//       <div className="z-10 w-full max-w-5xl items-center justify-between text-sm lg:flex">
-//         <div className="fixed left-0 top-0 flex justify-between items-center w-full border-b border-gray-300 px-8 pb-6 pt-8 bg-white">
-//           <Link href="/" className="text-3xl font-bold">
-//             Ticketopia
-//           </Link>
-//           <nav className="flex items-center  gap-8">
-//             <Link href="/">Home </Link>
-//             <Link href="/">Explore events </Link>
-//             <Link href="/">Create event </Link>
-//             <Link href="/">About us </Link>
-//             <w3m-button />
-//           </nav>
-//         </div>
-//       </div>
+import { Button } from "@/components/shared/ui/button";
+import { LandingPrimaryImageCtaSection } from "@/components/landing/cta/LandingPrimaryCta";
+import { LandingTestimonialInline } from "@/components/landing/testimonial/LandingTestimonialInline";
+import { LandingTestimonialInlineItem } from "@/components/landing/testimonial/LandingTestimonialInlineItem";
+import { LandingProductFeature } from "@/components/landing/LandingProductFeature";
+import { LandingProductFeatureKeyPoints } from "@/components/landing/LandingProductFeatureKeyPoints";
+import { LandingTestimonialGrid } from "@/components/landing/testimonial/LandingTestimonialGrid";
+import { Footer } from "@/components/footer";
 
-//       <HeroSection />
+const navLinks = [
+  {
+    name: "Explore events",
+    href: "/events",
+  },
+  {
+    name: "Create event",
+    href: "/create-event",
+  },
+  {
+    name: "About us",
+    href: "/",
+  },
+];
 
-//     </main>
+const keyPoints = [
+  {
+    title: "Decentralized",
+    description: "Ticketopia is built on top of web3.0.",
+  },
+  {
+    title: "Secure",
+    description:
+      "We use the latest security standards to ensure your data stays safe.",
+  },
+  {
+    title: "Support",
+    description:
+      "24/7 customer support. We are here to help you at any time of the day. Just ask.",
+  },
+];
 
-//   );
-// }
-
-
-
-// export default function Page() {
-//   return (
-//     <div>
-//     <Header />
-//       <main className="min-h-[100dvh]">
-//         <section className="w-full py-12 md:py-20 bg-gradient-to-r from-[#6366F1] to-[#9333EA]">
-//           <div className="container px-4 md:px-6">
-//             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-//               <div className="flex flex-col justify-center space-y-4 text-white">
-//                 <div className="space-y-2">
-//                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-//                     {/* Secure, Decentralized Ticketing */}
-//                     Discover top events near you
-//                   </h1>
-//                   <p className="max-w-[600px] text-gray-200 md:text-xl">
-//                     Ticketopia is the leading web3 platform for events. Enjoy secure, decentralized ticketing
-//                     and resale capabilities.
-//                   </p>
-//                 </div>
-//                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
-//                   <Link
-//                     className="inline-flex h-10 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-[#6366F1] shadow transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
-//                     href="/create-event"
-//                   >
-//                     Create Event
-//                   </Link>
-//                   <Link
-//                     className="inline-flex h-10 items-center justify-center rounded-md border border-white  bg-transparent px-8 text-sm font-medium text-white shadow-sm transition-colors hover:bg-white hover:text-[#6366F1] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
-//                     href="/events"
-//                   >
-//                     Upcoming Events
-//                   </Link>
-//                 </div>
-//               </div>
-//               <Image
-//                 alt="Hero"
-//                 className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
-//                 height="550"
-//                 src="/hero-concert.jpg"
-//                 width="550"
-//               />
-//             </div>
-//           </div>
-//         </section>
-//         {/* TODO: Add key features section?? */}
-//         <section className="w-full py-12 md:py-24 lg:py-32">
-//           <div className="container px-4 md:px-6">
-//             <div className="grid gap-4 lg:grid-cols-2 lg:gap-8">
-//               <div>
-//                 <div className="space-y-2">
-//                   <div className="inline-block rounded-lg bg-gray-100 px-3 py-1 text-sm dark:bg-gray-800 text-[#6366F1]">
-//                     Upcoming Events
-//                   </div>
-//                   <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Don&apos;t Miss Out</h2>
-//                   <p className="max-w-[600px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-//                     Check out the latest events and secure your tickets today.
-//                   </p>
-//                 </div>
-//               </div>
-//               <div className="grid gap-4">
-//                 <Card>
-//                   <CardContent className="flex items-center justify-between pt-4">
-//                     <div>
-//                       <h3 className="text-lg font-semibold">Coachella 2024</h3>
-//                       <p className="text-gray-500 dark:text-gray-400">May 14-16, 2024</p>
-//                     </div>
-//                     <Link
-//                       className="inline-flex h-9 items-center justify-center rounded-md bg-[#6366F1] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#4F46E5] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6366F1] disabled:pointer-events-none disabled:opacity-50"
-//                       href="#"
-//                     >
-//                       Buy Tickets
-//                     </Link>
-//                   </CardContent>
-//                 </Card>
-//                 <Card>
-//                   <CardContent className="flex items-center justify-between pt-4">
-//                     <div>
-//                       <h3 className="text-lg font-semibold">Lollapalooza 2024</h3>
-//                       <p className="text-gray-500 dark:text-gray-400">May 27-30, 2024</p>
-//                     </div>
-//                     <Link
-//                       className="inline-flex h-9 items-center justify-center rounded-md bg-[#6366F1] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#4F46E5] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6366F1] disabled:pointer-events-none disabled:opacity-50"
-//                       href="#"
-//                     >
-//                       Buy Tickets
-//                     </Link>
-//                   </CardContent>
-//                 </Card>
-//                 <Card>
-//                   <CardContent className="flex items-center justify-between pt-4">
-//                     <div>
-//                       <h3 className="text-lg font-semibold">Bonnaroo 2024</h3>
-//                       <p className="text-gray-500 dark:text-gray-400">June 15-18, 2024</p>
-//                     </div>
-//                     <Link
-//                       className="inline-flex h-9 items-center justify-center rounded-md bg-[#6366F1] px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-[#4F46E5] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#6366F1] disabled:pointer-events-none disabled:opacity-50"
-//                       href="#"
-//                     >
-//                       Buy Tickets
-//                     </Link>
-//                   </CardContent>
-//                 </Card>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-//       </main>
-//       <Footer />
-//       </div>
-//   )
-// }
-
-
-
-import { Button } from '@/components/shared/ui/button';
-
-import { LandingPrimaryImageCtaSection } from '@/components/landing/cta/LandingPrimaryCta';
-import { LandingTestimonialInline } from '@/components/landing/testimonial/LandingTestimonialInline';
-import { LandingTestimonialInlineItem } from '@/components/landing/testimonial/LandingTestimonialInlineItem';
-import Link from 'next/link';
+const testimonialItems = [
+  {
+    name: "Mathew",
+    text: "After using this, I cannot imagine going back to the old way of doing things.",
+    handle: "@heymatt_oo",
+    imageSrc: "https://picsum.photos/100/100.webp?random=2",
+  },
+  {
+    name: "Joshua",
+    text: "Perfect for my use case",
+    handle: "@joshua",
+    imageSrc: "https://picsum.photos/100/100.webp?random=3",
+  },
+  {
+    name: "Parl Coppa",
+    text: "This is the best thing since sliced bread. I cannot believe I did not think of it myself.",
+    handle: "@coppalipse",
+    imageSrc: "https://picsum.photos/100/100.webp?random=1",
+    featured: true, // Feature this testimonial
+  },
+  {
+    name: "Mandy",
+    text: "Excellent product!",
+    handle: "@mandy",
+    imageSrc: "https://picsum.photos/100/100.webp?random=4",
+  },
+  {
+    name: "Alex",
+    text: "Can easily recommend!",
+    handle: "@alex",
+    imageSrc: "https://picsum.photos/100/100.webp?random=5",
+  },
+  {
+    name: "Sam",
+    text: "I am very happy with the results.",
+    handle: "@sama",
+    imageSrc: "https://picsum.photos/100/100.webp?random=6",
+  },
+];
 
 export default function Page() {
   return (
-    
-    <LandingPrimaryImageCtaSection
-      title="Discover top events near you"
-      description="Ticketopia is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
-      imageSrc="/static/images/image-concert.jpg"
-      imageAlt="Concert image"
-      // withBackground
-      footerComponent={
-        <LandingTestimonialInline>
-          <LandingTestimonialInlineItem
-            imageSrc="/static/images/people/1.webp"
-            name="John Doe"
-            text="I love this app"
-          />
+    <main className="flex flex-col">
+      <div className="w-full items-center justify-between text-sm lg:flex">
+        <div className="flex w-full items-center justify-between border-b px-8 pb-6 pt-8">
+          <Link href="/" className="text-3xl font-bold">
+            Ticketopia
+          </Link>
+          <nav className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                href={link.href}
+                className="text-sm font-medium underline-offset-4 hover:underline"
+              >
+                {link.name}
+              </Link>
+            ))}
+            <ConnectButton />
+          </nav>
+        </div>
+      </div>
 
-          <LandingTestimonialInlineItem
-            imageSrc="/static/images/people/2.webp"
-            name="Jane Doe"
-            text="Best app on the market"
-          />
+      <LandingPrimaryImageCtaSection
+        title="Discover top events near you"
+        description="Ticketopia is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
+        imageSrc="/static/images/concert/concert-1.jpg"
+        imageAlt="Concert image"
+        withBackground
+        footerComponent={
+          <LandingTestimonialInline>
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/1.webp"
+              name="John Doe"
+              text="I love this app"
+            />
 
-          <LandingTestimonialInlineItem
-            imageSrc="/static/images/people/3.webp"
-            name="Alice Doe"
-            text="Never seen anything like it"
-            suffix="CEO of Instagram"
-          />
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/2.webp"
+              name="Jane Doe"
+              text="Best app on the market"
+            />
 
-          <LandingTestimonialInlineItem
-            imageSrc="/static/images/people/5.webp"
-            name="Guido Ross"
-            text="Nothing comes close to it"
-            suffix="DevOps at Meta"
-          />
-        </LandingTestimonialInline>
-      }
-    >
-      <Button size="xl" asChild>
-        <Link href="/create-event">Create Event</Link>
-      </Button>
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/3.webp"
+              name="Alice Doe"
+              text="Never seen anything like it"
+              suffix="CEO of Instagram"
+            />
 
-      <Button size="xl" variant="outlinePrimary">
-        <Link href="/events">Upcoming Events</Link>
-      </Button>
-    </LandingPrimaryImageCtaSection>
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/5.webp"
+              name="Guido Ross"
+              text="Nothing comes close to it"
+              suffix="DevOps at Meta"
+            />
+          </LandingTestimonialInline>
+        }
+      >
+        <Button size="xl" asChild>
+          <Link href="/create-event">Create Event</Link>
+        </Button>
+
+        <Button size="xl" variant="outlinePrimary">
+          <Link href="/events">Upcoming Events</Link>
+        </Button>
+      </LandingPrimaryImageCtaSection>
+
+      <LandingProductFeature
+        title="Blockchain-Powered Ticketing"
+        descriptionComponent={
+          <>
+            <LandingProductFeatureKeyPoints
+              className="mb-8"
+              keyPoints={keyPoints}
+            />
+          </>
+        }
+        imageSrc="/static/images/concert/concert-3.jpg"
+        imageAlt="Concert image"
+        imagePosition="left"
+        imagePerspective="none"
+      />
+
+      <LandingTestimonialGrid
+        title="Don't take it from us"
+        description="See what 120k event organizers have to say about our product."
+        testimonialItems={testimonialItems}
+        withBackground
+        withBackgroundGlow
+      />
+
+      <Footer />
+    </main>
   );
 }
-

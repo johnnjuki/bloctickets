@@ -82,20 +82,5 @@ const config: Config = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
   ],
-
-  primary: {
-    lighter: "#f0abfc",
-    light: "#e879f9",
-    main: "#d946ef",
-    dark: "#c026d3",
-    darker: "#a21caf",
-  },
-  secondary: {
-    lighter: "#7dd3fc",
-    light: "#38bdf8",
-    main: "#0ea5e9",
-    dark: "#0284c7",
-    darker: "#0369a1",
-  },
 };
 export default config;
