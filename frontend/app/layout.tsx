@@ -1,28 +1,16 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Gabarito } from "next/font/google";
-import { Comfortaa } from "next/font/google";
-
-import "./globals.css";
+import { Inter } from 'next/font/google';
 import { cookieToInitialState } from "wagmi";
 import { headers } from "next/headers";
 import { config } from "@/blockchain/config";
+
 import Web3ModalProvider from "@/context/web3modal";
 import { Toaster } from "@/components/ui/sonner";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const gabarito = Gabarito({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-gabarito",
-});
-const comfortaa = Comfortaa({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-comfortaa",
-});
+
 
 export const metadata: Metadata = {
   title: "Ticketopia",
@@ -38,11 +26,9 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={gabarito.variable + " " + comfortaa.variable}>
+      <body className={`${inter.className} scroll-smooth`}>
         <Web3ModalProvider initialState={initialState}>
-          <Header />
           {children}
-          <Footer />
         </Web3ModalProvider>
         <Toaster />
       </body>
