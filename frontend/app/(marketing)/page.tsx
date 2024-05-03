@@ -60,7 +60,6 @@ const testimonialItems = [
     text: "This is the best thing since sliced bread. I cannot believe I did not think of it myself.",
     handle: "@coppalipse",
     imageSrc: "https://picsum.photos/100/100.webp?random=1",
-    featured: true, // Feature this testimonial
   },
 ];
 
