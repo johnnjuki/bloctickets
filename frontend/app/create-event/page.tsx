@@ -23,10 +23,9 @@ export default function CreateEventPage() {
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
-    console.log(BigInt(data.price as string));
     try {
       const hash = await writeContractAsync({
-        address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
+        address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
         abi: ticketopiaAbi,
         functionName: "createEvent",
         args: [
@@ -35,7 +34,7 @@ export default function CreateEventPage() {
           data.venue as string,
           data.date as string,
           data.time as string,
-          BigInt(data.price as string),
+          data.price as string,
           BigInt(data.tickets as string),
         ],
       });
@@ -47,6 +46,7 @@ export default function CreateEventPage() {
         router.push("/events");
       }
     } catch (e) {
+      console.log(e);
       toast.error("Failed to create event, try again.");
       return;
     }

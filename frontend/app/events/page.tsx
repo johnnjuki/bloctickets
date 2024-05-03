@@ -12,7 +12,7 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
+    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
     abi: ticketopiaAbi,
     functionName: "getAllEvents",
   });
@@ -20,6 +20,8 @@ export default function EventsPage() {
   // TODO: Display nicely
   if (isPending) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
+
+  // TODO: Show price
 
   return (
     <main>

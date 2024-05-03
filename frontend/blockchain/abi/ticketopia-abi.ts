@@ -146,9 +146,9 @@ export const ticketopiaAbi = [
       },
       {
         "indexed": false,
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "price",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "indexed": false,
@@ -256,6 +256,25 @@ export const ticketopiaAbi = [
     "inputs": [
       {
         "internalType": "string",
+        "name": "_str",
+        "type": "string"
+      }
+    ],
+    "name": "convertStringToUint",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
         "name": "_name",
         "type": "string"
       },
@@ -280,9 +299,9 @@ export const ticketopiaAbi = [
         "type": "string"
       },
       {
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "_price",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -293,25 +312,6 @@ export const ticketopiaAbi = [
     "name": "createEvent",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_Eventindex",
-        "type": "uint256"
-      }
-    ],
-    "name": "createTicket",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "payable",
     "type": "function"
   },
   {
@@ -359,9 +359,9 @@ export const ticketopiaAbi = [
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "string",
             "name": "price",
-            "type": "uint256"
+            "type": "string"
           },
           {
             "internalType": "uint256",
@@ -377,25 +377,6 @@ export const ticketopiaAbi = [
         "internalType": "struct Ticketopia.Event[]",
         "name": "",
         "type": "tuple[]"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_index",
-        "type": "uint256"
-      }
-    ],
-    "name": "getAmount",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -477,9 +458,9 @@ export const ticketopiaAbi = [
             "type": "string"
           },
           {
-            "internalType": "uint256",
+            "internalType": "string",
             "name": "price",
-            "type": "uint256"
+            "type": "string"
           },
           {
             "internalType": "uint256",
@@ -498,24 +479,6 @@ export const ticketopiaAbi = [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "_index",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      }
-    ],
-    "name": "getTicket",
-    "outputs": [],
-    "stateMutability": "payable",
     "type": "function"
   },
   {
