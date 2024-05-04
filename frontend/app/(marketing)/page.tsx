@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import { Button } from "@/components/shared/ui/button";
-import { LandingPrimaryImageCtaSection } from "@/components/landing/cta/LandingPrimaryCta";
-import { LandingTestimonialInline } from "@/components/landing/testimonial/LandingTestimonialInline";
-import { LandingTestimonialInlineItem } from "@/components/landing/testimonial/LandingTestimonialInlineItem";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { LandingProductFeature } from "@/components/landing/LandingProductFeature";
 import { LandingProductFeatureKeyPoints } from "@/components/landing/LandingProductFeatureKeyPoints";
+import { LandingPrimaryImageCtaSection } from "@/components/landing/cta/LandingPrimaryCta";
 import { LandingTestimonialGrid } from "@/components/landing/testimonial/LandingTestimonialGrid";
-import { Footer } from "@/components/footer";
+import { LandingTestimonialInline } from "@/components/landing/testimonial/LandingTestimonialInline";
+import { LandingTestimonialInlineItem } from "@/components/landing/testimonial/LandingTestimonialInlineItem";
+import { Button } from "@/components/shared/ui/button";
 
 const navLinks = [
   {
@@ -32,8 +32,7 @@ const keyPoints = [
   },
   {
     title: "Secure",
-    description:
-      "We use the latest security standards to ensure your data stays safe.",
+    description: "We use the latest security standards.",
   },
   {
     title: "Support",
@@ -45,7 +44,7 @@ const keyPoints = [
 const testimonialItems = [
   {
     name: "Mathew",
-    text: "After using this, I cannot imagine going back to the old way of doing things.",
+    text: "After using this, I cannot imagine going back to any other event management platform.",
     handle: "@heymatt_oo",
     imageSrc: "https://picsum.photos/100/100.webp?random=2",
   },
@@ -57,7 +56,7 @@ const testimonialItems = [
   },
   {
     name: "Parl Coppa",
-    text: "This is the best thing since sliced bread. I cannot believe I did not think of it myself.",
+    text: "I love it!",
     handle: "@coppalipse",
     imageSrc: "https://picsum.photos/100/100.webp?random=1",
     featured: true, // Feature this testimonial
@@ -85,25 +84,7 @@ const testimonialItems = [
 export default function Page() {
   return (
     <main className="flex flex-col">
-      <div className="w-full items-center justify-between text-sm lg:flex">
-        <div className="flex w-full items-center justify-between border-b px-8 pb-6 pt-8">
-          <Link href="/" className="text-xl lg:text-3xl font-bold">
-            Ticketopia
-          </Link>
-          <nav className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="hidden md:block text-sm font-medium underline-offset-4 hover:underline"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <ConnectButton />
-          </nav>
-        </div>
-      </div>
+      <Header />
 
       <LandingPrimaryImageCtaSection
         title="Discover top events near you"
