@@ -6,8 +6,11 @@ import { useRouter } from "next/navigation";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/shared/ui/button";
 import { toast } from "sonner";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function CreateEventPage() {
   const { address, isConnected } = useAccount();
@@ -55,82 +58,58 @@ export default function CreateEventPage() {
   // TODO add Transation receipt
 
   return (
-    <div className="mx-auto max-w-md space-y-6 px-4 py-8">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold">Create Event</h1>
-        <p className="text-gray-500 dark:text-gray-400">
-          Fill out the details to create a new event.
-        </p>
-      </div>
+    <main className="flex flex-col ">
+      <Header />
+      <section className="mx-auto max-w-md space-y-6 px-4 py-8">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-bold">Create Event</h1>
+          <p className="text-gray-500 dark:text-gray-400">
+            Fill out the details to create a new event.
+          </p>
+        </div>
 
-      <form onSubmit={submit} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="name">Event Name</Label>
-            <Input
-              id="name"
-              name="name"
-              placeholder="Enter event name"
-              required
-            />
+        <form onSubmit={submit} className="">
+          <div className="grid gap-4 md:grid-cols-2">
+            <div className="space-y-1.5">
+              <Label htmlFor="name">Event Name</Label>
+              <Input id="name" name="name" required />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="venue">Venue</Label>
+              <Input id="venue" name="venue" required />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="date">Date</Label>
+              <Input id="date" name="date" type="date" required />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="time">Time</Label>
+              <Input id="time" name="time" type="time" required />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="price">Price (KES)</Label>
+              <Input id="price" name="price" type="number" required />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="tickets">Tickets</Label>
+              <Input id="tickets" name="tickets" type="number" required />
+            </div>
+
+            <div className="space-y-1.5">
+              <Label htmlFor="name">Event Description</Label>
+              <Textarea id="description" name="description" required />
+            </div>
           </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="name">Event Description</Label>
-            <Input
-              id="description"
-              name="description"
-              placeholder="Enter event desription"
-              required
-            />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="venue">Venue</Label>
-            <Input id="venue" name="venue" placeholder="Enter venue" required />
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="date">Date</Label>
-            <Input id="date" name="date" type="date" required />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="time">Time</Label>
-            <Input id="time" name="time" type="time" required />
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            {/* /// TODO: (ksh) */}
-            <Label htmlFor="price">Price (KES)</Label>
-            <Input
-              id="price"
-              name="price"
-              placeholder="Enter price"
-              type="number"
-              required
-            />
-          </div>
-          <div className="space-y-1.5">
-            <Label htmlFor="tickets">Tickets</Label>
-            <Input
-              id="tickets"
-              name="tickets"
-              placeholder="Enter number of tickets"
-              type="number"
-              required
-            />
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="image">Event Image</Label>
-            <Input id="image" name="image" type="file" />
-          </div>
-        </div>
-        <Button disabled={isPending} className="w-full" type="submit">
-          {isPending ? "Creating..." : "Create Event"}
-        </Button>
-      </form>
-    </div>
+
+          <Button disabled={isPending} className="mt-8 w-full" type="submit">
+            {isPending ? "Creating..." : "Create Event"}
+          </Button>
+        </form>
+      </section>
+      <Footer showText={false} />
+    </main>
   );
 }

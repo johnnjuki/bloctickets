@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import { BlockchainProviders } from "@/providers/blockchain-providers";
 import "./globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} scroll-smooth`}>
-        <BlockchainProviders>{children}</BlockchainProviders>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem={false}
+        >
+          <BlockchainProviders>{children}</BlockchainProviders>
+        </ThemeProvider>
         <Toaster />
       </body>
     </html>

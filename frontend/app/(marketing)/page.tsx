@@ -1,29 +1,14 @@
 import Link from "next/link";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 
-import { Button } from "@/components/shared/ui/button";
-import { LandingPrimaryImageCtaSection } from "@/components/landing/cta/LandingPrimaryCta";
-import { LandingTestimonialInline } from "@/components/landing/testimonial/LandingTestimonialInline";
-import { LandingTestimonialInlineItem } from "@/components/landing/testimonial/LandingTestimonialInlineItem";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header";
 import { LandingProductFeature } from "@/components/landing/LandingProductFeature";
 import { LandingProductFeatureKeyPoints } from "@/components/landing/LandingProductFeatureKeyPoints";
+import { LandingPrimaryImageCtaSection } from "@/components/landing/cta/LandingPrimaryCta";
 import { LandingTestimonialGrid } from "@/components/landing/testimonial/LandingTestimonialGrid";
-import { Footer } from "@/components/footer";
-
-const navLinks = [
-  {
-    name: "Explore events",
-    href: "/events",
-  },
-  {
-    name: "Create event",
-    href: "/create-event",
-  },
-  {
-    name: "About us",
-    href: "/",
-  },
-];
+import { LandingTestimonialInline } from "@/components/landing/testimonial/LandingTestimonialInline";
+import { LandingTestimonialInlineItem } from "@/components/landing/testimonial/LandingTestimonialInlineItem";
+import { Button } from "@/components/shared/ui/button";
 
 const keyPoints = [
   {
@@ -32,8 +17,7 @@ const keyPoints = [
   },
   {
     title: "Secure",
-    description:
-      "We use the latest security standards to ensure your data stays safe.",
+    description: "We use the latest security standards.",
   },
   {
     title: "Support",
@@ -44,10 +28,10 @@ const keyPoints = [
 
 const testimonialItems = [
   {
-    name: "Mathew",
-    text: "After using this, I cannot imagine going back to the old way of doing things.",
-    handle: "@heymatt_oo",
-    imageSrc: "https://picsum.photos/100/100.webp?random=2",
+    name: "Parl Coppa",
+    text: "I love it!",
+    handle: "@coppalipse",
+    imageSrc: "https://picsum.photos/100/100.webp?random=1",
   },
   {
     name: "Joshua",
@@ -56,35 +40,36 @@ const testimonialItems = [
     imageSrc: "https://picsum.photos/100/100.webp?random=3",
   },
   {
-    name: "Parl Coppa",
-    text: "This is the best thing since sliced bread. I cannot believe I did not think of it myself.",
-    handle: "@coppalipse",
-    imageSrc: "https://picsum.photos/100/100.webp?random=1",
+    name: "Mathew",
+    text: "After using this, I cannot imagine going back to any other events platform.",
+    handle: "@heymatt_oo",
+    imageSrc: "https://picsum.photos/100/100.webp?random=2",
+    featured: true, // Feature this testimonial
+  },
+  {
+    name: "Mandy",
+    text: "Excellent product!",
+    handle: "@mandy",
+    imageSrc: "https://picsum.photos/100/100.webp?random=4",
+  },
+  {
+    name: "Alex",
+    text: "Can easily recommend!",
+    handle: "@alex",
+    imageSrc: "https://picsum.photos/100/100.webp?random=5",
+  },
+  {
+    name: "Sam",
+    text: "This is what we event organizers needed.",
+    handle: "@sama",
+    imageSrc: "https://picsum.photos/100/100.webp?random=6",
   },
 ];
 
 export default function Page() {
   return (
     <main className="flex flex-col">
-      <div className="w-full items-center justify-between text-sm lg:flex">
-        <div className="flex w-full items-center justify-between border-b px-8 pb-6 pt-8">
-          <Link href="/" className="md:text-3xl font-bold">
-            Ticketopia
-          </Link>
-          <nav className="flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                href={link.href}
-                className="hidden md:block text-sm font-medium underline-offset-4 hover:underline"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <ConnectButton />
-          </nav>
-        </div>
-      </div>
+      <Header />
 
       <LandingPrimaryImageCtaSection
         title="Discover top events near you"
@@ -92,6 +77,35 @@ export default function Page() {
         imageSrc="/static/images/concert/concert-1.jpg"
         imageAlt="Concert image"
         withBackground
+        footerComponent={
+          <LandingTestimonialInline>
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/1.webp"
+              name="John Doe"
+              text="I love this app"
+            />
+
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/2.webp"
+              name="Kim"
+              text="Best app on the market"
+            />
+
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/3.webp"
+              name="Matt"
+              text="Never seen anything like it"
+              suffix="CEO of Metamask"
+            />
+
+            <LandingTestimonialInlineItem
+              imageSrc="/static/images/people/5.webp"
+              name="Guido Ross"
+              text="The future of events is here"
+              suffix="DevOps at Binance"
+            />
+          </LandingTestimonialInline>
+        }
       >
         <Button size="xl" asChild>
           <Link href="/create-event">Create Event</Link>
@@ -103,7 +117,6 @@ export default function Page() {
       </LandingPrimaryImageCtaSection>
 
       <LandingProductFeature
-      className="hidden md:block"
         title="Blockchain-Powered Ticketing"
         descriptionComponent={
           <>
@@ -127,7 +140,7 @@ export default function Page() {
         withBackgroundGlow
       />
 
-      <Footer />
+      <Footer showText />
     </main>
   );
 }

@@ -3,23 +3,25 @@ import Link from "next/link";
 import { FaXTwitter } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa6";
 
-export function Footer() {
+export function Footer({ showText }: { showText?: boolean }) {
   return (
     <footer className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8 lg:pt-24">
-        <div className="text-center">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-5xl">
-            Ticketopia
-          </h2>
+        {showText && (
+          <div className="text-center">
+            <h2 className="text-3xl font-extrabold text-gray-900 sm:text-5xl">
+              Ticketopia
+            </h2>
 
-          <p className="mx-auto mt-4 max-w-sm text-gray-500">
-            Connect your wallet to get started
-          </p>
+            <p className="mx-auto mt-4 max-w-sm text-gray-500">
+              Connect your wallet to get started
+            </p>
 
-          <div className="mt-8 inline-block ">
-            <ConnectButton />
+            <div className="mt-8 inline-block ">
+              <ConnectButton />
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="mt-16 border-t border-gray-100 pt-8 sm:flex sm:items-center sm:justify-between lg:mt-24">
           <ul className="flex flex-wrap justify-center gap-4 text-xs lg:justify-end">

@@ -1,25 +1,24 @@
 "use client";
 
-import { Label } from "@/components/ui/label";
-import {
-  SelectValue,
-  SelectTrigger,
-  SelectItem,
-  SelectContent,
-  Select,
-  SelectGroup,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
-import { CalendarRange, Locate, Ticket } from "lucide-react";
-import { useReadContract } from "wagmi";
-import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
+import { ArrowLeft, CalendarRange, Locate, Ticket } from "lucide-react";
 import Image from "next/image";
+import { useReadContract } from "wagmi";
+import { useRouter } from "next/navigation";
+
+import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
+import { Button } from "@/components/shared/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Skeleton } from "@/components/ui/skeleton";
+import Link from "next/link";
 
 export default function EventDetailsPage({
   params,
 }: {
   params: { index: number };
 }) {
+  const router = useRouter();
+
   const {
     data: event,
     isPending,
@@ -31,12 +30,24 @@ export default function EventDetailsPage({
     args: [BigInt(params.index)],
   });
 
-  if (isPending) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
   return (
     <>
-      <section className="w-full bg-gray-100 py-12 dark:bg-gray-800 md:py-24 lg:py-32">
+      <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 dark:bg-gray-800">
+        <Link href={"/events"}>
+          <ArrowLeft className="mx-4 h-10 w-10 text-gray-500 dark:text-gray-400" />
+        </Link>
+        {error && (
+          <div className="flex h-screen items-center justify-center">
+            <p>Error fetching events, try again later</p>
+          </div>
+        )}
+
+        {isPending && (
+          <div className="flex flex-1 items-center justify-center gap-6">
+            <Skeleton className="rounded-xl" />
+            <Skeleton className="rounded-xl" />
+          </div>
+        )}
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2">
             <div className="space-y-4">
@@ -58,24 +69,17 @@ export default function EventDetailsPage({
               </div>
               <div className="text-4xl font-bold">KES {event?.price}</div>
               <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <div className="grid gap-2">
+                <div className="flex items-center gap-2">
                   <Label className="text-base font-medium" htmlFor="tickets">
                     Number of Tickets
                   </Label>
-                  <Select defaultValue="1">
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select number of tickets" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectGroup>
-                        <SelectItem value="1">1</SelectItem>
-                        <SelectItem value="2">2</SelectItem>
-                        <SelectItem value="3">3</SelectItem>
-                        <SelectItem value="4">4</SelectItem>
-                        <SelectItem value="5">5</SelectItem>
-                      </SelectGroup>
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    id="tickets"
+                    type="number"
+                    name="tickets"
+                    required
+                    defaultValue={1}
+                  />
                 </div>
                 <Button className="w-full sm:w-auto">
                   <Ticket className="mr-2 h-5 w-5" />
@@ -87,7 +91,7 @@ export default function EventDetailsPage({
               alt="Event Hero"
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
               height="400"
-              src="/hero-concert.jpg"
+              src="/static/images/concert/concert-3.jpg"
               width="600"
             />
           </div>
@@ -100,7 +104,7 @@ export default function EventDetailsPage({
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 About the Event
               </h2>
-              <p className="max-w-[800px] text-gray-500 dark:text-gray-400 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+              <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 {event?.description}
               </p>
             </div>
