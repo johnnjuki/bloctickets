@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect } from "react";
 
-"use client"
+
  
 import * as React from "react"
 import { Moon, Sun } from "lucide-react"
