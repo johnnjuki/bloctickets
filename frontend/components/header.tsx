@@ -12,7 +12,7 @@ export function Header() {
       href: "/create-event",
     },
     {
-      name: "About us",
+      name: "About",
       href: "/",
     },
   ];

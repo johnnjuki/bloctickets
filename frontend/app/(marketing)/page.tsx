@@ -10,21 +10,6 @@ import { LandingTestimonialInline } from "@/components/landing/testimonial/Landi
 import { LandingTestimonialInlineItem } from "@/components/landing/testimonial/LandingTestimonialInlineItem";
 import { Button } from "@/components/shared/ui/button";
 
-const navLinks = [
-  {
-    name: "Explore events",
-    href: "/events",
-  },
-  {
-    name: "Create event",
-    href: "/create-event",
-  },
-  {
-    name: "About us",
-    href: "/",
-  },
-];
-
 const keyPoints = [
   {
     title: "Decentralized",
@@ -56,7 +41,7 @@ const testimonialItems = [
   },
   {
     name: "Mathew",
-    text: "After using this, I cannot imagine going back to any other event management platform.",
+    text: "After using this, I cannot imagine going back to any other events platform.",
     handle: "@heymatt_oo",
     imageSrc: "https://picsum.photos/100/100.webp?random=2",
     featured: true, // Feature this testimonial
@@ -75,7 +60,7 @@ const testimonialItems = [
   },
   {
     name: "Sam",
-    text: "I am very happy with the results.",
+    text: "This is what we event organizers needed.",
     handle: "@sama",
     imageSrc: "https://picsum.photos/100/100.webp?random=6",
   },
@@ -102,22 +87,22 @@ export default function Page() {
 
             <LandingTestimonialInlineItem
               imageSrc="/static/images/people/2.webp"
-              name="Jane Doe"
+              name="Kim"
               text="Best app on the market"
             />
 
             <LandingTestimonialInlineItem
               imageSrc="/static/images/people/3.webp"
-              name="Alice Doe"
+              name="Matt"
               text="Never seen anything like it"
-              suffix="CEO of Instagram"
+              suffix="CEO of Metamask"
             />
 
             <LandingTestimonialInlineItem
               imageSrc="/static/images/people/5.webp"
               name="Guido Ross"
-              text="Nothing comes close to it"
-              suffix="DevOps at Meta"
+              text="The future of events is here"
+              suffix="DevOps at Binance"
             />
           </LandingTestimonialInline>
         }
