@@ -43,10 +43,10 @@ const keyPoints = [
 
 const testimonialItems = [
   {
-    name: "Mathew",
-    text: "After using this, I cannot imagine going back to any other event management platform.",
-    handle: "@heymatt_oo",
-    imageSrc: "https://picsum.photos/100/100.webp?random=2",
+    name: "Parl Coppa",
+    text: "I love it!",
+    handle: "@coppalipse",
+    imageSrc: "https://picsum.photos/100/100.webp?random=1",
   },
   {
     name: "Joshua",
@@ -55,10 +55,10 @@ const testimonialItems = [
     imageSrc: "https://picsum.photos/100/100.webp?random=3",
   },
   {
-    name: "Parl Coppa",
-    text: "I love it!",
-    handle: "@coppalipse",
-    imageSrc: "https://picsum.photos/100/100.webp?random=1",
+    name: "Mathew",
+    text: "After using this, I cannot imagine going back to any other event management platform.",
+    handle: "@heymatt_oo",
+    imageSrc: "https://picsum.photos/100/100.webp?random=2",
     featured: true, // Feature this testimonial
   },
   {
