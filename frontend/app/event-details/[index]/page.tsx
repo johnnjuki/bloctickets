@@ -4,18 +4,26 @@ import { ArrowLeft, CalendarRange, Locate, Ticket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useReadContract } from "wagmi";
+import { useTheme } from "next-themes";
 
 import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
 import { Button } from "@/components/shared/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useEffect } from "react";
 
 export default function EventDetailsPage({
   params,
 }: {
   params: { index: number };
 }) {
+
+  const { setTheme } = useTheme();
+
+  useEffect(() => {
+    setTheme("light");
+  }, []);
 
   const {
     data: event,
