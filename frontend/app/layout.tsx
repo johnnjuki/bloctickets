@@ -3,10 +3,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import { Toaster } from "@/components/ui/sonner";
-
 import { BlockchainProviders } from "@/providers/blockchain-providers";
-import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
+
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
