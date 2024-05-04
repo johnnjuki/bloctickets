@@ -37,18 +37,18 @@ export const LandingTestimonial = ({
       target="_blank"
       rel="noopener noreferrer"
       className={clsx(
-        'w-full inline-block bg-white dark:bg-neutral-900 rounded-2xl shadow-md ring-1 ring-gray-900/5',
+        'w-full inline-block bg-white rounded-2xl shadow-md ring-1 ring-gray-900/5',
         featured ? 'shadow-xl' : 'p-6',
         missingUrl
           ? 'cursor-default pointer-events-none'
-          : 'cursor-pointer hover:bg-gray-100 dark:hover:bg-neutral-800 transition-colors',
+          : 'cursor-pointer hover:bg-gray-100 transition-colors',
         className,
       )}
     >
       <figure>
         <blockquote
           className={clsx(
-            'text-gray-900 dark:text-gray-100',
+            'text-gray-900',
             featured
               ? 'p-6 text-lg font-semibold leading-7 tracking-tight sm:text-xl sm:leading-8'
               : '',
