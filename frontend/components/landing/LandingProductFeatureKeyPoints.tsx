@@ -18,14 +18,14 @@ export const LandingProductFeatureKeyPoints = ({
   return (
     <dl
       className={clsx(
-        'mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 dark:text-gray-500 lg:max-w-md',
+        'mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600  lg:max-w-md',
         className,
       )}
     >
       {keyPoints.map((keyPoint, index) => {
         return (
           <div key={index} className="">
-            <dt className="inline font-semibold text-gray-900 dark:text-gray-100">
+            <dt className="inline font-semibold text-gray-900 ">
               <CheckIcon
                 className={clsx(
                   'h-5 w-5 inline -mt-0.5',

@@ -42,10 +42,10 @@ export const LandingTestimonialGrid = ({
       className={clsx(
         'w-full flex flex-col justify-center items-center gap-8 py-12 lg:py-16',
         withBackground && variant === 'primary'
-          ? 'bg-primary-100/20 dark:bg-primary-900/10'
+          ? 'bg-primary-100/20 '
           : '',
         withBackground && variant === 'secondary'
-          ? 'bg-secondary-100/20 dark:bg-secondary-900/10'
+          ? 'bg-secondary-100/20 '
           : '',
         withBackgroundGlow ? 'overflow-hidden' : '',
         className,
@@ -116,7 +116,7 @@ export const LandingTestimonialGrid = ({
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div
             className={clsx(
-              'mx-auto max-w-2xl xl:mx-0 xl:max-w-none text-sm leading-6 text-gray-900 dark:text-gray-100 columns-1 md:columns-2 xl:columns-3 gap-4',
+              'mx-auto max-w-2xl xl:mx-0 xl:max-w-none text-sm leading-6 text-gray-900  columns-1 md:columns-2 xl:columns-3 gap-4',
               containerClassName,
             )}
           >
