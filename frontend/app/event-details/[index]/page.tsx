@@ -2,22 +2,20 @@
 
 import { ArrowLeft, CalendarRange, Locate, Ticket } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { useReadContract } from "wagmi";
-import { useRouter } from "next/navigation";
 
 import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
 import { Button } from "@/components/shared/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
-import Link from "next/link";
 
 export default function EventDetailsPage({
   params,
 }: {
   params: { index: number };
 }) {
-  const router = useRouter();
 
   const {
     data: event,
@@ -31,7 +29,7 @@ export default function EventDetailsPage({
   });
 
   return (
-    <>
+    <main>
       <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 dark:bg-gray-800">
         <Link href={"/events"}>
           <ArrowLeft className="mx-4 h-10 w-10 text-gray-500 dark:text-gray-400" />
@@ -111,6 +109,6 @@ export default function EventDetailsPage({
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }

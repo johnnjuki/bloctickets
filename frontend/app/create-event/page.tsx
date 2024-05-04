@@ -56,6 +56,7 @@ export default function CreateEventPage() {
   }
 
   // TODO add Transation receipt
+  // TODO add upload event banner/image
 
   return (
     <main className="flex flex-col ">
