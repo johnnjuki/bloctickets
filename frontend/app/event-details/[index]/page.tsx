@@ -30,9 +30,9 @@ export default function EventDetailsPage({
 
   return (
     <main>
-      <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 dark:bg-gray-800">
+      <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 ">
         <Link href={"/events"}>
-          <ArrowLeft className="mx-4 h-10 w-10 text-gray-500 dark:text-gray-400" />
+          <ArrowLeft className="mx-4 h-10 w-10 text-gray-500 " />
         </Link>
         {error && (
           <div className="flex h-screen items-center justify-center">
@@ -49,13 +49,13 @@ export default function EventDetailsPage({
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2">
             <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-gray-200 px-3 py-1 text-sm font-medium dark:bg-gray-700">
+              <div className="inline-block rounded-lg bg-gray-200 px-3 py-1 text-sm font-medium">
                 Upcoming Event
               </div>
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
                 {event?.name}
               </h1>
-              <div className="flex items-center space-x-4 text-gray-500 dark:text-gray-400">
+              <div className="flex items-center space-x-4 text-gray-500">
                 <div>
                   <CalendarRange className="mr-1 inline-block h-5 w-5" />
                   {event?.date}

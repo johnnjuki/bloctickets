@@ -64,7 +64,7 @@ export default function CreateEventPage() {
       <section className="mx-auto max-w-md space-y-6 px-4 py-8">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Create Event</h1>
-          <p className="text-gray-500 dark:text-gray-400">
+          <p className="text-gray-500 ">
             Fill out the details to create a new event.
           </p>
         </div>

@@ -52,7 +52,7 @@ export default function EventsPage() {
                 <Link href={`/event-details/${index}`} key={index}>
                   <div
                     key={index}
-                    className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg dark:bg-gray-900"
+                    className="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-lg "
                   >
                     {/* TODO: Replace with users uploaded image */}
                     <Image
@@ -71,25 +71,25 @@ export default function EventsPage() {
                         {event.name}
                       </h3>
                       <div className="mb-3 flex items-center space-x-2">
-                        <Calendar className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <Calendar className="h-5 w-5 text-gray-500 " />
+                        <p className="text-gray-500 ">
                           {event.date}
                         </p>
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
-                        <Clock className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <Clock className="h-5 w-5 text-gray-500 " />
+                        <p className="text-gray-500 ">
                           {event.time}
                         </p>
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
-                        <CircleDollarSign className="h-5 w-5 text-gray-500 dark:text-gray-400" />
-                        <p className="text-gray-500 dark:text-gray-400">
+                        <CircleDollarSign className="h-5 w-5 text-gray-500 " />
+                        <p className="text-gray-500 ">
                           {event.price}
                         </p>
                       </div>
 
-                      <p className="line-clamp-2 text-gray-600 dark:text-gray-300">
+                      <p className="line-clamp-2 text-gray-600 ">
                         {event.description}
                       </p>
                     </div>
