@@ -26,7 +26,7 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
-          enableSystem
+          enableSystem={false}
         >
           <BlockchainProviders>{children}</BlockchainProviders>
         </ThemeProvider>
