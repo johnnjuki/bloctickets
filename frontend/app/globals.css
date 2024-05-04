@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -5,7 +8,7 @@
       22px 25px 16px 0px rgba(0, 0, 0, 0.2);
     --hard-shadow-left: 0px 29px 52px 0px rgba(0, 0, 0, 0.4),
       -22px 25px 16px 0px rgba(0, 0, 0, 0.2);
-
+    /* If you use Shadcn UI already, you should already have these variables defined */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
     --card: 0 0% 100%;
@@ -27,6 +30,7 @@
   }
 
   .dark {
+    /* If you use Shadcn UI already, you can skip this block. */
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
     --card: 24 9.8% 10%;
@@ -137,4 +141,3 @@
     @apply xl:max-w-7xl;
   }
 }
-
