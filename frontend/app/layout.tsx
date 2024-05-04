@@ -25,6 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className} scroll-smooth`}>
         <ThemeProvider
           attribute="class"
+          forcedTheme="light"
         >
           <BlockchainProviders>{children}</BlockchainProviders>
         </ThemeProvider>
