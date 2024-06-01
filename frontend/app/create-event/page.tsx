@@ -28,7 +28,7 @@ export default function CreateEventPage() {
     console.log(data);
     try {
       const hash = await writeContractAsync({
-        address: "0x88307DCD3f593AD7e8cc47D01df872DFb9dEdDA3",
+        address: "0x9FAb463681826EC6ecf012B6d9d08387130DC862",
         abi: ticketopiaAbi,
         functionName: "createEvent",
         args: [
