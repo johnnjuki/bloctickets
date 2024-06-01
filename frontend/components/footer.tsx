@@ -10,7 +10,7 @@ export function Footer({ showText }: { showText?: boolean }) {
         {showText && (
           <div className="text-center">
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-5xl">
-              Ticketopia
+              BlocTickets
             </h2>
 
             <p className="mx-auto mt-4 max-w-sm text-gray-500">
@@ -63,7 +63,7 @@ export function Footer({ showText }: { showText?: boolean }) {
 
             <li>
               <Link
-                href="https://github.com/johnnjuki/ticketopia"
+                href="#"
                 rel="noreferrer"
                 target="_blank"
                 className="text-gray-700 transition hover:opacity-75"

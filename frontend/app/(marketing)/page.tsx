@@ -13,7 +13,7 @@ import { Button } from "@/components/shared/ui/button";
 const keyPoints = [
   {
     title: "Decentralized",
-    description: "Ticketopia is built on top of web3.0.",
+    description: "BlocTickets is built on top of web3.0.",
   },
   {
     title: "Secure",
@@ -73,7 +73,7 @@ export default function Page() {
 
       <LandingPrimaryImageCtaSection
         title="Discover top events near you"
-        description="Ticketopia is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
+        description="BlocTickets is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
         imageSrc="/static/images/concert/concert-1.jpg"
         imageAlt="Concert image"
         withBackground

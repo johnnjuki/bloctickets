@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import Image from "next/image";
 
 export function Header() {
   const navLinks = [
@@ -24,8 +25,12 @@ export function Header() {
           <div className="flex-1 md:flex md:items-center md:gap-12">
             <a className="block text-2xl lg:text-3xl font-bold" href="/">
               <span className="sr-only">Home</span>
-              {/* TODO: Replace with Logo */}
-              Ticketopia
+              <Image
+               width={200}
+               height={100}
+               src="/static/images/logo/logo-no-background.png"
+               alt="Logo"
+              />
             </a>
           </div>
 

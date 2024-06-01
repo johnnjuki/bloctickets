@@ -11,7 +11,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Ticketopia",
+  title: "BlocTickets",
   description: "Ticketing system for Web3",
 };
 
