@@ -63,7 +63,7 @@ export function Footer({ showText }: { showText?: boolean }) {
 
             <li>
               <Link
-                href="#"
+                href="https://github.com/johnnjuki/bloctickets"
                 rel="noreferrer"
                 target="_blank"
                 className="text-gray-700 transition hover:opacity-75"
