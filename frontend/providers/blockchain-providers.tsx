@@ -63,10 +63,10 @@ export function BlockchainProviders({
   children: React.ReactNode;
 }) {
   const config = createConfig({
-    chains: [celo],
+    chains: [mainnet],
     connectors: [injected()],
     transports: {
-      [celo.id]: http(),
+      [mainnet.id]: http(),
     },
   });
 
