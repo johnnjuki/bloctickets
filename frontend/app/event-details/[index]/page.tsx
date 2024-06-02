@@ -22,7 +22,7 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0x9FAb463681826EC6ecf012B6d9d08387130DC862",
+    address: "0x47C415ECA4bd0A534227B78be29a28133eDF3d7c",
     abi: ticketopiaAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],

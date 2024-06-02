@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
+// import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 
 export function Header() {
@@ -51,7 +51,7 @@ export function Header() {
             </nav>
 
             <div className="sm:flex sm:gap-4">
-              <ConnectButton />
+              {/* <ConnectButton /> */}
             </div>
           </div>
         </div>

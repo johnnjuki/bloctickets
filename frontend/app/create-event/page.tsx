@@ -21,14 +21,14 @@ export default function CreateEventPage() {
     e.preventDefault();
     if (!isConnected) {
       toast.error("Please connect your wallet");
-      return;
+      return
     }
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     try {
       const hash = await writeContractAsync({
-        address: "0x9FAb463681826EC6ecf012B6d9d08387130DC862",
+        address: "0x47C415ECA4bd0A534227B78be29a28133eDF3d7c",
         abi: ticketopiaAbi,
         functionName: "createEvent",
         args: [

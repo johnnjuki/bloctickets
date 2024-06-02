@@ -28,7 +28,9 @@ export default function RootLayout({
           defaultTheme="light"
           enableSystem={false}
         >
-          <BlockchainProviders>{children}</BlockchainProviders>
+          <BlockchainProviders>
+            {children}
+            </BlockchainProviders>
         </ThemeProvider>
         <Toaster />
       </body>
