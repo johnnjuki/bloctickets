@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReadContract } from "wagmi";
 
-
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,7 +17,7 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+    address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
     abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
@@ -91,7 +90,7 @@ export default function EventsPage() {
                       <div className="mb-3 flex items-center space-x-2">
                         <CircleDollarSign className="h-5 w-5 text-gray-500 " />
                         <p className="text-gray-500 ">
-                          {Number(event.price)} CELO
+                          {event.price} CELO
                         </p>
                       </div>
 
