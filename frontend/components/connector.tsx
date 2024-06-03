@@ -9,7 +9,7 @@ export default function Connector({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     connect({ connector: injected() });
-  });
+  }, [connect]);
 
   return <div>{children}</div>;
 }

@@ -16,8 +16,6 @@ contract BlocTickets is ERC721URIStorage {
 
     // uint256 listingPrice = 0.0015 ether;
 
-    // ASK JEFF why using Price in caps??
-
     address payable owner;
     string private eventName;
     uint256 private Price;
@@ -145,7 +143,6 @@ contract BlocTickets is ERC721URIStorage {
         owner == payable(msg.sender);
     }
 
-    // ASK JEFF: what exactly does this do??? and what is _Eventindex. How are you seperating events for each address who created events?
     // function createTicket(uint _Eventindex) public payable returns (uint256) {
     //     _ticketsIds.increment();
 
@@ -161,7 +158,6 @@ contract BlocTickets is ERC721URIStorage {
 
     //CREATING MARKET ITEMS
 
-    // ASK JEFF: if we're getting the price created in addEvent function, then why is it here as a parameter?
     // function createTicketItem(
     //     uint _index,
     //     uint256 ticketId,

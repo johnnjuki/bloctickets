@@ -16,7 +16,7 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0x47C415ECA4bd0A534227B78be29a28133eDF3d7c",
+    address: "0x264ed9AdE916EcEC987673ddebA1029d3d43c66f",
     abi: ticketopiaAbi,
     functionName: "getAllEvents",
   });
@@ -42,6 +42,8 @@ export default function EventsPage() {
                 <p>
                   Error fetching events, connect wallet if not connected and try
                   again
+
+                  {error.message}
                 </p>
               </div>
             )}

@@ -52,23 +52,45 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { WagmiProvider, createConfig, http, useConnect } from "wagmi";
-import { mainnet, sepolia, celo, celoAlfajores } from "wagmi/chains";
+import { celo, celoAlfajores } from "wagmi/chains";
 import { injected } from "wagmi/connectors";
-import {RainbowKitProvider} from "@rainbow-me/rainbowkit";
+import {
+  RainbowKitProvider,
+  connectorsForWallets,
+} from "@rainbow-me/rainbowkit";
+import { injectedWallet } from "@rainbow-me/rainbowkit/wallets";
 import Connector from "@/components/connector";
+
+
+const connectors = connectorsForWallets(
+  [
+      {
+          groupName: "Recommended",
+          wallets: [injectedWallet],
+      },
+  ],
+  {
+      appName: "BlocTickets",
+      projectId: "97712fd9a052670ee82d4a078462ba99",
+  }
+);
+
+const config = createConfig({
+  connectors,
+  chains: [celo, celoAlfajores],
+  transports: {
+      [celo.id]: http(),
+      [celoAlfajores.id]: http(),
+  },
+});
+
 
 export function BlockchainProviders({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const config = createConfig({
-    chains: [mainnet],
-    connectors: [injected()],
-    transports: {
-      [mainnet.id]: http(),
-    },
-  });
+
 
   const queryClient = new QueryClient();
 
