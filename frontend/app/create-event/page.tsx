@@ -31,7 +31,7 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+        address: "0xAb2846d3DEf087cABb99b4B39fcE7f92A52af53F",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
