@@ -294,7 +294,7 @@ contract BlocTickets is Ownable {
 
     function buyTicket(uint eventId) public payable {
         Event storage _event = events[eventId];
-        require(msg.value == _event.price, "Incorrect Ether value sent");
+        // require(msg.value == _event.price, "Incorrect Ether value sent");
         require(_event.ticketsAvailable > 0, "No tickets available");
 
         _event.ticketsAvailable--;

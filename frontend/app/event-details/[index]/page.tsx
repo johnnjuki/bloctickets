@@ -3,75 +3,59 @@
 import { ArrowLeft, CalendarRange, Locate, Ticket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useReadContract, useSendTransaction } from "wagmi";
+import { useReadContract, useWriteContract } from "wagmi";
+import { parseEther } from "viem";
 
-import { toast } from "sonner";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
-import { parseEther } from "viem";
+import { toast } from "sonner";
 
 export default function EventDetailsPage({
   params,
 }: {
   params: { index: number };
 }) {
-  // const { isPending : buyTicketPending, error : buyTicketError, writeContractAsync } = useWriteContract();
-  const {
-    data: hash,
-    error: buyTicketError,
-    isPending: buyTicketPending,
-    sendTransaction,
-  } = useSendTransaction();
 
   const {
     data: event,
     isPending,
     error,
   } = useReadContract({
-    address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],
   });
 
-  async function buyTicket() {
+  const {
+    data: hash,
+    isPending: buyTicketPending,
+    error: buyTicketError,
+    writeContractAsync,
+  } = useWriteContract();
+
+  async function buyTicket(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
     try {
-      if (event) {
-        await sendTransaction({
-          to: `0x${event[1].slice(2)}`,
-          value: parseEther("0.001", "wei"),
-        });
+      const hash = await writeContractAsync({
+        address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+        abi: blocTicketsAbi,
+        functionName: "buyTicket",
+        args: [BigInt(params.index)],
+        value: parseEther(`${Number(event?.[5])}`, "wei"),
+      });
 
-        hash && toast(`You have purchased a ticket to ${event[2]}`);
-
-      } else {
-        toast.error("Something went wrong");
+      if (hash) {
+        console.log(hash);
+        toast("Ticket has been purchased");
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong");
+      toast.error("Something went wrong!");
     }
   }
-
-  // const { isPending : buyTicketPending, error : buyTicketError, writeContractAsync } = useWriteContract();
-
-  // async function buyTicket() {
-  //   try {
-  //     writeContract({
-  //       address: '0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421',
-  //       abi: blocTicketsAbi,
-  //       functionName: 'buyTicket',
-  //       // args: [BigInt(Number(event?.[5]))],
-  //       args: [BigInt(1)]
-  //     })
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
 
   return (
     <main>
@@ -113,7 +97,7 @@ export default function EventDetailsPage({
                 </div>
               </div>
               <div className="text-4xl font-bold">
-                {/* KES {event?.price} */}
+                {/* {event?.price} */}
                 {Number(event?.[5])} CELO
               </div>
               {/* // TODO: Add amount of tickets to buy */}
@@ -129,15 +113,21 @@ export default function EventDetailsPage({
                     required
                     defaultValue={1}
                   /> */}
-                {/* </div> */}
+              {/* </div> */}
+              <form onSubmit={buyTicket}>
                 <Button
                   className="w-full sm:w-auto"
-                  onClick={buyTicket}
+                  type="submit"
                   disabled={buyTicketPending}
                 >
                   <Ticket className="mr-2 h-5 w-5" />
-                  {buyTicketPending ? "Buying Ticket..." : hash ? "Ticket Bought" : "Buy Ticket"}
+                  {buyTicketPending
+                    ? "Buying Ticket..."
+                    : hash
+                      ? "Ticket Bought"
+                      : "Buy Ticket"}
                 </Button>
+              </form>
               {/* </div> */}
             </div>
             <Image

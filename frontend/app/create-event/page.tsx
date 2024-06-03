@@ -1,7 +1,6 @@
 "use client";
 
 import { useAccount, useWriteContract } from "wagmi";
-import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { useRouter } from "next/navigation";
 
 import { Label } from "@/components/ui/label";
@@ -11,6 +10,7 @@ import { toast } from "sonner";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Textarea } from "@/components/ui/textarea";
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
 export default function CreateEventPage() {
   const { address, isConnected } = useAccount();
@@ -31,7 +31,7 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+        address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
@@ -94,7 +94,7 @@ export default function CreateEventPage() {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="price">Price (KES)</Label>
+              <Label htmlFor="price">Price (CELO)</Label>
               <Input id="price" name="price" type="number" required />
             </div>
             <div className="space-y-1.5">

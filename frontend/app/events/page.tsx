@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReadContract } from "wagmi";
 
-
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -18,7 +17,7 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
     abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
