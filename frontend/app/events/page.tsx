@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { useReadContract } from "wagmi";
 
-import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
+
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, CircleDollarSign, Clock } from "lucide-react";
+import { convertDateFromMilliseconds } from "@/lib/utils";
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
 export default function EventsPage() {
   const {
@@ -16,10 +18,12 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0x264ed9AdE916EcEC987673ddebA1029d3d43c66f",
-    abi: ticketopiaAbi,
+    address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+    abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
+
+  console.log(events);
 
   return (
     <main className="flex flex-col">
@@ -75,19 +79,19 @@ export default function EventsPage() {
                       <div className="mb-3 flex items-center space-x-2">
                         <Calendar className="h-5 w-5 text-gray-500 " />
                         <p className="text-gray-500 ">
-                          {event.date}
+                          {convertDateFromMilliseconds(Number(event.date))}
                         </p>
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
                         <Clock className="h-5 w-5 text-gray-500 " />
-                        <p className="text-gray-500 ">
+                        {/* <p className="text-gray-500 ">
                           {event.time}
-                        </p>
+                        </p> */}
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
                         <CircleDollarSign className="h-5 w-5 text-gray-500 " />
                         <p className="text-gray-500 ">
-                          {event.price}
+                          {Number(event.price)} CELO
                         </p>
                       </div>
 

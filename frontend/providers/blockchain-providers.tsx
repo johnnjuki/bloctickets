@@ -22,7 +22,7 @@
 // if (!projectId) throw new Error("Project ID is not defined");
 
 // const config = getDefaultConfig({
-//   appName: "Ticketopia",
+//   appName: "BlocTickets",
 //   projectId: projectId,
 //   wallets: [
 //     ...wallets,

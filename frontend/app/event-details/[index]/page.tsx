@@ -3,30 +3,75 @@
 import { ArrowLeft, CalendarRange, Locate, Ticket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useReadContract } from "wagmi";
+import { useReadContract, useSendTransaction } from "wagmi";
 
-import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
+import { toast } from "sonner";
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Skeleton } from "@/components/ui/skeleton";
+import { convertDateFromMilliseconds } from "@/lib/utils";
+import { parseEther } from "viem";
 
 export default function EventDetailsPage({
   params,
 }: {
   params: { index: number };
 }) {
+  // const { isPending : buyTicketPending, error : buyTicketError, writeContractAsync } = useWriteContract();
+  const {
+    data: hash,
+    error: buyTicketError,
+    isPending: buyTicketPending,
+    sendTransaction,
+  } = useSendTransaction();
 
   const {
     data: event,
     isPending,
     error,
   } = useReadContract({
-    address: "0x264ed9AdE916EcEC987673ddebA1029d3d43c66f",
-    abi: ticketopiaAbi,
+    address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+    abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],
   });
+
+  async function buyTicket() {
+    try {
+      if (event) {
+        await sendTransaction({
+          to: `0x${event[1].slice(2)}`,
+          value: parseEther("0.001", "wei"),
+        });
+
+        hash && toast(`You have purchased a ticket to ${event[2]}`);
+
+      } else {
+        toast.error("Something went wrong");
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  }
+
+  // const { isPending : buyTicketPending, error : buyTicketError, writeContractAsync } = useWriteContract();
+
+  // async function buyTicket() {
+  //   try {
+  //     writeContract({
+  //       address: '0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421',
+  //       abi: blocTicketsAbi,
+  //       functionName: 'buyTicket',
+  //       // args: [BigInt(Number(event?.[5]))],
+  //       args: [BigInt(1)]
+  //     })
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
   return (
     <main>
@@ -53,20 +98,26 @@ export default function EventDetailsPage({
                 Upcoming Event
               </div>
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                {event?.name}
+                {/* {event?.name} */}
+                {event?.[2]}
               </h1>
               <div className="flex items-center space-x-4 text-gray-500">
                 <div>
                   <CalendarRange className="mr-1 inline-block h-5 w-5" />
-                  {event?.date}
+                  {/* {event?.date} */}
+                  {convertDateFromMilliseconds(Number(event?.[4]))}
                 </div>
                 <div>
                   <Locate className="mr-1 inline-block h-5 w-5" />
-                  {event?.venue}
+                  {/* {event?.venue} */}
                 </div>
               </div>
-              <div className="text-4xl font-bold">KES {event?.price}</div>
-              <div className="grid grid-cols-[1fr_auto] items-center gap-4">
+              <div className="text-4xl font-bold">
+                {/* KES {event?.price} */}
+                {Number(event?.[5])} CELO
+              </div>
+              {/* // TODO: Add amount of tickets to buy */}
+              {/* <div className="grid grid-cols-[1fr_auto] items-center gap-4">
                 <div className="flex items-center gap-2">
                   <Label className="text-base font-medium" htmlFor="tickets">
                     Number of Tickets
@@ -77,13 +128,17 @@ export default function EventDetailsPage({
                     name="tickets"
                     required
                     defaultValue={1}
-                  />
-                </div>
-                <Button className="w-full sm:w-auto">
+                  /> */}
+                {/* </div> */}
+                <Button
+                  className="w-full sm:w-auto"
+                  onClick={buyTicket}
+                  disabled={buyTicketPending}
+                >
                   <Ticket className="mr-2 h-5 w-5" />
-                  Buy Tickets
+                  {buyTicketPending ? "Buying Ticket..." : hash ? "Ticket Bought" : "Buy Ticket"}
                 </Button>
-              </div>
+              {/* </div> */}
             </div>
             <Image
               alt="Event Hero"
@@ -103,7 +158,8 @@ export default function EventDetailsPage({
                 About the Event
               </h2>
               <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                {event?.description}
+                {/* {event?.description} */}
+                {event?.[3]}
               </p>
             </div>
           </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useAccount, useWriteContract } from "wagmi";
-import { ticketopiaAbi } from "@/blockchain/abi/ticketopia-abi";
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { useRouter } from "next/navigation";
 
 import { Label } from "@/components/ui/label";
@@ -27,17 +27,20 @@ export default function CreateEventPage() {
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     try {
+      const dateObject = new Date(data.date as string);
+      const dateInMilliseconds = dateObject.getTime();
+
       const hash = await writeContractAsync({
-        address: "0x264ed9AdE916EcEC987673ddebA1029d3d43c66f",
-        abi: ticketopiaAbi,
+        address: "0xBA378a94dE67Cd630eA0D0773D63829aE0D3E421",
+        abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
           data.name as string,
           data.description as string,
-          data.venue as string,
-          data.date as string,
-          data.time as string,
-          data.price as string,
+          // data.venue as string,
+          BigInt(dateInMilliseconds),
+          // data.time as string,
+          BigInt(data.price as string),
           BigInt(data.tickets as string),
         ],
       });
