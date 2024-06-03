@@ -17,7 +17,7 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+    address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
     abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
@@ -90,7 +90,7 @@ export default function EventsPage() {
                       <div className="mb-3 flex items-center space-x-2">
                         <CircleDollarSign className="h-5 w-5 text-gray-500 " />
                         <p className="text-gray-500 ">
-                          {Number(event.price)} CELO
+                          {event.price} CELO
                         </p>
                       </div>
 

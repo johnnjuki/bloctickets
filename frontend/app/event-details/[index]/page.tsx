@@ -23,7 +23,7 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+    address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],
@@ -40,11 +40,11 @@ export default function EventDetailsPage({
     e.preventDefault();
     try {
       const hash = await writeContractAsync({
-        address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+        address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
         abi: blocTicketsAbi,
         functionName: "buyTicket",
         args: [BigInt(params.index)],
-        value: parseEther(`${Number(event?.[5])}`, "wei"),
+        value: parseEther(`${event?.[5]}`, "wei"),
       });
 
       if (hash) {
@@ -98,7 +98,7 @@ export default function EventDetailsPage({
               </div>
               <div className="text-4xl font-bold">
                 {/* {event?.price} */}
-                {Number(event?.[5])} CELO
+                {event?.[5]} CELO
               </div>
               {/* // TODO: Add amount of tickets to buy */}
               {/* <div className="grid grid-cols-[1fr_auto] items-center gap-4">

@@ -49,9 +49,9 @@ export const blocTicketsAbi = [
         "type": "uint256"
       },
       {
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "price",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -100,9 +100,9 @@ export const blocTicketsAbi = [
         "type": "uint256"
       },
       {
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "price",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "internalType": "uint256",
@@ -145,9 +145,9 @@ export const blocTicketsAbi = [
             "type": "uint256"
           },
           {
-            "internalType": "uint256",
+            "internalType": "string",
             "name": "price",
-            "type": "uint256"
+            "type": "string"
           },
           {
             "internalType": "uint256",
@@ -199,9 +199,9 @@ export const blocTicketsAbi = [
         "type": "uint256"
       },
       {
-        "internalType": "uint256",
+        "internalType": "string",
         "name": "",
-        "type": "uint256"
+        "type": "string"
       },
       {
         "internalType": "uint256",

@@ -263,7 +263,7 @@ contract BlocTickets is Ownable {
         string name;
         string description;
         uint date;
-        uint price;
+        string price;
         uint ticketsAvailable;
     }
 
@@ -274,7 +274,7 @@ contract BlocTickets is Ownable {
         string memory name,
         string memory description,
         uint date,
-        uint price,
+        string memory price,
         uint ticketsAvailable
     ) public {
         require(date > block.timestamp, "Event date should be in the future");
@@ -307,7 +307,7 @@ contract BlocTickets is Ownable {
         string memory,
         string memory,
         uint,
-        uint,
+        string memory,
         uint
     ) {
         // Event storage _event = events[eventId];

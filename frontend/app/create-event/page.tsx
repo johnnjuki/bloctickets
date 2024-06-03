@@ -31,7 +31,7 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0xd5AcB550fA8E975B8C327cd3E6d1520306861f15",
+        address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
@@ -40,7 +40,7 @@ export default function CreateEventPage() {
           // data.venue as string,
           BigInt(dateInMilliseconds),
           // data.time as string,
-          BigInt(data.price as string),
+          data.price as string,
           BigInt(data.tickets as string),
         ],
       });
@@ -95,7 +95,7 @@ export default function CreateEventPage() {
 
             <div className="space-y-1.5">
               <Label htmlFor="price">Price (CELO)</Label>
-              <Input id="price" name="price" type="number" required />
+              <Input id="price" name="price" type="number" step="0.01" required />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="tickets">Tickets</Label>
