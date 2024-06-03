@@ -17,7 +17,7 @@ export function Footer({ showText }: { showText?: boolean }) {
               Connect your wallet to get started
             </p>
 
-            <div className="mt-8 inline-block ">
+            <div className="mt-8 inline-block hidden md:block ">
               <ConnectButton />
             </div>
           </div>

@@ -3,9 +3,9 @@ const hre = require('hardhat');
 async function main() {
   await hre.run("compile");
 
-  const ticketopia = await hre.ethers.deployContract('Ticketopia');
-  await ticketopia.waitForDeployment();
-  console.log(`Ticketopia deployed to ${ticketopia.target}`);
+  const blockTickets = await hre.ethers.deployContract('BlocTickets');
+  await blockTickets.waitForDeployment();
+  console.log(`BlocTickets deployed to ${blockTickets.target}`);
 }
 
 main().catch((error) => {

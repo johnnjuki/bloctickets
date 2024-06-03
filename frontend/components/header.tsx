@@ -50,7 +50,7 @@ export function Header() {
               </ul>
             </nav>
 
-            <div className="sm:flex sm:gap-4">
+            <div className="hidden md:block flex md:gap-4">
               <ConnectButton />
             </div>
           </div>
