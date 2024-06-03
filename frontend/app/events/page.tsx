@@ -2,28 +2,29 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useReadContract } from "wagmi";
+import { Calendar, CircleDollarSign, Clock } from "lucide-react";
 
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Calendar, CircleDollarSign, Clock } from "lucide-react";
 import { convertDateFromMilliseconds } from "@/lib/utils";
-import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
 export default function EventsPage() {
+  const router = useRouter();
+
   const {
     data: events,
     isPending,
     error,
   } = useReadContract({
-    address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
+    address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
     abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
-
-  console.log(events);
-
+  
   return (
     <main className="flex flex-col">
       <Header />
@@ -83,9 +84,9 @@ export default function EventsPage() {
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
                         <Clock className="h-5 w-5 text-gray-500 " />
-                        {/* <p className="text-gray-500 ">
+                        <p className="text-gray-500 ">
                           {event.time}
-                        </p> */}
+                        </p>
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
                         <CircleDollarSign className="h-5 w-5 text-gray-500 " />

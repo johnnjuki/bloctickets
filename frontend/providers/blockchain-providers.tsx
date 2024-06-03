@@ -61,46 +61,43 @@ import {
 import { injectedWallet } from "@rainbow-me/rainbowkit/wallets";
 import Connector from "@/components/connector";
 
-
 const connectors = connectorsForWallets(
   [
-      {
-          groupName: "Recommended",
-          wallets: [injectedWallet],
-      },
+    {
+      groupName: "Recommended",
+      wallets: [injectedWallet],
+    },
   ],
   {
-      appName: "BlocTickets",
-      projectId: "97712fd9a052670ee82d4a078462ba99",
-  }
+    appName: "BlocTickets",
+    projectId: "97712fd9a052670ee82d4a078462ba99",
+  },
 );
 
 const config = createConfig({
   connectors,
   chains: [celo, celoAlfajores],
   transports: {
-      [celo.id]: http(),
-      [celoAlfajores.id]: http(),
+    [celo.id]: http(),
+    [celoAlfajores.id]: http(),
   },
 });
-
 
 export function BlockchainProviders({
   children,
 }: {
   children: React.ReactNode;
 }) {
-
-
   const queryClient = new QueryClient();
 
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider>
-          <Connector>
-          {children}
-          </Connector>
+          {/* TODO */}
+          {/* <Connector> */}
+            {children}
+            {/* </Connector> */}
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>

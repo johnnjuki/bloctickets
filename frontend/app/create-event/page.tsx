@@ -13,8 +13,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
 export default function CreateEventPage() {
-  const { address, isConnected } = useAccount();
   const router = useRouter();
+  const { address, isConnected } = useAccount();
   const { isPending, error, writeContractAsync } = useWriteContract();
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -31,17 +31,18 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
+        address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
           data.name as string,
-          data.description as string,
-          // data.venue as string,
+          data.venue as string,
+          data.category as string,
           BigInt(dateInMilliseconds),
-          // data.time as string,
+          data.time as string,
           data.price as string,
           BigInt(data.tickets as string),
+          data.description as string,
         ],
       });
       if (hash) {
@@ -85,6 +86,11 @@ export default function CreateEventPage() {
             </div>
 
             <div className="space-y-1.5">
+              <Label htmlFor="category">Category</Label>
+              <Input id="category" name="category" required />
+            </div>
+
+            <div className="space-y-1.5">
               <Label htmlFor="date">Date</Label>
               <Input id="date" name="date" type="date" required />
             </div>
@@ -98,7 +104,7 @@ export default function CreateEventPage() {
               <Input id="price" name="price" type="number" step="0.01" required />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="tickets">Tickets</Label>
+              <Label htmlFor="tickets">Number of Tickets</Label>
               <Input id="tickets" name="tickets" type="number" required />
             </div>
 
