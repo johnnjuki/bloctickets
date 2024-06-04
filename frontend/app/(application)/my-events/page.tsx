@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { CalendarIcon, MapPinIcon, UserIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Header } from "@/components/header";
 
 export default function MyEventsPage() {
   const { address, isConnected } = useAccount();
@@ -53,7 +54,9 @@ export default function MyEventsPage() {
 
   return (
     <main className="flex flex-col">
+      <Header />
       <div className="flex-1 px-4 py-8 md:px-6 lg:px-10">
+      <h1 className="text-3xl font-bold mb-3">My Events</h1>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {events?.length === 0 && (
             <div className="flex h-screen items-center justify-center">

@@ -19,6 +19,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { toast } from "sonner";
 import { getExchangeRate } from "@/lib/get-exchange-rate";
+import { Header } from "@/components/header";
 
 export default function EventDetailsPage({
   params,
@@ -86,6 +87,7 @@ export default function EventDetailsPage({
 
   return (
     <main>
+      <Header />
       <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 ">
         {error && (
           <div className="flex h-screen items-center justify-center">

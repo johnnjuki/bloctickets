@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Header } from "@/components/header";
 
 export default function EventDetailsPage({
   params,
@@ -43,7 +44,9 @@ export default function EventDetailsPage({
   }
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+    <main>
+      <Header />
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid gap-8 md:grid-cols-2">
         <div className="space-y-6">
           <div className="space-y-4">
@@ -97,6 +100,7 @@ export default function EventDetailsPage({
           </div>
         </div>
       </div>
+    </div>
     </main>
   );
 }

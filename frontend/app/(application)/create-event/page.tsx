@@ -9,6 +9,7 @@ import { Button } from "@/components/shared/ui/button";
 import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
+import { Header } from "@/components/header";
 
 export default function CreateEventPage() {
   const router = useRouter();
@@ -61,6 +62,7 @@ export default function CreateEventPage() {
 
   return (
     <main className="flex flex-col ">
+      <Header />
       <section className="mx-auto max-w-md space-y-6 px-4 py-8">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Create Event</h1>

@@ -52,7 +52,7 @@
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import { WagmiProvider, createConfig, http, useConnect } from "wagmi";
-import { celo, celoAlfajores } from "wagmi/chains";
+import { celo } from "wagmi/chains";
 import { injected } from "wagmi/connectors";
 import {
   RainbowKitProvider,
@@ -76,10 +76,9 @@ const connectors = connectorsForWallets(
 
 const config = createConfig({
   connectors,
-  chains: [celo, celoAlfajores],
+  chains: [celo],
   transports: {
     [celo.id]: http(),
-    [celoAlfajores.id]: http(),
   },
 });
 
