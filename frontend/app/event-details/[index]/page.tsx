@@ -33,7 +33,7 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
+    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],
@@ -54,7 +54,7 @@ export default function EventDetailsPage({
     }
     try {
       const hash = await writeContractAsync({
-        address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
+        address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
         abi: blocTicketsAbi,
         functionName: "buyTicket",
         args: [BigInt(params.index)],

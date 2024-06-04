@@ -7,8 +7,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/shared/ui/button";
 import { toast } from "sonner";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Textarea } from "@/components/ui/textarea";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
@@ -31,7 +29,7 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
+        address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
@@ -64,7 +62,6 @@ export default function CreateEventPage() {
 
   return (
     <main className="flex flex-col ">
-      <Header />
       <section className="mx-auto max-w-md space-y-6 px-4 py-8">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Create Event</h1>
@@ -119,7 +116,6 @@ export default function CreateEventPage() {
           </Button>
         </form>
       </section>
-      <Footer showText={false} />
     </main>
   );
 }
