@@ -13,7 +13,7 @@ export default function MarketingLayout({
     if (typeof window !== 'undefined' && window.ethereum) {
       if (window.ethereum.isMinipay) {
 
-        setIsEthereumAvailable(false);
+        setIsEthereumAvailable(true);
       }
     }
   }, []);
