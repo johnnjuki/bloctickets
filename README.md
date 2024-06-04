@@ -1,9 +1,14 @@
-# BlocTickets
+<!-- TITLE -->
+<p align="center">
+<img src="https://github.com/johnnjuki/bloctickets/assets/84154246/f5c117ef-1d2e-4adf-88e3-da3197b8a5a9" width="200px" alt="BlocTickets" />
+<h1 align="center">BlocTickets</h1>
+  <p align="center">Web3 platform for events</p>
+</p>
 
 <details>
 <summary> Table of Contents</summary>
 
-- [About the Project](#about-the-app)
+- [About the Project](#about-the-project)
 - [Setup Guide](#setup-guide)
 - [Screenshots](#screenshots)
 - [Project Timeline](#project-timeline)
@@ -54,6 +59,14 @@ You're now ready to create events and purchase NFT tickets on BlocTickets using 
 
 ## Screenshots
 
+------
+<!--
+<div align="center">
+<img src="https://github.com/johnnjuki/bloctickets/assets/84154246/77ed0c88-d5dd-4c55-bfca-0b5b25a79614" width=30% height=30%> | <img src="https://github.com/johnnjuki/bloctickets/assets/84154246/67c942a0-0968-4e67-8eaf-27f508a17267" width=30% height=30%> | <img src="https://github.com/johnnjuki/bloctickets/assets/84154246/75967a94-e526-4d9c-9fcf-a00063a011ec" width=30% height=30%> 
+</div>
+-->
+
+------
 
 
 ## Project Timeline
