@@ -9,7 +9,7 @@ export const useMinipay = (): boolean => {
     const userAgent = navigator.userAgent;
     const isOpera = userAgent.indexOf('OPR') > -1;
     const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
-    if (isMinipay) {
+    if (isOpera && isMobile) {
       setIsMinipay(true);
     }
   }, []);
