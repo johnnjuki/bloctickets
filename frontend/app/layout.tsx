@@ -30,7 +30,7 @@ export default function RootLayout({
         >
           <BlockchainProviders>
             {children}
-            </BlockchainProviders>
+          </BlockchainProviders>
         </ThemeProvider>
         <Toaster />
       </body>
