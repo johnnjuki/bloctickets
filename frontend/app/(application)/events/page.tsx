@@ -2,32 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useReadContract } from "wagmi";
-
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Calendar, CircleDollarSign, Clock } from "lucide-react";
-import { convertDateFromMilliseconds } from "@/lib/utils";
+
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
+import { Skeleton } from "@/components/ui/skeleton";
+import { convertDateFromMilliseconds } from "@/lib/utils";
 
 export default function EventsPage() {
+  const router = useRouter();
+
   const {
     data: events,
     isPending,
     error,
   } = useReadContract({
-    address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
+    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
     abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
-
-  console.log(events);
-
+  
   return (
-    <main className="flex flex-col">
-      <Header />
-      <section className="mx-auto max-w-6xl px-4 py-12 md:py-16 lg:py-20">
+    <main className="mx-auto px-4 flex flex-col">
+      <section className="py-12 md:py-16 lg:py-20">
         <div className="space-y-6 md:space-y-8 lg:space-y-10">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
@@ -51,7 +49,7 @@ export default function EventsPage() {
               </div>
             )}
             {isPending ? (
-              <Skeleton className="h-[250px] w-[250px] rounded-xl" />
+              <Skeleton className="h-[250px] rounded-xl" />
             ) : (
               events?.map((event, index) => (
                 <Link href={`/event-details/${index}`} key={index}>
@@ -62,7 +60,7 @@ export default function EventsPage() {
                     {/* TODO: Replace with users uploaded image */}
                     <Image
                       alt="Event 1"
-                      className="h-48 w-full object-cover"
+                      className="h-60 w-full object-cover"
                       height="200"
                       src="/static/images/concert/concert-1.jpg"
                       style={{
@@ -83,14 +81,14 @@ export default function EventsPage() {
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
                         <Clock className="h-5 w-5 text-gray-500 " />
-                        {/* <p className="text-gray-500 ">
+                        <p className="text-gray-500 ">
                           {event.time}
-                        </p> */}
+                        </p>
                       </div>
                       <div className="mb-3 flex items-center space-x-2">
                         <CircleDollarSign className="h-5 w-5 text-gray-500 " />
                         <p className="text-gray-500 ">
-                          {event.price} CELO
+                          {event.price} cUSD
                         </p>
                       </div>
 
@@ -105,7 +103,6 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-      <Footer showText={false} />
     </main>
   );
 }

@@ -7,14 +7,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/shared/ui/button";
 import { toast } from "sonner";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
 import { Textarea } from "@/components/ui/textarea";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
 export default function CreateEventPage() {
-  const { address, isConnected } = useAccount();
   const router = useRouter();
+  const { address, isConnected } = useAccount();
   const { isPending, error, writeContractAsync } = useWriteContract();
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
@@ -31,17 +29,18 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0xc0ed0b952117E92c66678b8582CD34C3e70637D4",
+        address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [
           data.name as string,
-          data.description as string,
-          // data.venue as string,
+          data.venue as string,
+          data.category as string,
           BigInt(dateInMilliseconds),
-          // data.time as string,
+          data.time as string,
           data.price as string,
           BigInt(data.tickets as string),
+          data.description as string,
         ],
       });
       if (hash) {
@@ -49,7 +48,7 @@ export default function CreateEventPage() {
         toast("Event has been created", {
           description: `${data.date} at ${data.time}`,
         });
-        router.push("/events");
+        router.push("/my-events");
       }
     } catch (e) {
       console.log(e);
@@ -58,12 +57,10 @@ export default function CreateEventPage() {
     }
   }
 
-  // TODO add Transation receipt
   // TODO add upload event banner/image
 
   return (
     <main className="flex flex-col ">
-      <Header />
       <section className="mx-auto max-w-md space-y-6 px-4 py-8">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Create Event</h1>
@@ -85,6 +82,11 @@ export default function CreateEventPage() {
             </div>
 
             <div className="space-y-1.5">
+              <Label htmlFor="category">Category</Label>
+              <Input id="category" name="category" required />
+            </div>
+
+            <div className="space-y-1.5">
               <Label htmlFor="date">Date</Label>
               <Input id="date" name="date" type="date" required />
             </div>
@@ -94,11 +96,11 @@ export default function CreateEventPage() {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="price">Price (CELO)</Label>
+              <Label htmlFor="price">Price (cUSD)</Label>
               <Input id="price" name="price" type="number" step="0.01" required />
             </div>
             <div className="space-y-1.5">
-              <Label htmlFor="tickets">Tickets</Label>
+              <Label htmlFor="tickets">Number of Tickets</Label>
               <Input id="tickets" name="tickets" type="number" required />
             </div>
 
@@ -113,7 +115,6 @@ export default function CreateEventPage() {
           </Button>
         </form>
       </section>
-      <Footer showText={false} />
     </main>
   );
 }

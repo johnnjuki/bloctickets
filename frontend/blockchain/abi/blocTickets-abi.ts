@@ -40,13 +40,23 @@ export const blocTicketsAbi = [
       },
       {
         "internalType": "string",
-        "name": "description",
+        "name": "venue",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "category",
         "type": "string"
       },
       {
         "internalType": "uint256",
         "name": "date",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "time",
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -57,6 +67,11 @@ export const blocTicketsAbi = [
         "internalType": "uint256",
         "name": "ticketsAvailable",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
       }
     ],
     "name": "createEvent",
@@ -91,13 +106,23 @@ export const blocTicketsAbi = [
       },
       {
         "internalType": "string",
-        "name": "description",
+        "name": "venue",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "category",
         "type": "string"
       },
       {
         "internalType": "uint256",
         "name": "date",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "time",
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -108,6 +133,11 @@ export const blocTicketsAbi = [
         "internalType": "uint256",
         "name": "ticketsAvailable",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
       }
     ],
     "stateMutability": "view",
@@ -136,13 +166,23 @@ export const blocTicketsAbi = [
           },
           {
             "internalType": "string",
-            "name": "description",
+            "name": "venue",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "category",
             "type": "string"
           },
           {
             "internalType": "uint256",
             "name": "date",
             "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "time",
+            "type": "string"
           },
           {
             "internalType": "string",
@@ -153,6 +193,16 @@ export const blocTicketsAbi = [
             "internalType": "uint256",
             "name": "ticketsAvailable",
             "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "address[]",
+            "name": "ticketHolders",
+            "type": "address[]"
           }
         ],
         "internalType": "struct BlocTickets.Event[]",
@@ -194,6 +244,11 @@ export const blocTicketsAbi = [
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
@@ -204,9 +259,100 @@ export const blocTicketsAbi = [
         "type": "string"
       },
       {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "organizer",
+        "type": "address"
+      }
+    ],
+    "name": "getEventsByOrganizer",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "organizer",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "venue",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "category",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "date",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "time",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "price",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "ticketsAvailable",
+            "type": "uint256"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "address[]",
+            "name": "ticketHolders",
+            "type": "address[]"
+          }
+        ],
+        "internalType": "struct BlocTickets.Event[]",
+        "name": "",
+        "type": "tuple[]"
       }
     ],
     "stateMutability": "view",
