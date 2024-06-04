@@ -1,11 +1,23 @@
-# BlocTickets
+<!-- TITLE -->
+<p align="center">
+<img src="https://github.com/johnnjuki/bloctickets/assets/84154246/f5c117ef-1d2e-4adf-88e3-da3197b8a5a9" width="200px" alt="BlocTickets" />
+
+  <p align="center">Web3 platform for events</p>
+</p>
+
+------
+
+<div align="center">
+<img src="https://github.com/johnnjuki/bloctickets/assets/84154246/5223f636-6909-42f8-8738-9ba9a3f90516" width=30% height=30%> | <img src="https://github.com/johnnjuki/bloctickets/assets/84154246/acdbc272-a2cc-4d49-8894-e7daafd858ac" width=30% height=30%> | <img src="https://github.com/johnnjuki/bloctickets/assets/84154246/62ad0b68-e6a8-4ee7-a7cf-2a72e2bad9fb" width=30% height=30%> 
+</div>
+
+------
 
 <details>
 <summary> Table of Contents</summary>
 
-- [About the Project](#about-the-app)
+- [About the Project](#about-the-project)
 - [Setup Guide](#setup-guide)
-- [Screenshots](#screenshots)
 - [Project Timeline](#project-timeline)
 - [Features In Progress](#features-in-progress)
 
@@ -52,8 +64,13 @@ To get started with BlocTickets on your mobile device using the MiniPay app, fol
 
 You're now ready to create events and purchase NFT tickets on BlocTickets using the MiniPay app!
 
-## Screenshots
+------
 
+<div align="center">
+<img src="https://github.com/johnnjuki/bloctickets/assets/84154246/0dea97ba-cee5-4060-9937-335d9ae17912" width=30% height=30%> | <img src="https://github.com/johnnjuki/bloctickets/assets/84154246/ae10173b-c58e-49d7-83c9-51ad4885f3f4" width=30% height=30%> | <img src="https://github.com/johnnjuki/bloctickets/assets/84154246/3a849b0c-1d26-4695-9b7c-923e4a0ec616" width=30% height=30%> 
+</div>
+
+------
 
 
 ## Project Timeline
@@ -73,3 +90,5 @@ The core feature of issuing event tickets as Non-Fungible Tokens (NFTs) is curre
 We are also in the process of developing and incorporating the Bloc DAO. This will serve as a decentralized governance layer for the platform, allowing the community to verify event authenticity and participate in decision-making processes.
 
 Stay tuned for updates as we continue to build and improve BlocTickets to serve you better!
+
+<p align="right">(<a href="#top">back to top</a>)</p>
