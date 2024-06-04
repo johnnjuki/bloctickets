@@ -1,28 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
+import { useMinipay } from '../hooks/useMinipay';
 
 export default function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isEthereumAvailable, setIsEthereumAvailable] = useState(false);
+  const isMinipay = useMinipay();
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && window.ethereum) {
-      if (window.ethereum.isMinipay) {
-
-        setIsEthereumAvailable(true);
-      }
-    }
-  }, []);
-
-  if (isEthereumAvailable) {
-    return <div>YES</div>;
+  if (isMinipay) {
+    return <p>YES</p>
+  } else {
+    return <p>NO</p>
   }
 
-  return <div>NO</div>
-
-  // return <>{children}</>;
 }
