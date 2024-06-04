@@ -24,7 +24,7 @@ export default function EventsPage() {
   });
   
   return (
-    <main className="flex flex-col">
+    <main className="mx-auto px-4 flex flex-col">
       <section className="py-12 md:py-16 lg:py-20">
         <div className="space-y-6 md:space-y-8 lg:space-y-10">
           <div className="flex items-center justify-between">
@@ -88,7 +88,7 @@ export default function EventsPage() {
                       <div className="mb-3 flex items-center space-x-2">
                         <CircleDollarSign className="h-5 w-5 text-gray-500 " />
                         <p className="text-gray-500 ">
-                          {event.price} CELO
+                          {event.price} cUSD
                         </p>
                       </div>
 

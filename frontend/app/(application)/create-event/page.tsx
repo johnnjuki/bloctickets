@@ -57,7 +57,6 @@ export default function CreateEventPage() {
     }
   }
 
-  // TODO add Transation receipt
   // TODO add upload event banner/image
 
   return (
@@ -97,7 +96,7 @@ export default function CreateEventPage() {
             </div>
 
             <div className="space-y-1.5">
-              <Label htmlFor="price">Price (CELO)</Label>
+              <Label htmlFor="price">Price (cUSD)</Label>
               <Input id="price" name="price" type="number" step="0.01" required />
             </div>
             <div className="space-y-1.5">

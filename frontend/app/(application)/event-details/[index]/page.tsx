@@ -4,7 +4,7 @@ import {
   ArrowLeft,
   CalendarRange,
   CircleDollarSign,
-  Locate,
+  MapPin,
   Ticket,
 } from "lucide-react";
 import Image from "next/image";
@@ -18,6 +18,7 @@ import { Button } from "@/components/shared/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { toast } from "sonner";
+import { getExchangeRate } from "@/lib/get-exchange-rate";
 
 export default function EventDetailsPage({
   params,
@@ -53,12 +54,17 @@ export default function EventDetailsPage({
       return;
     }
     try {
+
+      const exchangeRate = await getExchangeRate();
+      const priceInCELO = parseFloat(event?.[7]!!) / exchangeRate;
+      console.log(priceInCELO);
+
       const hash = await writeContractAsync({
         address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
         abi: blocTicketsAbi,
         functionName: "buyTicket",
         args: [BigInt(params.index)],
-        value: parseEther(`${event?.[7]}`, "wei"),
+        value: parseEther(priceInCELO.toString(), "wei"),
       });
 
       if (hash) {
@@ -68,7 +74,7 @@ export default function EventDetailsPage({
     } catch (error) {
       console.log(error);
       toast.error("Purchase failed!");
-      // toast.error(`${error}`);
+      toast.error(`${error}`);
     }
   }
 
@@ -110,7 +116,7 @@ export default function EventDetailsPage({
                 </div>
                 <div className="flex items-center space-x-1">
                   <div>
-                    <Locate className="h-5 w-5" />
+                    <MapPin className="h-5 w-5" />
                   </div>
                   {/* {event?.venue} */}
                   <p>{event?.[3]}</p>
@@ -122,7 +128,7 @@ export default function EventDetailsPage({
                 </div>
                 <p className="text-2xl font-semibold">
                   {/* {event?.price} */}
-                  {event?.[7]} CELO
+                  {event?.[7]} cUSD
                 </p>
               </div>
               <form onSubmit={buyTicket}>

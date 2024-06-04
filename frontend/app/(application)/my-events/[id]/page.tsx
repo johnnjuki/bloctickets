@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarRange, Locate, User } from "lucide-react";
+import { CalendarRange, MapPin, User } from "lucide-react";
 import { useAccount, useReadContract } from "wagmi";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
@@ -36,7 +36,7 @@ export default function EventDetailsPage({
 
   if (isPending) {
     return (
-      <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+      <main className="mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <Skeleton className="h-64 w-full rounded-lg" />
       </main>
     );
@@ -55,7 +55,7 @@ export default function EventDetailsPage({
                 {convertDateFromMilliseconds(Number(event?.[5]))}
               </div>
               <div>
-                <Locate className="mr-1 inline-block h-5 w-5" />
+                <MapPin className="mr-1 inline-block h-5 w-5" />
                 {/* {event?.venue} */}
                 {event?.[3]}
               </div>
@@ -67,11 +67,13 @@ export default function EventDetailsPage({
           <div className="rounded-lg bg-gray-100 p-6 ">
             <h2 className="mb-4 text-xl font-bold">Ticket Sales</h2>
             {/* <div className="flex items-start justify-between"> */}
-              <div className="flex items-center gap-2 ">
-                <p className="text-4xl font-bold">{event?.[10].length}</p>
-                <p className="text-gray-500 ">Tickets Sold</p>
-              </div>
-              {/* <Button variant="outline">View Tickets</Button> */}
+            <div className="flex items-center gap-2 ">
+              <p className="text-4xl font-semibold">{event?.[10].length}</p>
+              <p className="text-gray-500 ">
+                {event?.[10].length === 1 ? "Ticket Sold" : "Tickets Sold"}
+              </p>
+            </div>
+            {/* <Button variant="outline">View Tickets</Button> */}
             {/* </div> */}
           </div>
           <div className="rounded-lg bg-gray-100 p-6 ">
@@ -84,7 +86,9 @@ export default function EventDetailsPage({
               ) : (
                 event?.[10].map((attendee, index) => (
                   <li className="flex items-center gap-2" key={index}>
-                    <div><User /></div>
+                    <div>
+                      <User />
+                    </div>
                     <p>{attendee.slice(0, 6) + "..." + attendee.slice(-4)}</p>
                   </li>
                 ))

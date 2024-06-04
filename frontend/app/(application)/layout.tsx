@@ -24,7 +24,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
 
   return (
-    <div className="flex h-screen flex-col mx-auto px-4">
+    <div className="flex h-screen flex-col">
       <main className="flex-1 overflow-auto">
         <div className="p-4">
           {/* <h1 className="mb-4 text-2xl font-bold">Welcome to the Events App</h1>
@@ -35,7 +35,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {children}
         </div>
       </main>
-      <nav className="flex items-center justify-between bg-white py-2">
+      <nav className="flex items-center justify-between bg-white py-2 px-4">
         <NavItem href="/events" icon={CalendarIcon} label="Events" />
         <NavItem href="/create-event" icon={PlusIcon} label="Create Event" />
         <NavItem href="/my-events" icon={CalendarCheckIcon} label="My Events" />
