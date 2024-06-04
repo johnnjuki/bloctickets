@@ -82,8 +82,8 @@ export default function EventDetailsPage({
                   <p>No attendees yet</p>
                 </div>
               ) : (
-                event?.[10].map((attendee) => (
-                  <li className="flex items-center gap-2">
+                event?.[10].map((attendee, index) => (
+                  <li className="flex items-center gap-2" key={index}>
                     <div><User /></div>
                     <p>{attendee.slice(0, 6) + "..." + attendee.slice(-4)}</p>
                   </li>
