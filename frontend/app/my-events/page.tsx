@@ -54,15 +54,6 @@ export default function MyEventsPage() {
   return (
     <main className="flex flex-col">
       <div className="flex-1 px-4 py-8 md:px-6 lg:px-10">
-        <div className="mb-6 flex items-center justify-between">
-          <h1 className="text-2xl font-bold">Your Events</h1>
-          <Link
-            href="create-event"
-            className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-50/90 dark:focus-visible:ring-gray-300"
-          >
-            Create Event
-          </Link>
-        </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {events?.length === 0 && (
             <div className="flex h-screen items-center justify-center">
@@ -83,7 +74,8 @@ export default function MyEventsPage() {
             <Skeleton className="h-[250px] w-[250px] rounded-xl" />
           ) : (
             events?.map((event: any) => (
-              <Card key={event.id}>
+              <Link href={`/my-events/${event.id}`} key={event.id}>
+              <Card>
                 <CardHeader>
                   <CardTitle>{event.name}</CardTitle>
                   <CardDescription className="flex flex-col items-start gap-2">
@@ -118,6 +110,7 @@ export default function MyEventsPage() {
                   </div>
                 </CardContent>
               </Card>
+              </Link>
             ))
           )}
         </div>

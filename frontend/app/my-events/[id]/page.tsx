@@ -66,13 +66,13 @@ export default function EventDetailsPage({
         <div className="space-y-6">
           <div className="rounded-lg bg-gray-100 p-6 ">
             <h2 className="mb-4 text-xl font-bold">Ticket Sales</h2>
-            <div className="flex items-center justify-between">
-              <div>
+            {/* <div className="flex items-start justify-between"> */}
+              <div className="flex items-center gap-2 ">
                 <p className="text-4xl font-bold">{event?.[10].length}</p>
                 <p className="text-gray-500 ">Tickets Sold</p>
               </div>
-              <Button variant="outline">View Tickets</Button>
-            </div>
+              {/* <Button variant="outline">View Tickets</Button> */}
+            {/* </div> */}
           </div>
           <div className="rounded-lg bg-gray-100 p-6 ">
             <h2 className="mb-4 text-xl font-bold">Attendees</h2>
