@@ -62,7 +62,9 @@ export default function CreateEventPage() {
 
   return (
     <main className="flex flex-col ">
+      <div className="hidden sm:block">
       <Header />
+      </div>
       <section className="mx-auto max-w-md space-y-6 px-4 py-8">
         <div className="space-y-2">
           <h1 className="text-3xl font-bold">Create Event</h1>

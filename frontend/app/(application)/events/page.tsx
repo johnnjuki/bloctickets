@@ -27,7 +27,7 @@ export default function EventsPage() {
   return (
     <main className="px-4 flex flex-col">
       <Header />
-      <section className="py-8 md:py-12">
+      <section className="py-6">
         <div className="space-y-6 md:space-y-8 lg:space-y-10">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">

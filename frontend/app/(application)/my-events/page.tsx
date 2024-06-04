@@ -54,7 +54,9 @@ export default function MyEventsPage() {
 
   return (
     <main className="flex flex-col">
+      <div className="hidden sm:block">
       <Header />
+      </div>
       <div className="flex-1 px-4 py-8 md:px-6 lg:px-10">
       <h1 className="text-3xl font-bold mb-3">My Events</h1>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

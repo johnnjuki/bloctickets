@@ -87,7 +87,9 @@ export default function EventDetailsPage({
 
   return (
     <main>
+      <div className="hidden sm:block">
       <Header />
+      </div>
       <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 ">
         {error && (
           <div className="flex h-screen items-center justify-center">
