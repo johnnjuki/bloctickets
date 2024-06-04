@@ -1,25 +1,24 @@
 "use client";
 
 import {
-  ArrowLeft,
   CalendarRange,
   CircleDollarSign,
   MapPin,
-  Ticket,
+  Ticket
 } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useReadContract, useWriteContract, useAccount } from "wagmi";
-import { parseEther } from "viem";
 import { useRouter } from "next/navigation";
+import { parseEther } from "viem";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
+import { Header } from "@/components/header";
 import { Button } from "@/components/shared/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { convertDateFromMilliseconds } from "@/lib/utils";
-import { toast } from "sonner";
 import { getExchangeRate } from "@/lib/get-exchange-rate";
-import { Header } from "@/components/header";
+import { convertDateFromMilliseconds } from "@/lib/utils";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export default function EventDetailsPage({
   params,
@@ -27,6 +26,7 @@ export default function EventDetailsPage({
   params: { index: number };
 }) {
   const router = useRouter();
+  const [isTicketPurchased, setIsTicketPurchased] = useState(false);
 
   const { address, isConnected } = useAccount();
 
@@ -54,8 +54,20 @@ export default function EventDetailsPage({
       toast.error("Please connect your wallet");
       return;
     }
-    try {
 
+    if (address === event?.[1]) {
+        toast("You cannot buy your own ticket!", {
+          description: "Go to the event dahsboard instead.",
+          action: {
+            label: "Go",
+            onClick: () => router.push(`/my-events/${event?.[0]}`),
+          },
+        })
+      
+      return;
+    }
+
+    try {
       const exchangeRate = await getExchangeRate();
       const priceInCELO = parseFloat(event?.[7]!!) / exchangeRate;
       console.log(priceInCELO);
@@ -79,10 +91,8 @@ export default function EventDetailsPage({
     }
   }
 
-  const isTicketPurchased = event?.[10].includes(address!!);
-
-  if (isConnected && address === event?.[1]) {
-    router.push(`/my-events/${event?.[0]}`);
+  if (event?.[10].includes(address!!)) {
+    setIsTicketPurchased(true);
   }
 
   return (

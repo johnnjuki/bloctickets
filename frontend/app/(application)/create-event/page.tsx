@@ -1,7 +1,6 @@
 "use client";
 
 import { useAccount, useWriteContract } from "wagmi";
-import { useRouter } from "next/navigation";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
@@ -12,7 +11,6 @@ import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Header } from "@/components/header";
 
 export default function CreateEventPage() {
-  const router = useRouter();
   const { address, isConnected } = useAccount();
   const { isPending, error, writeContractAsync } = useWriteContract();
 
@@ -49,7 +47,6 @@ export default function CreateEventPage() {
         toast("Event has been created", {
           description: `${data.date} at ${data.time}`,
         });
-        router.push("/my-events");
       }
     } catch (e) {
       console.log(e);
@@ -63,7 +60,7 @@ export default function CreateEventPage() {
   return (
     <main className="flex flex-col ">
       <div className="hidden sm:block">
-      <Header />
+        <Header />
       </div>
       <section className="mx-auto max-w-md space-y-6 px-4 py-8">
         <div className="space-y-2">
@@ -101,7 +98,13 @@ export default function CreateEventPage() {
 
             <div className="space-y-1.5">
               <Label htmlFor="price">Price (cUSD)</Label>
-              <Input id="price" name="price" type="number" step="0.01" required />
+              <Input
+                id="price"
+                name="price"
+                type="number"
+                step="0.01"
+                required
+              />
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="tickets">Number of Tickets</Label>

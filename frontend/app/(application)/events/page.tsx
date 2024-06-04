@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useReadContract } from "wagmi";
 import { Calendar, CircleDollarSign, Clock } from "lucide-react";
 
@@ -12,7 +11,6 @@ import { convertDateFromMilliseconds } from "@/lib/utils";
 import { Header } from "@/components/header";
 
 export default function EventsPage() {
-  const router = useRouter();
 
   const {
     data: events,
