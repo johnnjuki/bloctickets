@@ -50,8 +50,6 @@ export default function MyEventsPage() {
     );
   }
 
-  // TODO: Add logo
-
   return (
     <main className="flex flex-col">
       <div className="hidden sm:block">
