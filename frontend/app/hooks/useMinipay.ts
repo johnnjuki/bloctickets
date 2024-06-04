@@ -8,8 +8,7 @@ export const useMinipay = (): boolean => {
     // Check if the browser is Opera and contains a specific Minipay marker
     const userAgent = navigator.userAgent;
     const isOpera = userAgent.indexOf('OPR') > -1;
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
-    if (isOpera && isMobile) {
+    if (isOpera) {
       setIsMinipay(true);
     }
   }, []);
