@@ -1,24 +1,25 @@
 "use client";
 
 import {
+  ArrowLeft,
   CalendarRange,
   CircleDollarSign,
   MapPin,
-  Ticket
+  Ticket,
 } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { useReadContract, useWriteContract, useAccount } from "wagmi";
 import { parseEther } from "viem";
-import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import { useRouter } from "next/navigation";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
-import { Header } from "@/components/header";
 import { Button } from "@/components/shared/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { getExchangeRate } from "@/lib/get-exchange-rate";
 import { convertDateFromMilliseconds } from "@/lib/utils";
-import { useState } from "react";
 import { toast } from "sonner";
+import { getExchangeRate } from "@/lib/get-exchange-rate";
+import { Header } from "@/components/header";
 
 export default function EventDetailsPage({
   params,
@@ -26,7 +27,6 @@ export default function EventDetailsPage({
   params: { index: number };
 }) {
   const router = useRouter();
-  const [isTicketPurchased, setIsTicketPurchased] = useState(false);
 
   const { address, isConnected } = useAccount();
 
@@ -91,9 +91,7 @@ export default function EventDetailsPage({
     }
   }
 
-  if (event?.[10].includes(address!!)) {
-    setIsTicketPurchased(true);
-  }
+  const isTicketPurchased = event?.[10].includes(address!!);
 
   return (
     <main>
