@@ -30,6 +30,14 @@ export function Header() {
                height={100}
                src="/static/images/logo/logo-no-background.png"
                alt="Logo"
+               className="hidden sm:block"
+              />
+              <Image
+               width={150}
+               height={100}
+               src="/static/images/logo/logo-no-background.png"
+               alt="Logo"
+               className="sm:hidden"
               />
             </a>
           </div>
@@ -50,7 +58,7 @@ export function Header() {
               </ul>
             </nav>
 
-            <div className="hidden md:block md:gap-4">
+            <div className="hidden sm:block md:gap-4">
               <ConnectButton />
             </div>
           </div>
