@@ -67,80 +67,96 @@ const testimonialItems = [
 ];
 
 export default function Page() {
-  return (
-    <main className="flex flex-col">
-      <Header />
 
-      <LandingPrimaryImageCtaSection
-        title="Discover top events near you"
-        description="BlocTickets is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
-        imageSrc="/static/images/concert/concert-1.jpg"
-        imageAlt="Concert image"
-        withBackground
-        footerComponent={
-          <LandingTestimonialInline>
-            <LandingTestimonialInlineItem
-              imageSrc="/static/images/people/1.webp"
-              name="John Doe"
-              text="I love this app"
-            />
+  function isOperaMobile() {
+    const userAgent = navigator.userAgent;
+    const isOpera = userAgent.indexOf('OPR') > -1;
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(userAgent);
+  
+    return isOpera && isMobile;
+  }
+  
+  if (isOperaMobile()) {
+    // Code to show the pages you want to display for Opera Mobile users
+    return (<div>Opera</div>)
+  } else {
+    return (<div>Not Opera</div>)
+  }
 
-            <LandingTestimonialInlineItem
-              imageSrc="/static/images/people/2.webp"
-              name="Kim"
-              text="Best app on the market"
-            />
+  // return (
+  //   <main className="flex flex-col">
+  //     <Header />
 
-            <LandingTestimonialInlineItem
-              imageSrc="/static/images/people/3.webp"
-              name="Matt"
-              text="Never seen anything like it"
-              suffix="CEO of Metamask"
-            />
+  //     <LandingPrimaryImageCtaSection
+  //       title="Discover top events near you"
+  //       description="BlocTickets is the leading web3 platform for events. Enjoy secure, decentralized ticketing and resale capabilities."
+  //       imageSrc="/static/images/concert/concert-1.jpg"
+  //       imageAlt="Concert image"
+  //       withBackground
+  //       footerComponent={
+  //         <LandingTestimonialInline>
+  //           <LandingTestimonialInlineItem
+  //             imageSrc="/static/images/people/1.webp"
+  //             name="John Doe"
+  //             text="I love this app"
+  //           />
 
-            <LandingTestimonialInlineItem
-              imageSrc="/static/images/people/5.webp"
-              name="Guido Ross"
-              text="The future of events is here"
-              suffix="DevOps at Binance"
-            />
-          </LandingTestimonialInline>
-        }
-      >
-        <Button size="xl" asChild>
-          <Link href="/create-event">Create Event</Link>
-        </Button>
+  //           <LandingTestimonialInlineItem
+  //             imageSrc="/static/images/people/2.webp"
+  //             name="Kim"
+  //             text="Best app on the market"
+  //           />
 
-        <Button size="xl" variant="outlinePrimary">
-          <Link href="/events">Upcoming Events</Link>
-        </Button>
-      </LandingPrimaryImageCtaSection>
+  //           <LandingTestimonialInlineItem
+  //             imageSrc="/static/images/people/3.webp"
+  //             name="Matt"
+  //             text="Never seen anything like it"
+  //             suffix="CEO of Metamask"
+  //           />
 
-      <LandingProductFeature
-        title="Blockchain-Powered Ticketing"
-        descriptionComponent={
-          <>
-            <LandingProductFeatureKeyPoints
-              className="mb-8"
-              keyPoints={keyPoints}
-            />
-          </>
-        }
-        imageSrc="/static/images/concert/concert-3.jpg"
-        imageAlt="Concert image"
-        imagePosition="left"
-        imagePerspective="none"
-      />
+  //           <LandingTestimonialInlineItem
+  //             imageSrc="/static/images/people/5.webp"
+  //             name="Guido Ross"
+  //             text="The future of events is here"
+  //             suffix="DevOps at Binance"
+  //           />
+  //         </LandingTestimonialInline>
+  //       }
+  //     >
+  //       <Button size="xl" asChild>
+  //         <Link href="/create-event">Create Event</Link>
+  //       </Button>
 
-      <LandingTestimonialGrid
-        title="Don't take it from us"
-        description="See what 120k event organizers have to say about our product."
-        testimonialItems={testimonialItems}
-        withBackground
-        withBackgroundGlow
-      />
+  //       <Button size="xl" variant="outlinePrimary">
+  //         <Link href="/events">Upcoming Events</Link>
+  //       </Button>
+  //     </LandingPrimaryImageCtaSection>
 
-      <Footer showText />
-    </main>
-  );
+  //     <LandingProductFeature
+  //       title="Blockchain-Powered Ticketing"
+  //       descriptionComponent={
+  //         <>
+  //           <LandingProductFeatureKeyPoints
+  //             className="mb-8"
+  //             keyPoints={keyPoints}
+  //           />
+  //         </>
+  //       }
+  //       imageSrc="/static/images/concert/concert-3.jpg"
+  //       imageAlt="Concert image"
+  //       imagePosition="left"
+  //       imagePerspective="none"
+  //     />
+
+  //     <LandingTestimonialGrid
+  //       title="Don't take it from us"
+  //       description="See what 120k event organizers have to say about our product."
+  //       testimonialItems={testimonialItems}
+  //       withBackground
+  //       withBackgroundGlow
+  //     />
+
+  //     <Footer showText />
+  //   </main>
+  // );
 }
