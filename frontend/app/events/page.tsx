@@ -7,8 +7,6 @@ import { useReadContract } from "wagmi";
 import { Calendar, CircleDollarSign, Clock } from "lucide-react";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
-import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
 import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 
@@ -27,7 +25,6 @@ export default function EventsPage() {
   
   return (
     <main className="flex flex-col">
-      <Header />
       <section className="mx-auto max-w-6xl px-4 py-12 md:py-16 lg:py-20">
         <div className="space-y-6 md:space-y-8 lg:space-y-10">
           <div className="flex items-center justify-between">
@@ -106,7 +103,6 @@ export default function EventsPage() {
           </div>
         </div>
       </section>
-      <Footer showText={false} />
     </main>
   );
 }

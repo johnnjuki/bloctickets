@@ -63,12 +63,12 @@ export default function EventDetailsPage({
 
       if (hash) {
         console.log(hash);
-        toast("Ticket has been purchased");
+        toast("You have purchased a ticket!");
       }
     } catch (error) {
       console.log(error);
-      // toast.error("Something went wrong!");
-      toast.error(`${error}`);
+      toast.error("Purchase failed!");
+      // toast.error(`${error}`);
     }
   }
 
@@ -81,9 +81,6 @@ export default function EventDetailsPage({
   return (
     <main>
       <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 ">
-        <Link href={"/events"}>
-          <ArrowLeft className="mx-4 h-10 w-10 text-gray-500 " />
-        </Link>
         {error && (
           <div className="flex h-screen items-center justify-center">
             <p>Error fetching events, try again later</p>
@@ -103,39 +100,31 @@ export default function EventDetailsPage({
               </h1>
               <div className="flex items-center space-x-4 text-gray-500">
                 <div className="flex items-center space-x-1">
-                  <div><CalendarRange className="h-5 w-5" /></div>
+                  <div>
+                    <CalendarRange className="h-5 w-5" />
+                  </div>
                   <p>
                     {/* {event?.date} */}
                     {convertDateFromMilliseconds(Number(event?.[5]))}
                   </p>
                 </div>
                 <div className="flex items-center space-x-1">
-                  <div><Locate className="h-5 w-5" /></div>
+                  <div>
+                    <Locate className="h-5 w-5" />
+                  </div>
                   {/* {event?.venue} */}
                   <p>{event?.[3]}</p>
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <div><CircleDollarSign className="h-6 w-6" /></div>
+                <div>
+                  <CircleDollarSign className="h-6 w-6" />
+                </div>
                 <p className="text-2xl font-semibold">
                   {/* {event?.price} */}
                   {event?.[7]} CELO
                 </p>
               </div>
-              {/* // TODO: Add amount of tickets to buy */}
-              {/* <div className="grid grid-cols-[1fr_auto] items-center gap-4">
-                <div className="flex items-center gap-2">
-                  <Label className="text-base font-medium" htmlFor="tickets">
-                    Number of Tickets
-                  </Label>
-                  <Input
-                    id="tickets"
-                    type="number"
-                    name="tickets"
-                    required
-                    defaultValue={1}
-                  /> */}
-              {/* </div> */}
               <form onSubmit={buyTicket}>
                 <Button
                   className="w-full sm:w-auto"
@@ -150,10 +139,9 @@ export default function EventDetailsPage({
                       : "Buy Ticket"}
                 </Button>
               </form>
-              {/* </div> */}
             </div>
             <Image
-              alt="Event Hero"
+              alt="Event banner"
               className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
               height="400"
               src="/static/images/concert/concert-3.jpg"
