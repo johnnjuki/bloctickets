@@ -1,6 +1,7 @@
 import "@rainbow-me/rainbowkit/styles.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react"
 
 import { Toaster } from "@/components/ui/sonner";
 import { BlockchainProviders } from "@/providers/blockchain-providers";
@@ -30,6 +31,7 @@ export default function RootLayout({
         >
           <BlockchainProviders>
             {children}
+            <Analytics />
           </BlockchainProviders>
         </ThemeProvider>
         <Toaster />
