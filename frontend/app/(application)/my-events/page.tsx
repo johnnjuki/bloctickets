@@ -60,7 +60,7 @@ export default function MyEventsPage() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {events?.length === 0 && (
             <div className="flex h-screen items-center justify-center">
-              <p>No events found</p>
+              <p>You have not created any event yet</p>
             </div>
           )}
           {error && (
