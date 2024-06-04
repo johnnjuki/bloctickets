@@ -3,33 +3,42 @@
 import Link from "next/link";
 import { useAccount, useReadContract } from "wagmi";
 
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
+  CardDescription,
   CardHeader,
   CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
 } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
+import { convertDateFromMilliseconds } from "@/lib/utils";
 import { CalendarIcon, MapPinIcon, UserIcon } from "lucide-react";
-import { Header } from "@/components/header";
-import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
+import { useEffect, useState } from "react";
 
-export default function Component() {
+export default function MyEventsPage() {
   const { address, isConnected } = useAccount();
 
-  if (address) {
-    const {
-      data: events,
-      isPending,
-      error,
-    } = useReadContract({
-      address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
-      abi: blocTicketsAbi,
-      functionName: "getEventsByOrganizer",
-      args: [address],
-    });
+  const {
+    data: events,
+    isPending,
+    error,
+  } = useReadContract({
+    address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
+    abi: blocTicketsAbi,
+    functionName: "getEventsByOrganizer",
+    args: [address!!],
+  });
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
   }
 
   if (!isConnected) {
@@ -40,10 +49,11 @@ export default function Component() {
     );
   }
 
+  // TODO: Add logo
+
   return (
-    <div className="flex min-h-[100dvh] flex-col">
-      <Header />
-      <main className="flex-1 px-4 py-8 md:px-6 lg:px-10">
+    <main className="flex flex-col">
+      <div className="flex-1 px-4 py-8 md:px-6 lg:px-10">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-2xl font-bold">Your Events</h1>
           <Link
@@ -54,34 +64,64 @@ export default function Component() {
           </Link>
         </div>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Tech Conference 2023</CardTitle>
-              <CardDescription>
-                <div className="flex items-center gap-2">
-                  <CalendarIcon className="h-4 w-4 text-gray-500" />
-                  <span className="text-gray-500">June 15, 2023</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPinIcon className="h-4 w-4 text-gray-500" />
-                  <span className="text-gray-500">San Francisco, CA</span>
-                </div>
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <UserIcon className="h-5 w-5 text-gray-500" />
-                  <span className="text-gray-500">1,200 attendees</span>
-                </div>
-                <Button variant="outline" size="sm">
-                  View Event
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          {events?.length === 0 && (
+            <div className="flex h-screen items-center justify-center">
+              <p>No events found</p>
+            </div>
+          )}
+          {error && (
+            <div className="flex h-screen items-center justify-center">
+              <p>
+                Error fetching events, connect wallet if not connected and try
+                again
+                {error.message}
+              </p>
+            </div>
+          )}
+
+          {isPending ? (
+            <Skeleton className="h-[250px] w-[250px] rounded-xl" />
+          ) : (
+            events?.map((event: any) => (
+              <Card key={event.id}>
+                <CardHeader>
+                  <CardTitle>{event.name}</CardTitle>
+                  <CardDescription className="flex flex-col items-start gap-2">
+                    <div className="flex items-center gap-2">
+                      <CalendarIcon className="h-4 w-4 text-gray-500" />
+                      <span className="text-gray-500">
+                        {convertDateFromMilliseconds(Number(event.date))}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <MapPinIcon className="h-4 w-4 text-gray-500" />
+                      <span className="text-gray-500">{event.venue}</span>
+                    </div>
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <UserIcon className="h-5 w-5 text-gray-500" />
+                      <span className="text-gray-500">
+                        {event.ticketHolders.length}{" "}
+                        {event.ticketHolders.length === 1
+                          ? "attendee"
+                          : "attendees"}
+                      </span>
+                    </div>
+                    <Link href={`/my-events/${event.id}`}>
+                      <Button variant="outline" size="sm">
+                        View Event
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))
+          )}
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }

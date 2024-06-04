@@ -1,10 +1,17 @@
 "use client";
 
-import { ArrowLeft, CalendarRange, Locate, Ticket } from "lucide-react";
+import {
+  ArrowLeft,
+  CalendarRange,
+  CircleDollarSign,
+  Locate,
+  Ticket,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useReadContract, useWriteContract } from "wagmi";
+import { useReadContract, useWriteContract, useAccount } from "wagmi";
 import { parseEther } from "viem";
+import { useRouter } from "next/navigation";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
@@ -17,6 +24,9 @@ export default function EventDetailsPage({
 }: {
   params: { index: number };
 }) {
+  const router = useRouter();
+
+  const { address, isConnected } = useAccount();
 
   const {
     data: event,
@@ -38,13 +48,17 @@ export default function EventDetailsPage({
 
   async function buyTicket(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (!isConnected) {
+      toast.error("Please connect your wallet");
+      return;
+    }
     try {
       const hash = await writeContractAsync({
         address: "0x7D460fa04fC38DD7599D25C240801B0B0c4DeDC0",
         abi: blocTicketsAbi,
         functionName: "buyTicket",
         args: [BigInt(params.index)],
-        value: parseEther(`${event?.[5]}`, "wei"),
+        value: parseEther(`${event?.[7]}`, "wei"),
       });
 
       if (hash) {
@@ -56,6 +70,12 @@ export default function EventDetailsPage({
       // toast.error("Something went wrong!");
       toast.error(`${error}`);
     }
+  }
+
+  const isTicketPurchased = event?.[10].includes(address!!);
+
+  if (isConnected && address === event?.[1]) {
+    router.push(`/my-events/${event?.[0]}`);
   }
 
   return (
@@ -70,12 +90,7 @@ export default function EventDetailsPage({
           </div>
         )}
 
-        {isPending && (
-          <div className="flex flex-1 items-center justify-center gap-6">
-            <Skeleton className="rounded-xl" />
-            <Skeleton className="rounded-xl" />
-          </div>
-        )}
+        {isPending && <Skeleton className="rounded-xl" />}
         <div className="container px-4 md:px-6">
           <div className="grid gap-10 lg:grid-cols-2">
             <div className="space-y-4">
@@ -87,19 +102,25 @@ export default function EventDetailsPage({
                 {event?.[2]}
               </h1>
               <div className="flex items-center space-x-4 text-gray-500">
-                <div>
-                  <CalendarRange className="mr-1 inline-block h-5 w-5" />
-                  {/* {event?.date} */}
-                  {convertDateFromMilliseconds(Number(event?.[4]))}
+                <div className="flex items-center space-x-1">
+                  <div><CalendarRange className="h-5 w-5" /></div>
+                  <p>
+                    {/* {event?.date} */}
+                    {convertDateFromMilliseconds(Number(event?.[5]))}
+                  </p>
                 </div>
-                <div>
-                  <Locate className="mr-1 inline-block h-5 w-5" />
+                <div className="flex items-center space-x-1">
+                  <div><Locate className="h-5 w-5" /></div>
                   {/* {event?.venue} */}
+                  <p>{event?.[3]}</p>
                 </div>
               </div>
-              <div className="text-4xl font-bold">
-                {/* {event?.price} */}
-                {event?.[5]} CELO
+              <div className="flex items-center space-x-2">
+                <div><CircleDollarSign className="h-6 w-6" /></div>
+                <p className="text-2xl font-semibold">
+                  {/* {event?.price} */}
+                  {event?.[7]} CELO
+                </p>
               </div>
               {/* // TODO: Add amount of tickets to buy */}
               {/* <div className="grid grid-cols-[1fr_auto] items-center gap-4">
@@ -119,13 +140,13 @@ export default function EventDetailsPage({
                 <Button
                   className="w-full sm:w-auto"
                   type="submit"
-                  disabled={buyTicketPending}
+                  disabled={buyTicketPending || isTicketPurchased}
                 >
                   <Ticket className="mr-2 h-5 w-5" />
                   {buyTicketPending
                     ? "Buying Ticket..."
-                    : hash
-                      ? "Ticket Bought"
+                    : hash || isTicketPurchased
+                      ? "You have a ticket!"
                       : "Buy Ticket"}
                 </Button>
               </form>
@@ -150,7 +171,7 @@ export default function EventDetailsPage({
               </h2>
               <p className="max-w-[800px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
                 {/* {event?.description} */}
-                {event?.[3]}
+                {event?.[9]}
               </p>
             </div>
           </div>

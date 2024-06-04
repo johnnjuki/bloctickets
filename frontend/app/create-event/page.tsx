@@ -50,7 +50,7 @@ export default function CreateEventPage() {
         toast("Event has been created", {
           description: `${data.date} at ${data.time}`,
         });
-        router.push("/events");
+        router.push("/my-events");
       }
     } catch (e) {
       console.log(e);
