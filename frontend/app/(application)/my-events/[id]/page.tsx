@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Header } from "@/components/header";
 
 export default function EventDetailsPage({
   params,
@@ -23,7 +24,7 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
+    address: "0x21d5E55D4e518d76C4171dFB885BDa076Df8D682",
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.id)],
@@ -43,7 +44,9 @@ export default function EventDetailsPage({
   }
 
   return (
-    <main className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
+    <main>
+      <Header />
+    <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
       <div className="grid gap-8 md:grid-cols-2">
         <div className="space-y-6">
           <div className="space-y-4">
@@ -97,6 +100,7 @@ export default function EventDetailsPage({
           </div>
         </div>
       </div>
+    </div>
     </main>
   );
 }

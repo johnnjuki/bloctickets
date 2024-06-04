@@ -9,6 +9,7 @@ import { Calendar, CircleDollarSign, Clock } from "lucide-react";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
+import { Header } from "@/components/header";
 
 export default function EventsPage() {
   const router = useRouter();
@@ -18,21 +19,22 @@ export default function EventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
+    address: "0x21d5E55D4e518d76C4171dFB885BDa076Df8D682",
     abi: blocTicketsAbi,
     functionName: "getAllEvents",
   });
   
   return (
-    <main className="mx-auto px-4 flex flex-col">
-      <section className="py-12 md:py-16 lg:py-20">
+    <main className="px-4 flex flex-col">
+      <Header />
+      <section className="py-8 md:py-12">
         <div className="space-y-6 md:space-y-8 lg:space-y-10">
           <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">
               Upcoming Events
             </h1>
           </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
             {events?.length === 0 && (
               <div className="flex h-screen items-center justify-center">
                 <p>No events found</p>

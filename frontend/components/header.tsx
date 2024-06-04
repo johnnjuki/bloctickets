@@ -13,8 +13,8 @@ export function Header() {
       href: "/create-event",
     },
     {
-      name: "About",
-      href: "/",
+      name: "My events",
+      href: "/my-events",
     },
   ];
 
@@ -35,7 +35,7 @@ export function Header() {
           </div>
 
           <div className="md:flex md:items-center md:gap-12">
-            <nav aria-label="Global" className="hidden md:block">
+            <nav aria-label="Global" className="hidden lg:block">
               <ul className="flex items-center gap-6 text-sm">
                 {navLinks.map((link) => (
                   <li key={link.name}>

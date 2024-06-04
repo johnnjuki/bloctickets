@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { CalendarIcon, MapPinIcon, UserIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Header } from "@/components/header";
 
 export default function MyEventsPage() {
   const { address, isConnected } = useAccount();
@@ -25,7 +26,7 @@ export default function MyEventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0x22bCf29fb2FcD789c37ac9c8FB314868b98Ef90E",
+    address: "0x21d5E55D4e518d76C4171dFB885BDa076Df8D682",
     abi: blocTicketsAbi,
     functionName: "getEventsByOrganizer",
     args: [address!!],
@@ -53,7 +54,9 @@ export default function MyEventsPage() {
 
   return (
     <main className="flex flex-col">
+      <Header />
       <div className="flex-1 px-4 py-8 md:px-6 lg:px-10">
+      <h1 className="text-3xl font-bold mb-3">My Events</h1>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {events?.length === 0 && (
             <div className="flex h-screen items-center justify-center">

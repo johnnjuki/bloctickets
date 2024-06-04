@@ -8,16 +8,16 @@ export function Footer({ showText }: { showText?: boolean }) {
     <footer className="bg-white">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         {showText && (
-          <div className="text-center">
+          <div className=" flex flex-col items-center">
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-5xl">
               BlocTickets
             </h2>
 
-            <p className="mx-auto mt-4 max-w-sm text-gray-500">
+            <p className="mx-auto mt-4 max-w-sm text-gray-500 hidden md:block">
               Connect your wallet to get started
             </p>
 
-            <div className="mt-8 inline-block hidden md:block ">
+            <div className="mt-8 hidden md:block ">
               <ConnectButton />
             </div>
           </div>
