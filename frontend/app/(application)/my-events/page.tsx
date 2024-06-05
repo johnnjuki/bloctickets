@@ -26,7 +26,7 @@ export default function MyEventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+    address: "0xcB9d3CF208858200EF12893db3dEF2Df191cb6C5",
     abi: blocTicketsAbi,
     functionName: "getEventsByOrganizer",
     args: [address!!],
@@ -42,36 +42,34 @@ export default function MyEventsPage() {
     return null;
   }
 
-  if (!isConnected) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <p>Please connect your wallet</p>
-      </div>
-    );
-  }
-
-  // TODO: Add logo
-
   return (
     <main className="flex flex-col">
       <div className="hidden sm:block">
-      <Header />
+        <Header />
       </div>
       <div className="flex-1 px-4 py-8 md:px-6 lg:px-10">
-      <h1 className="text-3xl font-bold mb-3">My Events</h1>
+        <h1 className="mb-3 text-3xl font-bold">My Events</h1>
+
+        {!isConnected && (
+          <div className="flex h-screen items-center justify-center">
+            <p>Please connect your wallet</p>
+          </div>
+        )}
+
+        {error && (
+          <div className="flex h-screen items-center justify-center">
+            <p>
+              Error fetching events, connect wallet if not connected and try
+              again
+              {error.message}
+            </p>
+          </div>
+        )}
+
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {events?.length === 0 && (
             <div className="flex h-screen items-center justify-center">
               <p>You have not created any event yet</p>
-            </div>
-          )}
-          {error && (
-            <div className="flex h-screen items-center justify-center">
-              <p>
-                Error fetching events, connect wallet if not connected and try
-                again
-                {error.message}
-              </p>
             </div>
           )}
 
@@ -80,41 +78,41 @@ export default function MyEventsPage() {
           ) : (
             events?.map((event: any) => (
               <Link href={`/my-events/${event.id}`} key={event.id}>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{event.name}</CardTitle>
-                  <CardDescription className="flex flex-col items-start gap-2">
-                    <div className="flex items-center gap-2">
-                      <CalendarIcon className="h-4 w-4 text-gray-500" />
-                      <span className="text-gray-500">
-                        {convertDateFromMilliseconds(Number(event.date))}
-                      </span>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{event.name}</CardTitle>
+                    <CardDescription className="flex flex-col items-start gap-2">
+                      <div className="flex items-center gap-2">
+                        <CalendarIcon className="h-4 w-4 text-gray-500" />
+                        <span className="text-gray-500">
+                          {convertDateFromMilliseconds(Number(event.date))}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPinIcon className="h-4 w-4 text-gray-500" />
+                        <span className="text-gray-500">{event.venue}</span>
+                      </div>
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <UserIcon className="h-5 w-5 text-gray-500" />
+                        <span className="text-gray-500">
+                          {event.ticketHolders.length}{" "}
+                          {event.ticketHolders.length === 1
+                            ? "attendee"
+                            : "attendees"}
+                        </span>
+                      </div>
+                      <Link href={`/my-events/${event.id}`}>
+                        <Button variant="outline" size="sm">
+                          View Event
+                        </Button>
+                      </Link>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <MapPinIcon className="h-4 w-4 text-gray-500" />
-                      <span className="text-gray-500">{event.venue}</span>
-                    </div>
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <UserIcon className="h-5 w-5 text-gray-500" />
-                      <span className="text-gray-500">
-                        {event.ticketHolders.length}{" "}
-                        {event.ticketHolders.length === 1
-                          ? "attendee"
-                          : "attendees"}
-                      </span>
-                    </div>
-                    <Link href={`/my-events/${event.id}`}>
-                      <Button variant="outline" size="sm">
-                        View Event
-                      </Button>
-                    </Link>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
               </Link>
             ))
           )}

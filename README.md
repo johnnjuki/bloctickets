@@ -81,10 +81,6 @@ BlocTickets was initiated on May 1st with the vision to revolutionize the event 
 
 While BlocTickets is operational and allows users to successfully create and pay for events using cUSD, we are actively working on expanding its capabilities. The following features are under development:
 
-### Tickets as NFTs
-
-The core feature of issuing event tickets as Non-Fungible Tokens (NFTs) is currently in progress. This will ensure each ticket's uniqueness and verifiability, providing a robust solution against ticket scalping and fraud.
-
 ### Decentralized Autonomous Organization (DAO)
 
 We are also in the process of developing and incorporating the Bloc DAO. This will serve as a decentralized governance layer for the platform, allowing the community to verify event authenticity and participate in decision-making processes.
