@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useReadContract } from "wagmi";
+import { useReadContract, useAccount } from "wagmi";
 import { Calendar, CircleDollarSign, Clock } from "lucide-react";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
@@ -11,6 +11,8 @@ import { convertDateFromMilliseconds } from "@/lib/utils";
 import { Header } from "@/components/header";
 
 export default function EventsPage() {
+
+  const{address, isConnected} = useAccount();
 
   const {
     data: events,
@@ -32,6 +34,14 @@ export default function EventsPage() {
               Upcoming Events
             </h1>
           </div>
+
+          {!isConnected && (
+            <div className="flex h-screen items-center justify-center">
+              <p>Connect your wallet to view events</p>
+            </div>
+          )}
+
+
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-8 lg:grid-cols-4 lg:gap-10">
             {events?.length === 0 && (
               <div className="flex h-screen items-center justify-center">
