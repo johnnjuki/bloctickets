@@ -29,14 +29,14 @@ export default function TicketsPage({ params }: { params: { id: number } }) {
       <div className="hidden sm:block">
         <Header />
       </div>
-      <div className=" h-screen items-center justify-center rounded-lg bg-gray-100">
+      <div className="flex flex-col h-screen items-center justify-center rounded-lg bg-gray-100">
         {!isConnected && (
           <p>Please connect your wallet to view your tickets</p>
         )}
 
         {isPending && <Skeleton className="h-64 w-full rounded-lg" />}
         {nftTicketUri ? (
-          <div className="flex flex-col gap-8 items-center justify-center h-screen w-full">
+          <div className="flex flex-col gap-8 items-center text-center justify-center h-screen w-full">
           <Badge>Reload the page if you can&apos;t see your NFT Ticket</Badge>
           
             <p className="font-semibold text-green-600">
@@ -54,9 +54,11 @@ export default function TicketsPage({ params }: { params: { id: number } }) {
           </div>
                 </div>
         ) : (
-          <p>You don&apos;t have a ticket</p>
+          <p></p>
         )}
-        {error && <p>{error.message}</p>}
+
+
+        {/* {error && <p>{error.message}</p>} */}
       </div>
     </main>
   );
