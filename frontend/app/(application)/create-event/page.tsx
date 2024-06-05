@@ -2,13 +2,13 @@
 
 import { useAccount, useWriteContract } from "wagmi";
 
+import { toast } from "sonner";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/shared/ui/button";
-import { toast } from "sonner";
 import { Textarea } from "@/components/ui/textarea";
-import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Header } from "@/components/header";
+import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 
 export default function CreateEventPage() {
   const { address, isConnected } = useAccount();
@@ -28,7 +28,7 @@ export default function CreateEventPage() {
       const dateInMilliseconds = dateObject.getTime();
 
       const hash = await writeContractAsync({
-        address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+        address: "0x198e09d359478dA45E0Bd4ACd86aAf5487E8B353",
         abi: blocTicketsAbi,
         functionName: "createEvent",
         args: [

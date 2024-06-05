@@ -11,6 +11,10 @@ const nextConfig = {
           protocol: 'https',
           hostname: 'picsum.photos',
         },
+        {
+          protocol: 'https',
+          hostname: 'olive-labour-earthworm-132.mypinata.cloud'
+        }
       ],
     },
   }

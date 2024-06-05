@@ -3,6 +3,7 @@
 import {
   ArrowLeft,
   CalendarRange,
+  CircleDashed,
   CircleDollarSign,
   MapPin,
   Ticket,
@@ -12,6 +13,7 @@ import Link from "next/link";
 import { useReadContract, useWriteContract, useAccount } from "wagmi";
 import { parseEther } from "viem";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
@@ -20,6 +22,7 @@ import { convertDateFromMilliseconds } from "@/lib/utils";
 import { toast } from "sonner";
 import { getExchangeRate } from "@/lib/get-exchange-rate";
 import { Header } from "@/components/header";
+import { generateImage } from "@/lib/generate-image";
 
 export default function EventDetailsPage({
   params,
@@ -29,13 +32,16 @@ export default function EventDetailsPage({
   const router = useRouter();
 
   const { address, isConnected } = useAccount();
+  const [cid, setCid] = useState("");
+  const [uploading, setUploading] = useState(false);
+  const [nftTicketUri, setNftTicketUri] = useState("");
 
   const {
     data: event,
     isPending,
     error,
   } = useReadContract({
-    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+    address: "0x198e09d359478dA45E0Bd4ACd86aAf5487E8B353",
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],
@@ -48,6 +54,13 @@ export default function EventDetailsPage({
     writeContractAsync,
   } = useWriteContract();
 
+  const {
+    data: mintTicketHash,
+    isPending: mintTicketPending,
+    error: ticketsError,
+    writeContractAsync: mintTicketAsync,
+  } = useWriteContract();
+
   async function buyTicket(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!isConnected) {
@@ -55,25 +68,72 @@ export default function EventDetailsPage({
       return;
     }
 
+    if (!event) {
+      return;
+    }
+
     if (address === event?.[1]) {
-        toast("You cannot buy your own ticket!", {
-          description: "Go to the event dahsboard instead.",
-          action: {
-            label: "Go",
-            onClick: () => router.push(`/my-events/${event?.[0]}`),
-          },
-        })
-      
+      toast("You cannot buy your own ticket!", {
+        description: "Go to the event dahsboard instead.",
+        action: {
+          label: "Go",
+          onClick: () => router.push(`/my-events/${event?.[0]}`),
+        },
+      });
+
       return;
     }
 
     try {
       const exchangeRate = await getExchangeRate();
-      const priceInCELO = parseFloat(event?.[7]!!) / exchangeRate;
+      const priceInCELO = parseFloat(event?.[7]) / exchangeRate;
       console.log(priceInCELO);
 
-      const hash = await writeContractAsync({
-        address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+      try {
+        setUploading(true);
+        const ticketNumber = event?.[10]?.length + 1;
+        const nftImage = createEventImage(
+          event?.[2],
+          event?.[3],
+          convertDateFromMilliseconds(Number(event?.[5])),
+          event?.[6],
+          ticketNumber,
+        );
+        console.log(nftImage);
+
+        const blob = await (await fetch(nftImage)).blob();
+        // const file = new File([blob], "Ticket.png", { type: "image/png" });
+
+        const data = new FormData();
+        data.set("file", blob);
+        const res = await fetch("/api/files", {
+          method: "POST",
+          body: data,
+        });
+        const resData = await res.json();
+        setCid(resData.IpfsHash);
+
+        await mintTicketAsync({
+          address: "0x198e09d359478dA45E0Bd4ACd86aAf5487E8B353",
+          abi: blocTicketsAbi,
+          functionName: "mintTicketNft",
+          args: [BigInt(params.index), resData.IpfsHash],
+        });
+
+        if (mintTicketHash) {
+          toast("Ticket NFT minted!");
+          setUploading(false);
+        }
+
+      } catch (error) {
+        setUploading(false);
+        toast.error("Minting Ticket NFT failed!");
+        console.log(error);
+        return;
+      }
+
+       await writeContractAsync({
+        address: "0x198e09d359478dA45E0Bd4ACd86aAf5487E8B353",
         abi: blocTicketsAbi,
         functionName: "buyTicket",
         args: [BigInt(params.index)],
@@ -83,6 +143,7 @@ export default function EventDetailsPage({
       if (hash) {
         console.log(hash);
         toast("You have purchased a ticket!");
+
       }
     } catch (error) {
       console.log(error);
@@ -91,12 +152,120 @@ export default function EventDetailsPage({
     }
   }
 
+  // function mintNftTicket() {
+
+  //   try {
+  //     setUploading(true);
+  //     const ticketNumber = event?.[10]?.length + 1;
+  //     const nftImage = createEventImage(
+  //       event?.[2],
+  //       event?.[3],
+  //       convertDateFromMilliseconds(Number(event?.[5])),
+  //       event?.[6],
+  //       ticketNumber,
+  //     );
+  //     console.log(nftImage);
+
+  //     const blob = await (await fetch(nftImage)).blob();
+  //     // const file = new File([blob], "Ticket.png", { type: "image/png" });
+
+  //     const data = new FormData();
+  //     data.set("file", blob);
+  //     const res = await fetch("/api/files", {
+  //       method: "POST",
+  //       body: data,
+  //     });
+  //     const resData = await res.json();
+  //     setCid(resData.IpfsHash);
+  //     setUploading(false);
+  //   } catch (error) {
+  //     setUploading(false);
+  //     toast.error("Minting Ticket NFT failed!");
+  //     console.log(error);
+  //     return;
+  //   }
+
+  // }
+
+
+
+
   const isTicketPurchased = event?.[10].includes(address!!);
+  
+
+  function createEventImage(
+    eventName: string,
+    venue: string,
+    date: string,
+    time: string,
+    number: number,
+    width = 600, // Default width
+    height = 400, // Default height
+  ) {
+    // Create a canvas element
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+      throw new Error("Could not get canvas context");
+    }
+
+    // Set the canvas dimensions
+    canvas.width = width;
+    canvas.height = height;
+
+    // Background - complex gradient
+    const gradient = ctx.createRadialGradient(
+      width / 2,
+      height / 2,
+      100,
+      width / 2,
+      height / 2,
+      width,
+    );
+    gradient.addColorStop(0, "#ff7f50");
+    gradient.addColorStop(0.5, "#6a5acd");
+    gradient.addColorStop(1, "#1e90ff");
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+
+    // Add a border with a shadow
+    ctx.shadowColor = "#000000";
+    ctx.shadowBlur = 20;
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 10;
+    ctx.strokeRect(0, 0, width, height);
+    ctx.shadowBlur = 0; // Reset shadow
+
+    // Text properties and drawing with shadow
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 24pt Arial"; // Reduced font size
+    ctx.shadowColor = "#000000";
+    ctx.shadowBlur = 10;
+    ctx.fillText(eventName, 50, 100);
+    ctx.font = "16pt Arial"; // Reduced font size
+    ctx.fillText(`Venue: ${venue}`, 50, 150);
+    ctx.fillText(`Date: ${date}`, 50, 200);
+    ctx.fillText(`Time: ${time}`, 50, 250);
+    ctx.fillText(`Ticket Number: ${number}`, 50, 300);
+    ctx.shadowBlur = 0; // Reset shadow
+
+    // Add a watermark or unique design element
+    ctx.globalAlpha = 0.1;
+    ctx.font = "italic 40pt Arial"; // Reduced font size
+    ctx.fillText("TICKET", width / 4, height / 1.5);
+    ctx.globalAlpha = 1.0;
+
+    // Convert the canvas to an image (DataURL)
+    const imageUrl = canvas.toDataURL("image/png");
+
+    return imageUrl;
+  }
 
   return (
     <main>
       <div className="hidden sm:block">
-      <Header />
+        <Header />
       </div>
       <section className="flex w-full flex-col gap-8 bg-gray-100 py-12 ">
         {error && (
@@ -143,20 +312,35 @@ export default function EventDetailsPage({
                   {event?.[7]} cUSD
                 </p>
               </div>
-              <form onSubmit={buyTicket}>
-                <Button
-                  className="w-full sm:w-auto"
-                  type="submit"
-                  disabled={buyTicketPending || isTicketPurchased}
+
+              {isTicketPurchased ? (
+                <Link
+                href={`/tickets/${event?.[0]}`}
                 >
-                  <Ticket className="mr-2 h-5 w-5" />
-                  {buyTicketPending
-                    ? "Buying Ticket..."
-                    : hash || isTicketPurchased
-                      ? "You have a ticket!"
-                      : "Buy Ticket"}
-                </Button>
-              </form>
+                <Button
+                className="w-full sm:w-auto"
+                
+              >
+                <Ticket className="mr-2 h-5 w-5" />
+                Unveil your NFT ticket
+              </Button>
+                </Link>
+              ) : (
+                <form onSubmit={buyTicket}>
+                  <Button
+                    className="w-full sm:w-auto"
+                    type="submit"
+                    disabled={buyTicketPending || isTicketPurchased}
+                  >
+                    <Ticket className="mr-2 h-5 w-5" />
+                    {buyTicketPending
+                      ? "Buying Ticket..."
+                      : hash || isTicketPurchased
+                        ? "You have a ticket!"
+                        : "Buy Ticket"}
+                  </Button>
+                </form>
+              )}
             </div>
             <Image
               alt="Event banner"

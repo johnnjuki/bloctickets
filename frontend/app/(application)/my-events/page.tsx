@@ -26,7 +26,7 @@ export default function MyEventsPage() {
     isPending,
     error,
   } = useReadContract({
-    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+    address: "0x198e09d359478dA45E0Bd4ACd86aAf5487E8B353",
     abi: blocTicketsAbi,
     functionName: "getEventsByOrganizer",
     args: [address!!],

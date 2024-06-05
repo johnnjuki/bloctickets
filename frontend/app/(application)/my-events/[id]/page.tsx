@@ -24,7 +24,7 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0xAc6EAbE774C25F984E3dB85d84FcE27b3A7247eB",
+    address: "0x198e09d359478dA45E0Bd4ACd86aAf5487E8B353",
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.id)],
@@ -41,6 +41,10 @@ export default function EventDetailsPage({
         <Skeleton className="h-64 w-full rounded-lg" />
       </main>
     );
+  }
+
+  if (event) {
+    console.log(event);
   }
 
   return (

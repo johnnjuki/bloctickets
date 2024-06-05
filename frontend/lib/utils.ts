@@ -9,3 +9,4 @@ export function convertDateFromMilliseconds(milliseconds: number) {
   const date = new Date(milliseconds);
   return date.toLocaleDateString();
 }
+
