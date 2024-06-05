@@ -7,14 +7,11 @@ import { useAccount, useReadContract } from "wagmi";
 import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Header } from "@/components/header";
+import { Badge } from "@/components/ui/badge";
 
 export default function TicketsPage({ params }: { params: { id: number } }) {
   const { address, isConnected } = useAccount();
   const router = useRouter();
-
-  if (!isConnected) {
-    router.push("/");
-  }
 
   const {
     data: nftTicketUri,
@@ -32,10 +29,16 @@ export default function TicketsPage({ params }: { params: { id: number } }) {
       <div className="hidden sm:block">
         <Header />
       </div>
-      <div className="flex h-screen flex-col items-center justify-center gap-12 rounded-lg bg-gray-100">
+      <div className=" h-screen items-center justify-center rounded-lg bg-gray-100">
+        {!isConnected && (
+          <p>Please connect your wallet to view your tickets</p>
+        )}
+
         {isPending && <Skeleton className="h-64 w-full rounded-lg" />}
         {nftTicketUri ? (
-          <>
+          <div className="flex flex-col gap-8 items-center justify-center h-screen w-full">
+          <Badge>Reload the page if you can&apos;t see your NFT Ticket</Badge>
+          
             <p className="font-semibold text-green-600">
               Here is your NFT Ticket
             </p>
@@ -46,9 +49,10 @@ export default function TicketsPage({ params }: { params: { id: number } }) {
                 height="300"
                 src={`https://${process.env.NEXT_PUBLIC_IPFS_GATEWAY}/ipfs/${nftTicketUri[0]}`}
                 width="450"
-              />
-            </div>
-          </>
+                />
+          
+          </div>
+                </div>
         ) : (
           <p>You don&apos;t have a ticket</p>
         )}

@@ -131,6 +131,7 @@ export default function EventDetailsPage({
           toast("Ticket NFT minted!");
           setIsUploading(false);
           router.push(`/tickets/${event?.[0]}`);
+        
         }
       } catch (error) {
         setIsUploading(false);
