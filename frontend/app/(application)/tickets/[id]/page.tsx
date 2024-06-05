@@ -27,38 +27,32 @@ export default function TicketsPage({ params }: { params: { id: number } }) {
     args: [BigInt(params.id), address!!],
   });
 
-  if (!nftTicketUri) {
-    return (
-      <div className="mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        You don't have a ticket
-      </div>
-    );
-  }
-
-  if (isPending) {
-    return (
-      <main className="mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <Skeleton className="h-64 w-full rounded-lg" />
-      </main>
-    );
-  }
-
   return (
     <main className="px-4">
       <div className="hidden sm:block">
         <Header />
       </div>
-      <div className="flex h-screen items-center justify-center flex-col gap-12 bg-gray-100 rounded-lg">
-        <p className="font-semibold text-green-600">Here is your NFT Ticket</p>
-        <div className="px-6">
-          <Image
-            alt="NFT Ticket"
-            className=""
-            height="300"
-            src={`https://${process.env.NEXT_PUBLIC_IPFS_GATEWAY}/ipfs/${nftTicketUri[0]}`}
-            width="450"
-          />
-        </div>
+      <div className="flex h-screen flex-col items-center justify-center gap-12 rounded-lg bg-gray-100">
+        {isPending && <Skeleton className="h-64 w-full rounded-lg" />}
+        {nftTicketUri ? (
+          <>
+            <p className="font-semibold text-green-600">
+              Here is your NFT Ticket
+            </p>
+            <div className="px-6">
+              <Image
+                alt="NFT Ticket"
+                className=""
+                height="300"
+                src={`https://${process.env.NEXT_PUBLIC_IPFS_GATEWAY}/ipfs/${nftTicketUri[0]}`}
+                width="450"
+              />
+            </div>
+          </>
+        ) : (
+          <p>You don&apos;t have a ticket</p>
+        )}
+        {error && <p>{error.message}</p>}
       </div>
     </main>
   );
