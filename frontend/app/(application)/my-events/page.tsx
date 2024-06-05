@@ -61,22 +61,21 @@ export default function MyEventsPage() {
             <p>
               Error fetching events, connect wallet if not connected and try
               again
-              {error.message}
             </p>
           </div>
         )}
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {events?.length === 0 && (
-            <div className="flex h-screen items-center justify-center">
-              <p>You have not created any event yet</p>
-            </div>
-          )}
+        {events?.length === 0 && (
+          <div className="flex h-screen items-center justify-center">
+            <p>You have not created any event yet</p>
+          </div>
+        )}
 
-          {isPending ? (
-            <Skeleton className="h-[250px] w-[250px] rounded-xl" />
-          ) : (
-            events?.map((event: any) => (
+        {isPending ? (
+          <Skeleton className="h-[250px] w-[250px] rounded-xl" />
+        ) : (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {events?.map((event: any) => (
               <Link href={`/my-events/${event.id}`} key={event.id}>
                 <Card>
                   <CardHeader>
@@ -114,9 +113,9 @@ export default function MyEventsPage() {
                   </CardContent>
                 </Card>
               </Link>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );
