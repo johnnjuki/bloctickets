@@ -45,7 +45,6 @@ export default function EventsPage() {
                   <p>
                     Error fetching events, connect wallet if not connected and
                     try again
-                    {error.message}
                   </p>
                 </div>
               )}
