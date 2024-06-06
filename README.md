@@ -75,7 +75,7 @@ You're now ready to create events and purchase NFT tickets on BlocTickets using 
 
 ## Project Timeline
 
-BlocTickets was initiated on May 1st with the vision to revolutionize the event ticketing industry. When the hackathon was announced on May 2nd, it became evident that BlocTickets was a perfect fit. The hackathon provided an exciting opportunity to continue building and submit the project, adhering to the rules which require disclosure of the project's inception in relation to the hackathon's announcement.
+BlocTickets was initiated on May 1st with the vision to revolutionize the event ticketing industry. When the hackathon was announced, it became evident that BlocTickets was a perfect fit. Most of the hack was done during the hackathon allotted time.
 
 ## Features In Progress
 
