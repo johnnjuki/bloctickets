@@ -12,8 +12,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { parseEther } from "viem";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
-
-import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
+import {processCheckout} from "@/lib/TokenFuction";
+import { blocTicketsAbi , contractAddress} from "@/blockchain/abi/blocTickets-abi";
 import { Header } from "@/components/header";
 import { Button } from "@/components/shared/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -37,11 +37,12 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0xcB9d3CF208858200EF12893db3dEF2Df191cb6C5",
+    address: contractAddress,
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.index)],
   });
+  console.log(event);
 
   const {
     data: hash,
@@ -81,21 +82,30 @@ export default function EventDetailsPage({
     }
 
     try {
-      const exchangeRate = await getExchangeRate();
-      const priceInCELO = parseFloat(event?.[7]) / exchangeRate;
-      console.log(priceInCELO);
+      // const exchangeRate = await getExchangeRate();
+      // const priceInCELO = parseFloat(event?.[7]) / exchangeRate;
+      // console.log(priceInCELO);
+      const paid = await processCheckout(event?.[1] as `0x{string}`, Number(event?.[7]));
 
-      const hash = await writeContractAsync({
-        address: "0xcB9d3CF208858200EF12893db3dEF2Df191cb6C5",
-        abi: blocTicketsAbi,
-        functionName: "buyTicket",
-        args: [BigInt(params.index)],
-        value: parseEther(priceInCELO.toString(), "wei"),
-      });
+      if (paid){
 
-      if (hash) {
-        toast("You have purchased a ticket!");
+        const hash = await writeContractAsync({
+          address: contractAddress,
+          abi: blocTicketsAbi,
+          functionName: "buyTicket",
+          args: [BigInt(params.index)],
+          
+        });
+  
+        if (hash) {
+          toast("You have purchased a ticket!");
+        }
+
+      }else{
+        toast("make sure you have the amount");
       }
+
+      
 
       try {
         setIsUploading(true);
@@ -121,7 +131,7 @@ export default function EventDetailsPage({
         setCid(resData.IpfsHash);
 
         const hash = await mintTicketAsync({
-          address: "0xcB9d3CF208858200EF12893db3dEF2Df191cb6C5",
+          address: contractAddress,
           abi: blocTicketsAbi,
           functionName: "mintTicketNft",
           args: [BigInt(params.index), resData.IpfsHash],
@@ -258,7 +268,7 @@ export default function EventDetailsPage({
                 </div>
                 <p className="text-2xl font-semibold">
                   {/* {event?.price} */}
-                  {event?.[7]} cUSD
+                  {Number(event?.[7])/10**18} cUSD
                 </p>
               </div>
 
@@ -292,18 +302,18 @@ export default function EventDetailsPage({
             </div>
             <Image
               alt="Event banner"
-              className="mx-auto aspect-video overflow-hidden rounded-xl object-cover"
-              height="400"
-              src="/static/images/concert/concert-3.jpg"
+              className="mx-auto aspect-video overflow-hidden rounded-lg object-cover"
+              height="600"
+              src={`https://ipfs.io/ipfs/${event?.[10]}`}
               width="600"
             />
           </div>
         </div>
       </section>
-      <section className="w-full py-12 md:py-24 lg:py-32">
+      <section className="w-full py-8 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="grid gap-10">
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
                 About the Event
               </h2>

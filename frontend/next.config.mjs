@@ -16,6 +16,7 @@ const nextConfig = {
           hostname: 'olive-labour-earthworm-132.mypinata.cloud'
         }
       ],
+      domains: ['ipfs.io'],
     },
   }
 

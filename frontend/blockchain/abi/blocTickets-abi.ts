@@ -1,4 +1,5 @@
-export const blocTicketsAbi = [
+export const contractAddress = "0x5CFE907EDFbD492cf1C4D8Be6D41cF2E4C5bc2B8";
+export const blocTicketsAbi =  [
   {
     "inputs": [],
     "stateMutability": "nonpayable",
@@ -181,6 +182,19 @@ export const blocTicketsAbi = [
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "cUSDToken",
+    "outputs": [
+      {
+        "internalType": "contract IERC20",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "string",
@@ -208,8 +222,13 @@ export const blocTicketsAbi = [
         "type": "string"
       },
       {
-        "internalType": "string",
+        "internalType": "uint256",
         "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "ipfs",
         "type": "string"
       },
       {
@@ -274,9 +293,9 @@ export const blocTicketsAbi = [
         "type": "string"
       },
       {
-        "internalType": "string",
+        "internalType": "uint256",
         "name": "price",
-        "type": "string"
+        "type": "uint256"
       },
       {
         "internalType": "uint256",
@@ -286,6 +305,11 @@ export const blocTicketsAbi = [
       {
         "internalType": "string",
         "name": "description",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "ipfs",
         "type": "string"
       }
     ],
@@ -334,9 +358,9 @@ export const blocTicketsAbi = [
             "type": "string"
           },
           {
-            "internalType": "string",
+            "internalType": "uint256",
             "name": "price",
-            "type": "string"
+            "type": "uint256"
           },
           {
             "internalType": "uint256",
@@ -346,6 +370,11 @@ export const blocTicketsAbi = [
           {
             "internalType": "string",
             "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "ipfs",
             "type": "string"
           },
           {
@@ -432,14 +461,19 @@ export const blocTicketsAbi = [
         "type": "string"
       },
       {
-        "internalType": "string",
+        "internalType": "uint256",
         "name": "",
-        "type": "string"
+        "type": "uint256"
       },
       {
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       },
       {
         "internalType": "string",
@@ -508,9 +542,9 @@ export const blocTicketsAbi = [
             "type": "string"
           },
           {
-            "internalType": "string",
+            "internalType": "uint256",
             "name": "price",
-            "type": "string"
+            "type": "uint256"
           },
           {
             "internalType": "uint256",
@@ -520,6 +554,11 @@ export const blocTicketsAbi = [
           {
             "internalType": "string",
             "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "ipfs",
             "type": "string"
           },
           {
@@ -589,9 +628,9 @@ export const blocTicketsAbi = [
             "type": "string"
           },
           {
-            "internalType": "string",
+            "internalType": "uint256",
             "name": "price",
-            "type": "string"
+            "type": "uint256"
           },
           {
             "internalType": "uint256",
@@ -601,6 +640,11 @@ export const blocTicketsAbi = [
           {
             "internalType": "string",
             "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "ipfs",
             "type": "string"
           },
           {
@@ -665,6 +709,19 @@ export const blocTicketsAbi = [
         "internalType": "bool",
         "name": "",
         "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "mine",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -918,6 +975,19 @@ export const blocTicketsAbi = [
       }
     ],
     "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

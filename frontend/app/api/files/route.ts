@@ -5,7 +5,7 @@ export async function POST(request: NextRequest) {
     const data = await request.formData();
     const file: File | null = data.get("file") as unknown as File;
     data.append("file", file);
-    data.append("pinataMetadata", JSON.stringify({ name: "Ticket.png" }));
+    data.append("pinataMetadata", JSON.stringify({ name: "File to upload" }));
     const res = await fetch("https://api.pinata.cloud/pinning/pinFileToIPFS", {
       method: "POST",
       headers: {
@@ -25,3 +25,6 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// Use the new configuration format
+export const runtime = 'edge'; // Example configuration, adjust as needed

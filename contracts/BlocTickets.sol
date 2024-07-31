@@ -4,8 +4,24 @@ pragma solidity ^0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
 
 contract BlocTickets is ERC721URIStorage, Ownable {
+
+
+    IERC20 public cUSDToken;
+    address public mine;
+       
+    // address public cUSDTokenAddress = // 0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1 //testnet
+    // 0x765DE816845861e75A25fCA122bb6898B8B1282a //mainnet
+
+    constructor() ERC721("BlocTickets", "BTK") {
+        mine = msg.sender;
+        cUSDToken = IERC20(0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1);
+    }
+
+
     struct Event {
         uint id;
         address organizer;
@@ -14,9 +30,10 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         string category;
         uint date;
         string time;
-        string price;
+        uint price;
         uint ticketsAvailable;
         string description;
+        string ipfs;
         address[] ticketHolders;
         string[] nftUris;
         mapping(address => string[]) userToNftUris; // Map user address to NFT URIs for this event
@@ -30,9 +47,10 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         string category;
         uint date;
         string time;
-        string price;
+        uint price;
         uint ticketsAvailable;
         string description;
+        string ipfs;
         address[] ticketHolders;
         string[] nftUris;
     }
@@ -41,7 +59,6 @@ contract BlocTickets is ERC721URIStorage, Ownable {
     uint public nextEventId;
     uint public nextTicketId;
 
-    constructor() ERC721("BlocTickets", "BTK") {}
 
     function createEvent(
         string memory name,
@@ -49,7 +66,8 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         string memory category,
         uint date,
         string memory time,
-        string memory price,
+        uint price,
+        string memory ipfs,
         uint ticketsAvailable,
         string memory description
     ) public {
@@ -65,6 +83,7 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         newEvent.date = date;
         newEvent.time = time;
         newEvent.price = price;
+        newEvent.ipfs = ipfs;
         newEvent.ticketsAvailable = ticketsAvailable;
         newEvent.description = description;
 
@@ -75,11 +94,11 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         Event storage _event = events[eventId];
         // require(msg.value == _event.price, "Incorrect Ether value sent");
         require(_event.ticketsAvailable > 0, "No tickets available");
-
+        // require(cUSDToken.balanceOf(msg.sender) >= _event.price, "You dont have sufficient balance");
+        // require(cUSDToken.transferFrom(msg.sender, _event.organizer, _event.price), "Failed to purchase Ticket");
         _event.ticketsAvailable--;
         _event.ticketHolders.push(msg.sender);
   
-        payable(_event.organizer).transfer(msg.value);
     }
 
     function mintTicketNft(uint eventId, string memory nftUri) public {
@@ -102,8 +121,9 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         string memory,
         uint,
         string memory,
-        string memory,
         uint,
+        uint,
+        string memory,
         string memory,
         address[] memory,
         string[] memory
@@ -120,6 +140,7 @@ contract BlocTickets is ERC721URIStorage, Ownable {
             _event.price,
             _event.ticketsAvailable,
             _event.description,
+            _event.ipfs,
             _event.ticketHolders,
             _event.nftUris
         );
@@ -140,6 +161,7 @@ contract BlocTickets is ERC721URIStorage, Ownable {
                 _event.price,
                 _event.ticketsAvailable,
                 _event.description,
+                _event.ipfs,
                 _event.ticketHolders,
                 _event.nftUris
             );
@@ -180,6 +202,7 @@ contract BlocTickets is ERC721URIStorage, Ownable {
                         _event.price,
                         _event.ticketsAvailable,
                         _event.description,
+                        _event.ipfs,
                         _event.ticketHolders,
                         _event.nftUris
                     );
@@ -216,6 +239,7 @@ contract BlocTickets is ERC721URIStorage, Ownable {
                     _event.price,
                     _event.ticketsAvailable,
                     _event.description,
+                    _event.ipfs,
                     _event.ticketHolders,
                     _event.nftUris
                 );
@@ -223,5 +247,16 @@ contract BlocTickets is ERC721URIStorage, Ownable {
             }
         }
         return result;
+    }
+
+    //function to withdraw from the contract
+    function withdraw(address _address) public onlyContractOwner {
+        require(cUSDToken.transfer(_address, cUSDToken.balanceOf(address(this))), "Unable to withdraw from contract");
+    }
+
+    //modifier for onlyOwner
+    modifier onlyContractOwner() {
+        require(msg.sender == mine , "Only owner can call this function");
+        _;
     }
 }
