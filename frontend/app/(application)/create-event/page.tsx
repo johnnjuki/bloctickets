@@ -76,7 +76,7 @@ export default function CreateEventPage() {
       const dateObject = new Date(data.date as string);
       const dateInMilliseconds = dateObject.getTime();
 
-      const paid = await processCheckout(contractAddress as `0x{string}` , Number(1 * 10 ** 18));
+      const paid = await processCheckout(contractAddress as `0x{string}` , Number(0.1 * 10 ** 18));
 
       if (paid) {
         const hash = await writeContractAsync({

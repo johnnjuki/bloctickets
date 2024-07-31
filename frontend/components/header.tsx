@@ -1,8 +1,23 @@
+"use client"
+
 import Link from "next/link";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
+import { injected } from "wagmi/connectors";
+import { useEffect, useState } from "react";
+import { useConnect } from "wagmi";
 
 export function Header() {
+  const [hideConnectBtn, setHideConnectBtn] = useState(false);
+  const { connect } = useConnect();
+
+  useEffect(() => {
+    if (window.ethereum && window.ethereum.isMiniPay) {
+      setHideConnectBtn(true);
+      connect({ connector: injected({ target: "metaMask" }) });
+    }
+  }, []);
+
   const navLinks = [
     {
       name: "Explore events",
@@ -23,21 +38,21 @@ export function Header() {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <div className="flex-1 md:flex md:items-center md:gap-12">
-            <a className="block text-2xl lg:text-3xl font-bold" href="/">
+            <a className="block text-2xl font-bold lg:text-3xl" href="/">
               <span className="sr-only">Home</span>
               <Image
-               width={200}
-               height={100}
-               src="/static/images/logo/logo-no-background.png"
-               alt="Logo"
-               className="hidden sm:block"
+                width={200}
+                height={100}
+                src="/static/images/logo/logo-no-background.png"
+                alt="Logo"
+                className="hidden sm:block"
               />
               <Image
-               width={150}
-               height={100}
-               src="/static/images/logo/logo-no-background.png"
-               alt="Logo"
-               className="sm:hidden"
+                width={150}
+                height={100}
+                src="/static/images/logo/logo-no-background.png"
+                alt="Logo"
+                className="sm:hidden"
               />
             </a>
           </div>
@@ -58,8 +73,15 @@ export function Header() {
               </ul>
             </nav>
 
-            <div className="hidden sm:block md:gap-4">
-              <ConnectButton />
+            <div>
+              {!hideConnectBtn && (
+                <ConnectButton
+                  showBalance={{
+                    smallScreen: true,
+                    largeScreen: true,
+                  }}
+                />
+              )}
             </div>
           </div>
         </div>
