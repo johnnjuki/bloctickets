@@ -162,20 +162,20 @@ export default function CreateEventPage() {
                   id="category"
                   
                 >
-                  <SelectValue placeholder="Select  category" />
+                  <SelectValue placeholder="Select  category"/>
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
                     <SelectLabel>Select category</SelectLabel>
-                    <SelectItem value="Education & Learning">
+                    <SelectItem value="Education & Learning" >
                       Education & Learning
                     </SelectItem>
-                    <SelectItem value="Entertainment">Entertainment</SelectItem>
+                    <SelectItem value="Entertainment" >Entertainment</SelectItem>
                     <SelectItem value="Travel & Outdoor">
                       Travel & Outdoor
                     </SelectItem>
-                    <SelectItem value="Movies & Film">Movies & Film</SelectItem>
-                    <SelectItem value="Sports">Sports</SelectItem>
+                    <SelectItem value="Movies & Film" >Movies & Film</SelectItem>
+                    <SelectItem value="Sports" >Sports</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>

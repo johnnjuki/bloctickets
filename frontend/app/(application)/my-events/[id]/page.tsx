@@ -3,7 +3,10 @@
 import { CalendarRange, MapPin, User } from "lucide-react";
 import { useAccount, useReadContract } from "wagmi";
 
-import { blocTicketsAbi , contractAddress} from "@/blockchain/abi/blocTickets-abi";
+import {
+  blocTicketsAbi,
+  contractAddress,
+} from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { convertDateFromMilliseconds } from "@/lib/utils";
@@ -31,16 +34,11 @@ export default function EventDetailsPage({
     args: [BigInt(params.id)],
   });
 
-  
-
   useEffect(() => {
     if (event) {
       console.log(event);
     }
   }, [event]);
-
-
-
 
   if (!isConnected) {
     router.push("/");
@@ -89,9 +87,9 @@ export default function EventDetailsPage({
               <h2 className="mb-4 text-xl font-bold">Ticket Sales</h2>
               {/* <div className="flex items-start justify-between"> */}
               <div className="flex items-center gap-2 ">
-                <p className="text-4xl font-semibold">{event?.[10].length}</p>
+                <p className="text-4xl font-semibold">{event?.[11].length}</p>
                 <p className="text-gray-500 ">
-                  {event?.[10].length === 1 ? "Ticket Sold" : "Tickets Sold"}
+                  {event?.[12].length === 1 ? "Ticket Sold" : "Tickets Sold"}
                 </p>
               </div>
               {/* <Button variant="outline">View Tickets</Button> */}
@@ -100,12 +98,12 @@ export default function EventDetailsPage({
             <div className="rounded-lg bg-gray-100 p-6 ">
               <h2 className="mb-4 text-xl font-bold">Attendees</h2>
               <ul className="space-y-4">
-                {event?.[10].length === 0 ? (
+                {event?.[12].length === 0 ? (
                   <div className="">
                     <p>No attendees yet</p>
                   </div>
                 ) : (
-                  event?.[11].map((attendee, index) => (
+                  event?.[12].map((attendee, index) => (
                     <li className="flex items-center gap-2" key={index}>
                       <div>
                         <User />
