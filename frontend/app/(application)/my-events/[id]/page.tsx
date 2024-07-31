@@ -3,7 +3,10 @@
 import { CalendarRange, MapPin, User } from "lucide-react";
 import { useAccount, useReadContract } from "wagmi";
 
-import { blocTicketsAbi , contractAddress} from "@/blockchain/abi/blocTickets-abi";
+import {
+  blocTicketsAbi,
+  contractAddress,
+} from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { convertDateFromMilliseconds } from "@/lib/utils";
@@ -30,8 +33,6 @@ export default function EventDetailsPage({
     functionName: "getEvent",
     args: [BigInt(params.id)],
   });
-
-  
 
   useEffect(() => {
     if (event) {

@@ -61,7 +61,7 @@ export function Footer({ showText }: { showText?: boolean }) {
               </a>
             </li>
 
-            <li>
+            {/* <li>
               <Link
                 href="https://github.com/johnnjuki/bloctickets"
                 rel="noreferrer"
@@ -72,7 +72,7 @@ export function Footer({ showText }: { showText?: boolean }) {
 
                 <FaGithub className="h-6 w-6" />
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
