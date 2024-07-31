@@ -1,4 +1,4 @@
-export const contractAddress = "0x5CFE907EDFbD492cf1C4D8Be6D41cF2E4C5bc2B8";
+export const contractAddress = "0xc999a910Aa7C410D9Ba139d9f90fA0741A9B09a9";
 export const blocTicketsAbi =  [
   {
     "inputs": [],
