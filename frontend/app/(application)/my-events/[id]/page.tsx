@@ -3,13 +3,14 @@
 import { CalendarRange, MapPin, User } from "lucide-react";
 import { useAccount, useReadContract } from "wagmi";
 
-import { blocTicketsAbi } from "@/blockchain/abi/blocTickets-abi";
+import { blocTicketsAbi , contractAddress} from "@/blockchain/abi/blocTickets-abi";
 import { Button } from "@/components/shared/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { convertDateFromMilliseconds } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Header } from "@/components/header";
+import { useEffect } from "react";
 
 export default function EventDetailsPage({
   params,
@@ -24,11 +25,22 @@ export default function EventDetailsPage({
     isPending,
     error,
   } = useReadContract({
-    address: "0xcB9d3CF208858200EF12893db3dEF2Df191cb6C5",
+    address: contractAddress,
     abi: blocTicketsAbi,
     functionName: "getEvent",
     args: [BigInt(params.id)],
   });
+
+  
+
+  useEffect(() => {
+    if (event) {
+      console.log(event);
+    }
+  }, [event]);
+
+
+
 
   if (!isConnected) {
     router.push("/");
@@ -93,7 +105,7 @@ export default function EventDetailsPage({
                     <p>No attendees yet</p>
                   </div>
                 ) : (
-                  event?.[10].map((attendee, index) => (
+                  event?.[11].map((attendee, index) => (
                     <li className="flex items-center gap-2" key={index}>
                       <div>
                         <User />
