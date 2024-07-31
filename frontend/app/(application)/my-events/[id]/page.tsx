@@ -105,7 +105,7 @@ export default function EventDetailsPage({
                     <p>No attendees yet</p>
                   </div>
                 ) : (
-                  event?.[10].map((attendee, index) => (
+                  event?.[11].map((attendee, index) => (
                     <li className="flex items-center gap-2" key={index}>
                       <div>
                         <User />
