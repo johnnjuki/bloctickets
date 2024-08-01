@@ -90,18 +90,16 @@ contract BlocTickets is ERC721URIStorage, Ownable {
         nextEventId++;
     }
 
-    function buyTicket(uint eventId) public payable {
-        Event storage _event = events[eventId];
-        // require(msg.value == _event.price, "Incorrect Ether value sent");
-        require(_event.ticketsAvailable > 0, "No tickets available");
-        // require(cUSDToken.balanceOf(msg.sender) >= _event.price, "You dont have sufficient balance");
-        // require(cUSDToken.transferFrom(msg.sender, _event.organizer, _event.price), "Failed to purchase Ticket");
+    function buyTicket(uint eventId, string memory nftUri) public payable {
+        Event storage _event = events[eventId];       
+        require(_event.ticketsAvailable > 0, "No tickets available");        
+        mintTicketNft(eventId, nftUri);
         _event.ticketsAvailable--;
         _event.ticketHolders.push(msg.sender);
   
     }
 
-    function mintTicketNft(uint eventId, string memory nftUri) public {
+    function mintTicketNft(uint eventId, string memory nftUri) internal {
         Event storage _event = events[eventId];
         _event.nftUris.push(nftUri);
         _event.userToNftUris[msg.sender].push(nftUri);

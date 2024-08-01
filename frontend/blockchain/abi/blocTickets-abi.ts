@@ -1,4 +1,5 @@
-export const contractAddress = "0xc999a910Aa7C410D9Ba139d9f90fA0741A9B09a9";
+export const contractAddress = "0x5D530A80f49542B5f455Cf8c69D53C36f25fcD34";
+// "0x91061Da059075c782D90E2c9161A55A7b866b5ae";
 export const blocTicketsAbi =  [
   {
     "inputs": [],
@@ -174,6 +175,11 @@ export const blocTicketsAbi =  [
         "internalType": "uint256",
         "name": "eventId",
         "type": "uint256"
+      },
+      {
+        "internalType": "string",
+        "name": "nftUri",
+        "type": "string"
       }
     ],
     "name": "buyTicket",
@@ -725,24 +731,6 @@ export const blocTicketsAbi =  [
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "eventId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "string",
-        "name": "nftUri",
-        "type": "string"
-      }
-    ],
-    "name": "mintTicketNft",
-    "outputs": [],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
