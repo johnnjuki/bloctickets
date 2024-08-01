@@ -1,19 +1,17 @@
 "use client";
 
-import {
-  CalendarRange,
-  CircleDollarSign,
-  MapPin,
-  Ticket
-} from "lucide-react";
+import { CalendarRange, CircleDollarSign, MapPin, Ticket } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { parseEther } from "viem";
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
-import {processCheckout} from "@/lib/TokenFuction";
-import { blocTicketsAbi , contractAddress} from "@/blockchain/abi/blocTickets-abi";
+import { processCheckout } from "@/lib/TokenFuction";
+import {
+  blocTicketsAbi,
+  contractAddress,
+} from "@/blockchain/abi/blocTickets-abi";
 import { Header } from "@/components/header";
 import { Button } from "@/components/shared/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -51,13 +49,6 @@ export default function EventDetailsPage({
     writeContractAsync,
   } = useWriteContract();
 
-  const {
-    data: mintTicketHash,
-    isPending: mintTicketPending,
-    error: ticketsError,
-    writeContractAsync: mintTicketAsync,
-  } = useWriteContract();
-
   async function buyTicket(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!isConnected) {
@@ -82,71 +73,55 @@ export default function EventDetailsPage({
     }
 
     try {
-      // const exchangeRate = await getExchangeRate();
-      // const priceInCELO = parseFloat(event?.[7]) / exchangeRate;
-      // console.log(priceInCELO);
-      const paid = await processCheckout(event?.[1] as `0x{string}`, Number(event?.[7]));
+      const paid = await processCheckout(
+        event?.[1] as `0x{string}`,
+        Number(event?.[7]),
+      );
 
-      if (paid){
+      if (paid) {
+        try {
+          setIsUploading(true);
+          const ticketNumber = event?.[10]?.length + 1;
+          const nftImage = createEventImage(
+            event?.[2],
+            event?.[3],
+            convertDateFromMilliseconds(Number(event?.[5])),
+            event?.[6],
+            ticketNumber,
+          );
+          console.log(nftImage);
 
-        const hash = await writeContractAsync({
-          address: contractAddress,
-          abi: blocTicketsAbi,
-          functionName: "buyTicket",
-          args: [BigInt(params.index)],
-          
-        });
-  
-        if (hash) {
-          toast("You have purchased a ticket!");
-          try {
-            setIsUploading(true);
-            const ticketNumber = event?.[10]?.length + 1;
-            const nftImage = createEventImage(
-              event?.[2],
-              event?.[3],
-              convertDateFromMilliseconds(Number(event?.[5])),
-              event?.[6],
-              ticketNumber,
-            );
-            console.log(nftImage);
-    
-            const blob = await (await fetch(nftImage)).blob();
-    
-            const data = new FormData();
-            data.set("file", blob);
-            const res = await fetch("/api/files", {
-              method: "POST",
-              body: data,
-            });
-            const resData = await res.json();
-            setCid(resData.IpfsHash);
-    
-            const hash = await mintTicketAsync({
-              address: contractAddress,
-              abi: blocTicketsAbi,
-              functionName: "mintTicketNft",
-              args: [BigInt(params.index), resData.IpfsHash],
-            });
-    
-            if (hash) {
-              toast("Ticket NFT minted!");
-              setIsUploading(false);
-              router.push(`/tickets/${event?.[0]}`);
+          const blob = await (await fetch(nftImage)).blob();
+
+          const data = new FormData();
+          data.set("file", blob);
+          const res = await fetch("/api/files", {
+            method: "POST",
+            body: data,
+          });
+          const resData = await res.json();
+          setCid(resData.IpfsHash);
+
+          const hash = await writeContractAsync({
+            address: contractAddress,
+            abi: blocTicketsAbi,
+            functionName: "buyTicket",
+            args: [BigInt(params.index), resData.IpfsHash],
+          });
+
+          if (hash) {
             
-            }
-          } catch (error) {
             setIsUploading(false);
-            toast.error("Minting Ticket NFT failed!");
-            console.log(error);
-            return;
+            router.push(`/tickets/${event?.[0]}`);
+            toast("Ticket NFT minted!");
           }
+        } catch (error) {
+          toast.error("Minting Ticket NFT failed!");
+          console.log(error);
+          return;
         }
 
-      }else{
-        toast("make sure you have the amount");
       }
-    
     } catch (error) {
       console.log(error);
       toast.error("Purchase failed!");
@@ -165,7 +140,6 @@ export default function EventDetailsPage({
     width = 600,
     height = 400,
   ) {
-    
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -195,22 +169,22 @@ export default function EventDetailsPage({
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 10;
     ctx.strokeRect(0, 0, width, height);
-    ctx.shadowBlur = 0; 
+    ctx.shadowBlur = 0;
 
     ctx.fillStyle = "#ffffff";
-    ctx.font = "bold 24pt Arial"; 
+    ctx.font = "bold 24pt Arial";
     ctx.shadowColor = "#000000";
     ctx.shadowBlur = 10;
     ctx.fillText(eventName, 50, 100);
-    ctx.font = "16pt Arial"; 
+    ctx.font = "16pt Arial";
     ctx.fillText(`Venue: ${venue}`, 50, 150);
     ctx.fillText(`Date: ${date}`, 50, 200);
     ctx.fillText(`Time: ${time}`, 50, 250);
     ctx.fillText(`Ticket Number: ${number}`, 50, 300);
-    ctx.shadowBlur = 0; 
+    ctx.shadowBlur = 0;
 
     ctx.globalAlpha = 0.1;
-    ctx.font = "italic 40pt Arial"; 
+    ctx.font = "italic 40pt Arial";
     ctx.fillText("TICKET", width / 4, height / 1.5);
     ctx.globalAlpha = 1.0;
 
@@ -224,7 +198,7 @@ export default function EventDetailsPage({
       <div className="hidden sm:block">
         <Header />
       </div>
-      <section className="flex w-full flex-col gap-8 bg-gray-100 rounded-lg py-12 ">
+      <section className="flex w-full flex-col gap-8 rounded-lg bg-gray-100 py-12 ">
         {error && (
           <div className="flex h-screen items-center justify-center">
             <p>Error fetching events, try again later</p>
@@ -266,7 +240,7 @@ export default function EventDetailsPage({
                 </div>
                 <p className="text-2xl font-semibold">
                   {/* {event?.price} */}
-                  {Number(event?.[7])/10**18} cUSD
+                  {Number(event?.[7]) / 10 ** 18} cUSD
                 </p>
               </div>
 
@@ -284,14 +258,14 @@ export default function EventDetailsPage({
                     type="submit"
                     disabled={
                       buyTicketPending || isTicketPurchased || isUploading
-                    } 
+                    }
                   >
                     <Ticket className="mr-2 h-5 w-5" />
                     {isUploading
                       ? "Minting NFT Ticket..."
                       : buyTicketPending
                         ? "Buying Ticket..."
-                        : mintTicketHash || isTicketPurchased
+                        : isTicketPurchased
                           ? "NFT Ticket Minted"
                           : "Buy Ticket"}
                   </Button>
