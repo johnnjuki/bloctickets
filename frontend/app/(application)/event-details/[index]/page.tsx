@@ -99,56 +99,54 @@ export default function EventDetailsPage({
   
         if (hash) {
           toast("You have purchased a ticket!");
+          try {
+            setIsUploading(true);
+            const ticketNumber = event?.[10]?.length + 1;
+            const nftImage = createEventImage(
+              event?.[2],
+              event?.[3],
+              convertDateFromMilliseconds(Number(event?.[5])),
+              event?.[6],
+              ticketNumber,
+            );
+            console.log(nftImage);
+    
+            const blob = await (await fetch(nftImage)).blob();
+    
+            const data = new FormData();
+            data.set("file", blob);
+            const res = await fetch("/api/files", {
+              method: "POST",
+              body: data,
+            });
+            const resData = await res.json();
+            setCid(resData.IpfsHash);
+    
+            const hash = await mintTicketAsync({
+              address: contractAddress,
+              abi: blocTicketsAbi,
+              functionName: "mintTicketNft",
+              args: [BigInt(params.index), resData.IpfsHash],
+            });
+    
+            if (hash) {
+              toast("Ticket NFT minted!");
+              setIsUploading(false);
+              router.push(`/tickets/${event?.[0]}`);
+            
+            }
+          } catch (error) {
+            setIsUploading(false);
+            toast.error("Minting Ticket NFT failed!");
+            console.log(error);
+            return;
+          }
         }
 
       }else{
         toast("make sure you have the amount");
       }
-
-      
-
-      try {
-        setIsUploading(true);
-        const ticketNumber = event?.[10]?.length + 1;
-        const nftImage = createEventImage(
-          event?.[2],
-          event?.[3],
-          convertDateFromMilliseconds(Number(event?.[5])),
-          event?.[6],
-          ticketNumber,
-        );
-        console.log(nftImage);
-
-        const blob = await (await fetch(nftImage)).blob();
-
-        const data = new FormData();
-        data.set("file", blob);
-        const res = await fetch("/api/files", {
-          method: "POST",
-          body: data,
-        });
-        const resData = await res.json();
-        setCid(resData.IpfsHash);
-
-        const hash = await mintTicketAsync({
-          address: contractAddress,
-          abi: blocTicketsAbi,
-          functionName: "mintTicketNft",
-          args: [BigInt(params.index), resData.IpfsHash],
-        });
-
-        if (hash) {
-          toast("Ticket NFT minted!");
-          setIsUploading(false);
-          router.push(`/tickets/${event?.[0]}`);
-        
-        }
-      } catch (error) {
-        setIsUploading(false);
-        toast.error("Minting Ticket NFT failed!");
-        console.log(error);
-        return;
-      }
+    
     } catch (error) {
       console.log(error);
       toast.error("Purchase failed!");
@@ -156,7 +154,7 @@ export default function EventDetailsPage({
     }
   }
 
-  const isTicketPurchased = event?.[10].includes(address!!);
+  const isTicketPurchased = event?.[11].includes(address!!);
 
   function createEventImage(
     eventName: string,
